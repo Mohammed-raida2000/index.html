@@ -1,0 +1,2143 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة النور | حملة 16 يوماً لمناهضة العنف</title>
+    <!-- تحميل خط Tajawal العربي وتضمين Tailwind CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        tajawal: ['Tajawal', 'sans-serif'],
+                    },
+                    colors: {
+                        noorOrange: '#F36E21',
+                        noorOrangeHover: '#d95b12',
+                        noorOrangeWarm: '#FF8C42',
+                        noorRust: '#B83B14',
+                        noorOrangeSoft: '#FFF3EC',
+                        noorOrangeTint: '#FFF9F5',
+                        shamGreen: '#1B4332',
+                        shamGreenLight: '#2D6A4F',
+                        unBlue: '#0066CC',
+                        unWomenCyan: '#009EDB',
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+        }
+        .tatreez-divider {
+            background-image: radial-gradient(circle, #F36E21 2px, transparent 2.5px),
+                              radial-gradient(circle, #B83B14 2px, transparent 2.5px),
+                              radial-gradient(circle, #1B4332 1.8px, transparent 2.3px);
+            background-size: 24px 12px;
+            background-position: 0 0, 12px 6px, 6px 3px;
+            height: 12px;
+            opacity: 0.75;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(243, 110, 33, 0.45);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(243, 110, 33, 0.75);
+        }
+    </style>
+</head>
+<body class="bg-noorOrangeTint text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col selection:bg-noorOrange/25 selection:text-noorOrange">
+
+    <!-- الشريط العلوي مع شعار UNFPA وشعار جمعية عطر الشام فقط في الواجهة العلوية -->
+    <header class="sticky top-0 z-40 bg-gradient-to-l from-amber-50/95 via-orange-50/95 to-white/95 dark:from-slate-900/95 dark:via-slate-900/95 dark:to-slate-900/95 backdrop-blur-md border-b-4 border-noorOrange shadow-sm">
+        <div class="h-1.5 w-full bg-gradient-to-l from-noorRust via-noorOrange to-amber-400"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
+            <!-- شعارا UNFPA وجمعية عطر الشام الأصليان في الواجهة -->
+            <div class="flex flex-wrap items-center gap-3 sm:gap-5">
+                <!-- شعار UNFPA الأصلي -->
+                <div class="group relative h-14 sm:h-16 px-1 bg-transparent flex items-center justify-center" title="صندوق الأمم المتحدة للسكان UNFPA">
+                    <img id="customUnfpaLogoImg" src="" alt="شعار UNFPA" class="hidden h-full w-auto object-contain">
+                    <svg id="defaultUnfpaSvg" viewBox="0 0 260 116" class="h-full w-auto" role="img" aria-label="شعار UNFPA">
+                        <circle cx="16" cy="20" r="12.5" fill="#F36E21" />
+                        <circle cx="52" cy="20" r="12.5" fill="#F36E21" />
+                        <circle cx="88" cy="20" r="12.5" fill="#F36E21" />
+                        <circle cx="16" cy="58" r="12.5" fill="#F36E21" />
+                        <circle cx="52" cy="58" r="12.5" fill="#F36E21" />
+                        <circle cx="16" cy="96" r="12.5" fill="#F36E21" />
+                        <circle cx="52" cy="96" r="12.5" fill="#F36E21" />
+                        <circle cx="88" cy="96" r="12.5" fill="#F36E21" />
+
+                        <g transform="translate(118, 58)" stroke="#0066CC" class="dark:stroke-sky-400" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="0" cy="-1" r="15.5" stroke-width="2.4" />
+                            <ellipse cx="0" cy="-1" rx="8" ry="15.5" stroke-width="1.8" />
+                            <ellipse cx="0" cy="-1" rx="3.2" ry="15.5" stroke-width="1.3" />
+                            <line x1="-15.5" y1="-1" x2="15.5" y2="-1" stroke-width="1.8" />
+                            <line x1="-13" y1="-8" x2="13" y2="-8" stroke-width="1.3" />
+                            <line x1="-13" y1="6" x2="13" y2="6" stroke-width="1.3" />
+                            <line x1="0" y1="-16.5" x2="0" y2="14.5" stroke-width="1.6" />
+                            <path d="M -18.5 3 C -22 11, -12 18, 0 19.5" stroke-width="2.5" />
+                            <path d="M 18.5 3 C 22 11, 12 18, 0 19.5" stroke-width="2.5" />
+                            <path d="M -19.5 -3 C -23 2, -21 8, -17.5 11.5" stroke-width="2" />
+                            <path d="M 19.5 -3 C 23 2, 21 8, 17.5 11.5" stroke-width="2" />
+                            <path d="M -17 -9 C -19 -5, -19 -1, -17.5 2" stroke-width="1.8" />
+                            <path d="M 17 -9 C 19 -5, 19 -1, 17.5 2" stroke-width="1.8" />
+                        </g>
+
+                        <circle cx="199" cy="58" r="52" fill="#F36E21" />
+                        <text x="199" y="67" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="28" letter-spacing="1">UNFPA</text>
+                    </svg>
+                </div>
+
+                <!-- شعار جمعية عطر الشام التعاونية الحرفية الأصلي -->
+                <div class="group relative h-14 sm:h-16 px-1 bg-transparent flex items-center gap-2" title="جمعية عطر الشام التعاونية الحرفية">
+                    <img id="customShamLogoImg" src="" alt="شعار جمعية عطر الشام التعاونية الحرفية" class="hidden h-full w-auto object-contain">
+                    <svg id="defaultShamSvg" viewBox="0 0 240 240" class="h-full w-auto shrink-0" role="img" aria-label="شعار جمعية عطر الشام التعاونية الحرفية">
+                        <defs>
+                            <path id="shamTopArc" d="M 24 120 A 96 96 0 1 1 216 120" />
+                            <path id="shamBottomArc" d="M 28 122 A 92 92 0 0 0 212 122" />
+                        </defs>
+                        <circle cx="120" cy="120" r="114" fill="none" stroke="#1B4332" class="dark:stroke-emerald-300" stroke-width="4.5" />
+                        <circle cx="120" cy="120" r="80" fill="none" stroke="#1B4332" class="dark:stroke-emerald-300" stroke-width="2.5" />
+                        <text fill="#1B4332" class="dark:fill-emerald-200" font-family="Tajawal, sans-serif" font-weight="800" font-size="13.5">
+                            <textPath href="#shamTopArc" startOffset="50%" text-anchor="middle">جمعية عطر الشام التعاونية الحرفية</textPath>
+                        </text>
+                        <text fill="#1B4332" class="dark:fill-emerald-200" font-family="Arial, sans-serif" font-weight="700" font-size="9.5">
+                            <textPath href="#shamBottomArc" startOffset="50%" text-anchor="middle">Etter Al-Sham Cooperative crafts Association</textPath>
+                        </text>
+                        <g stroke="#1B4332" class="dark:stroke-emerald-300" stroke-width="1.2" fill="none" opacity="0.9">
+                            <circle cx="16" cy="115" r="7" />
+                            <circle cx="22" cy="120" r="7" stroke="#D62828" />
+                            <circle cx="16" cy="125" r="7" />
+                            <circle cx="224" cy="115" r="7" />
+                            <circle cx="218" cy="120" r="7" stroke="#D62828" />
+                            <circle cx="224" cy="125" r="7" />
+                        </g>
+                        <path d="M 118 76 C 106 60, 84 65, 84 82 C 84 98, 106 108, 118 118 C 130 108, 152 98, 152 82 C 152 65, 130 60, 118 76 Z" fill="none" stroke="#E11D48" stroke-width="3" />
+                        <line x1="128" y1="98" x2="156" y2="70" stroke="#1B4332" class="dark:stroke-emerald-300" stroke-width="2.5" stroke-linecap="round" />
+                        <circle cx="157" cy="69" r="3" fill="none" stroke="#1B4332" class="dark:stroke-emerald-300" stroke-width="2" />
+                        <g transform="translate(88, 118)">
+                            <rect x="-4" y="-33" width="8" height="6" rx="1.5" fill="#C68B59" stroke="#7F4F24" stroke-width="1.2" />
+                            <circle cx="0" cy="0" r="27" fill="#FFFDF9" stroke="#D4A373" stroke-width="4" />
+                            <circle cx="0" cy="0" r="23.5" fill="none" stroke="#8C5828" stroke-width="1.2" />
+                            <path d="M 0 -15 L 4 -4 L 15 0 L 4 4 L 0 15 L -4 4 L -15 0 L -4 -4 Z" fill="#E11D48" />
+                            <circle cx="0" cy="0" r="4" fill="#1B4332" />
+                            <circle cx="-10" cy="-10" r="3" fill="#1B4332" />
+                            <circle cx="10" cy="-10" r="3" fill="#1B4332" />
+                            <circle cx="-10" cy="10" r="3" fill="#1B4332" />
+                            <circle cx="10" cy="10" r="3" fill="#1B4332" />
+                        </g>
+                        <g transform="translate(136, 122)">
+                            <rect x="-4" y="-26" width="8" height="7" rx="1.5" fill="#1B4332" />
+                            <path d="M -5 -19 L 5 -19 L 11 -9 L 11 18 L -11 18 L -11 -9 Z" fill="#EAB308" fill-opacity="0.88" stroke="#A16207" stroke-width="1.4" />
+                            <rect x="-24" y="5" width="18" height="17" rx="3" fill="#FB923C" stroke="#9A3412" stroke-width="1.3" />
+                            <rect x="-25" y="1" width="20" height="5" rx="1.5" fill="#FDE68A" stroke="#9A3412" stroke-width="1.2" />
+                            <rect x="-4" y="4" width="19" height="18" rx="3" fill="#E11D48" stroke="#881337" stroke-width="1.3" />
+                            <rect x="-5" y="0" width="21" height="5" rx="1.5" fill="#FDE68A" stroke="#881337" stroke-width="1.2" />
+                            <path d="M -22 22 Q -5 16 14 21" fill="none" stroke="#1B4332" class="dark:stroke-emerald-300" stroke-width="2" />
+                            <ellipse cx="-10" cy="17" rx="5" ry="2.5" transform="rotate(-20 -10 17)" fill="#2D6A4F" />
+                            <ellipse cx="4" cy="16" rx="5" ry="2.5" transform="rotate(20 4 16)" fill="#2D6A4F" />
+                            <circle cx="-6" cy="23" r="3.2" fill="#1E293B" />
+                            <circle cx="2" cy="23" r="3.2" fill="#1E293B" />
+                        </g>
+                        <text x="120" y="176" text-anchor="middle" fill="#1B4332" class="dark:fill-emerald-200" font-family="Tajawal, sans-serif" font-weight="800" font-size="9.5">تأسست سنة 2020</text>
+                        <text x="120" y="187" text-anchor="middle" fill="#1B4332" class="dark:fill-emerald-200" font-family="Tajawal, sans-serif" font-weight="800" font-size="9.5">ترخيص رقم</text>
+                        <text x="120" y="198" text-anchor="middle" fill="#1B4332" class="dark:fill-emerald-200" font-family="Tajawal, sans-serif" font-weight="900" font-size="10">1674</text>
+                    </svg>
+                </div>
+
+                <!-- عنوان منصة النور -->
+                <div class="pr-1 sm:pr-3 border-r-0 sm:border-r-2 border-noorOrange/45">
+                    <h1 class="text-xl sm:text-2xl font-black text-noorOrange tracking-tight">منصة النور</h1>
+                    <p class="text-xs sm:text-sm text-slate-800 dark:text-slate-300 font-bold">
+                        معرض حملة الـ 16 يوماً لمناهضة العنف ضد النساء والفتيات
+                    </p>
+                </div>
+            </div>
+
+            <!-- أزرار الإجراءات في الشريط العلوي -->
+            <div class="flex flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto justify-end">
+                <button
+                    type="button"
+                    onclick="openModal('submitModal')"
+                    class="px-4 py-2.5 rounded-xl bg-noorOrange hover:bg-noorOrangeHover active:scale-[0.99] text-white font-extrabold text-sm shadow-sm transition flex items-center gap-1.5 cursor-pointer"
+                >
+                    <span>+ شارك عملك</span>
+                </button>
+
+                <button
+                    type="button"
+                    onclick="copySubmissionLink()"
+                    title="نسخ رابط المشاركة المباشر"
+                    class="px-3.5 py-2.5 rounded-xl border border-noorOrange/45 bg-white dark:bg-slate-800 hover:bg-noorOrangeSoft dark:hover:bg-slate-700 text-noorOrange dark:text-amber-300 font-extrabold text-xs sm:text-sm shadow-2xs transition flex items-center gap-1.5 cursor-pointer"
+                >
+                    <span>🔗 رابط المشاركة</span>
+                </button>
+
+                <button
+                    type="button"
+                    id="adminActionBtn"
+                    onclick="handleAdminButtonClick()"
+                    class="px-3.5 py-2.5 rounded-xl bg-shamGreen hover:bg-shamGreenLight text-white font-bold text-sm shadow-xs transition flex items-center gap-1.5 cursor-pointer"
+                >
+                    <span id="adminBtnText">🔒 دخول المشرف</span>
+                </button>
+
+                <button
+                    type="button"
+                    onclick="toggleDarkMode()"
+                    aria-label="تبديل الوضع الداكن"
+                    title="تبديل الوضع الداكن / الفاتح"
+                    class="p-2.5 rounded-xl border border-noorOrange/40 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-noorOrangeSoft dark:hover:bg-slate-700 text-noorOrange dark:text-amber-300 transition cursor-pointer"
+                >
+                    <span id="themeIcon" class="text-base leading-none">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- القسم الترحيبي الرئيسي المدمج بهوية حملة 2026 وشعار "وبعدين؟ and then what?" -->
+    <section class="relative overflow-hidden bg-gradient-to-bl from-orange-100/90 via-amber-50 to-orange-50 dark:from-slate-900 dark:via-slate-900 dark:to-noorOrange/15 border-b-2 border-noorOrange/30 text-slate-900 dark:text-white">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(243,110,33,0.16),transparent_60%)] pointer-events-none"></div>
+        <div class="tatreez-divider w-full"></div>
+
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-center">
+                <!-- العمود الأيمن: الشعار الرسمي للحملة "وبعدين؟ and then what?" والرسالة -->
+                <div class="lg:col-span-7 text-center lg:text-right">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 dark:bg-noorOrange/20 border border-noorOrange/35 text-noorRust dark:text-amber-200 font-extrabold text-xs sm:text-sm mb-4 shadow-2xs">
+                        <span>🧡</span>
+                        <span>إطلاق حملة الـ 16 يوماً لمناهضة العنف ضد النساء والفتيات 2026</span>
+                    </div>
+
+                    <!-- شعار الحملة المدمج "وبعدين؟ and then what?" -->
+                    <div class="my-2 flex justify-center lg:justify-start">
+                        <img id="customCampaignLogoImg" src="" alt="شعار وبعدين؟ and then what?" class="hidden max-w-md sm:max-w-lg w-full h-auto object-contain">
+                        <svg id="defaultCampaignLogoSvg" viewBox="0 0 540 165" class="w-full max-w-md sm:max-w-lg h-auto" role="img" aria-label="شعار حملة 16 يوماً 2026: وبعدين؟ and then what?">
+                            <defs>
+                                <linearGradient id="waBadeenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#FF8C42" />
+                                    <stop offset="52%" stop-color="#F36E21" />
+                                    <stop offset="100%" stop-color="#B83B14" />
+                                </linearGradient>
+                                <linearGradient id="waBadeenRibbon" x1="100%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#D94E1F" />
+                                    <stop offset="100%" stop-color="#8F280A" />
+                                </linearGradient>
+                            </defs>
+
+                            <rect x="218" y="18" width="14" height="14" rx="2" transform="rotate(45 225 25)" fill="url(#waBadeenGrad)" />
+                            <rect x="242" y="108" width="13" height="13" rx="2" transform="rotate(45 248.5 114.5)" fill="url(#waBadeenGrad)" />
+                            <rect x="242" y="124" width="11" height="11" rx="2" transform="rotate(45 247.5 129.5)" fill="#FF8C42" />
+                            <rect x="415" y="102" width="15" height="15" rx="2" transform="rotate(45 422.5 109.5)" fill="url(#waBadeenGrad)" />
+
+                            <text x="345" y="96" text-anchor="middle" fill="url(#waBadeenGrad)" font-family="Tajawal, sans-serif" font-weight="900" font-size="88" letter-spacing="-1">وبعدين</text>
+
+                            <g transform="translate(88, 16)">
+                                <path d="M 32 76 C 12 66, 8 34, 32 18 C 56 4, 88 18, 86 46 C 84 68, 60 74, 54 90 C 50 100, 52 108, 56 114 C 42 110, 34 98, 38 84 C 42 70, 64 62, 64 44 C 64 28, 48 22, 36 30 C 24 38, 26 58, 38 66 Z" fill="url(#waBadeenGrad)" />
+                                <path d="M 41 25 C 55 20, 72 30, 70 46 C 68 60, 50 68, 46 82" fill="none" stroke="#FDE68A" stroke-width="5.5" stroke-linecap="round" stroke-dasharray="3 5" />
+                                <path d="M 33 34 C 29 41, 25 45, 23 48 C 26 49, 28 50, 27 53 C 29 54, 28 57, 30 58 C 33 60, 36 63, 37 68" fill="none" stroke="#B83B14" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+                                <rect x="42" y="122" width="15" height="15" rx="2" transform="rotate(45 49.5 129.5)" fill="url(#waBadeenRibbon)" />
+                            </g>
+
+                            <text x="278" y="148" text-anchor="middle" fill="#B83B14" class="dark:fill-amber-300" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="33" letter-spacing="0.5">and then what?</text>
+                        </svg>
+                    </div>
+
+                    <p class="max-w-2xl mx-auto lg:mx-0 text-sm sm:text-base text-slate-700 dark:text-slate-200 leading-relaxed mb-6 font-medium">
+                        أهلاً بك في <strong class="text-noorOrange font-extrabold">منصة النور</strong>؛ معرضكم الرقمي التفاعلي لمشاركة الرسومات والصور والفيديوهات والأفكار التي تجسّد رسالة حملة 2026 <strong class="text-noorRust dark:text-amber-300">«وبعدين؟»</strong> نحو مجتمع آمن يحمي النساء والفتيات.
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                        <button
+                            type="button"
+                            onclick="openModal('submitModal')"
+                            class="px-7 py-3.5 rounded-xl bg-gradient-to-l from-noorRust to-noorOrange hover:opacity-95 text-white font-black text-sm sm:text-base shadow-md shadow-noorOrange/25 transition transform hover:-translate-y-0.5 cursor-pointer"
+                        >
+                            + شارك عملك الآن
+                        </button>
+                        <a
+                            href="#gallerySection"
+                            class="px-6 py-3.5 rounded-xl border-2 border-shamGreen bg-white/95 dark:bg-slate-800 hover:bg-shamGreen text-shamGreen dark:text-emerald-300 hover:text-white font-extrabold text-sm sm:text-base transition"
+                        >
+                            استعرض المعرض
+                        </a>
+                    </div>
+                </div>
+
+                <!-- العمود الأيسر: بطاقة "احفظوا التاريخ" الرسمية لإطلاق الحملة (25 نوفمبر 2026) -->
+                <div class="lg:col-span-5">
+                    <div class="rounded-3xl bg-white/95 dark:bg-slate-900/95 border-2 border-noorOrange/35 p-5 sm:p-6 shadow-xl shadow-noorOrange/10 relative overflow-hidden">
+                        <div class="absolute top-0 inset-x-0 h-2 bg-gradient-to-l from-noorRust via-noorOrange to-amber-400"></div>
+
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="px-3 py-1 rounded-full bg-noorOrangeSoft dark:bg-noorOrange/20 text-noorRust dark:text-amber-300 text-xs font-black">
+                                ✨ احفظوا التاريخ • Save the Date
+                            </span>
+                            <span class="text-xs font-extrabold text-shamGreen dark:text-emerald-300">
+                                فعالية الإطلاق
+                            </span>
+                        </div>
+
+                        <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white mb-2 leading-snug">
+                            إطلاق حملة الـ 16 يوماً لمناهضة العنف ضد النساء والفتيات لعام 2026
+                        </h3>
+
+                        <div class="my-3.5 p-3.5 rounded-2xl bg-gradient-to-l from-noorRust to-noorOrange text-white text-center shadow-sm">
+                            <div class="text-base sm:text-lg font-black">25 تشرين الثاني / نوفمبر 2026</div>
+                            <div class="text-xs sm:text-sm font-bold text-amber-100 mt-0.5">⏰ الساعة 10:00 صباحاً – 12:00 ظهراً • 🌐 عبر الإنترنت وفي الجمعية</div>
+                        </div>
+
+                        <!-- شريط العدّ التنازلي التفاعلي لبدء الحملة -->
+                        <div id="campaignCountdownBox" class="grid grid-cols-4 gap-2 text-center my-3">
+                            <div class="p-2 rounded-xl bg-noorOrangeTint dark:bg-slate-800 border border-noorOrange/25">
+                                <div id="cdDays" class="text-lg sm:text-xl font-black text-noorOrange">--</div>
+                                <div class="text-[11px] font-bold text-slate-600 dark:text-slate-300">يوم</div>
+                            </div>
+                            <div class="p-2 rounded-xl bg-noorOrangeTint dark:bg-slate-800 border border-noorOrange/25">
+                                <div id="cdHours" class="text-lg sm:text-xl font-black text-noorOrange">--</div>
+                                <div class="text-[11px] font-bold text-slate-600 dark:text-slate-300">ساعة</div>
+                            </div>
+                            <div class="p-2 rounded-xl bg-noorOrangeTint dark:bg-slate-800 border border-noorOrange/25">
+                                <div id="cdMinutes" class="text-lg sm:text-xl font-black text-noorOrange">--</div>
+                                <div class="text-[11px] font-bold text-slate-600 dark:text-slate-300">دقيقة</div>
+                            </div>
+                            <div class="p-2 rounded-xl bg-noorOrangeTint dark:bg-slate-800 border border-noorOrange/25">
+                                <div id="cdSeconds" class="text-lg sm:text-xl font-black text-noorRust dark:text-amber-300">--</div>
+                                <div class="text-[11px] font-bold text-slate-600 dark:text-slate-300">ثانية</div>
+                            </div>
+                        </div>
+
+                        <button
+                            type="button"
+                            onclick="openCampaignCalendarModal()"
+                            class="w-full mt-2 py-2.5 px-4 rounded-xl bg-shamGreen hover:bg-shamGreenLight text-white text-xs sm:text-sm font-extrabold transition flex items-center justify-center gap-2 cursor-pointer"
+                        >
+                            <span>🗓️ استعرض برنامج الأيام الـ 16 (25 نوفمبر – 10 ديسمبر)</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- المحتوى الرئيسي: لوحة المشرف والفلاتر والمعرض -->
+    <main id="gallerySection" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- لوحة تحكم المشرف (تظهر فقط بعد تفعيل كود المشرف 1616) -->
+        <section id="adminPanel" class="hidden mb-8 rounded-2xl border-2 border-dashed border-noorOrange bg-gradient-to-l from-noorOrangeSoft/70 to-white dark:from-slate-900 dark:to-slate-900 p-5 sm:p-6 shadow-md shadow-noorOrange/10">
+            <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-5 border-b border-noorOrange/25 dark:border-slate-800">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h3 class="text-lg sm:text-xl font-black text-noorOrange">
+                            🛡️ لوحة المشرف — المشاركات بانتظار الموافقة
+                        </h3>
+                        <span id="pendingBadgeCount" class="px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-noorOrange text-white">0</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+                        يمكنك الموافقة على نشر العمل في المعرض العام أو رفضه وحذفه. كما يظهر لك زر حذف داخل كل عمل منشور.
+                    </p>
+                </div>
+                <button
+                    type="button"
+                    onclick="logoutAdmin()"
+                    class="px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs sm:text-sm font-bold transition cursor-pointer"
+                >
+                    تسجيل خروج المشرف
+                </button>
+            </div>
+
+            <div id="pendingListContainer" class="space-y-3.5"></div>
+
+            <!-- قسم إدارة ورفع صور الشعارات محلياً للمشرف -->
+            <div class="mt-6 pt-5 border-t border-noorOrange/25 dark:border-slate-800">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <div>
+                        <h4 class="text-sm sm:text-base font-extrabold text-shamGreen dark:text-emerald-300">
+                            🖼️ تخصيص ورفع شعارات المنصة من الجهاز
+                        </h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">
+                            ارفع صور الشعارات الأصلية كما هي تماماً دون أي تعديل على ألوانها أو تفاصيلها.
+                        </p>
+                    </div>
+                    <button
+                        type="button"
+                        onclick="resetCustomLogos()"
+                        class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-xs font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer"
+                    >
+                        استعادة الشعارات الافتراضية
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="p-3.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                        <label for="uploadUnfpaLogoInput" class="block text-xs font-extrabold text-slate-800 dark:text-slate-200 mb-1.5">
+                            رفع شعار UNFPA الأصلي (كما هو)
+                        </label>
+                        <input
+                            type="file"
+                            id="uploadUnfpaLogoInput"
+                            accept="image/*"
+                            onchange="handleLogoUpload(event, 'unfpa')"
+                            class="w-full text-xs text-slate-600 dark:text-slate-300 file:ml-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:font-bold file:bg-noorOrange file:text-white hover:file:bg-noorOrangeHover cursor-pointer"
+                        >
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                        <label for="uploadShamLogoInput" class="block text-xs font-extrabold text-slate-800 dark:text-slate-200 mb-1.5">
+                            رفع شعار جمعية عطر الشام الأصلي (كما هو)
+                        </label>
+                        <input
+                            type="file"
+                            id="uploadShamLogoInput"
+                            accept="image/*"
+                            onchange="handleLogoUpload(event, 'sham')"
+                            class="w-full text-xs text-slate-600 dark:text-slate-300 file:ml-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:font-bold file:bg-shamGreen file:text-white hover:file:bg-shamGreenLight cursor-pointer"
+                        >
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+                        <label for="uploadCampaignLogoInput" class="block text-xs font-extrabold text-slate-800 dark:text-slate-200 mb-1.5">
+                            رفع شعار «وبعدين؟» الأصلي (كما هو)
+                        </label>
+                        <input
+                            type="file"
+                            id="uploadCampaignLogoInput"
+                            accept="image/*"
+                            onchange="handleLogoUpload(event, 'campaign')"
+                            class="w-full text-xs text-slate-600 dark:text-slate-300 file:ml-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:font-bold file:bg-noorRust file:text-white hover:opacity-90 cursor-pointer"
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- خانة بارزة وكاملة فوق معرض المشاركات: معرض حملة 16 يوم - جمعية عطر الشام -->
+        <section class="mb-8">
+            <div
+                onclick="openCampaignCalendarModal()"
+                role="button"
+                tabindex="0"
+                onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCampaignCalendarModal();}"
+                class="group relative overflow-hidden rounded-3xl bg-gradient-to-l from-noorOrange via-noorOrangeWarm to-shamGreen p-6 sm:p-8 text-white shadow-xl shadow-noorOrange/20 border-2 border-noorOrange/40 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-noorOrange/30"
+            >
+                <div class="absolute -left-12 -bottom-12 w-56 h-56 rounded-full bg-white/10 blur-xl pointer-events-none"></div>
+                <div class="absolute right-10 -top-10 w-40 h-40 rounded-full bg-amber-300/20 blur-lg pointer-events-none"></div>
+
+                <div class="relative flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+                    <div class="space-y-2 max-w-3xl">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/20 backdrop-blur-xs border border-white/30 text-xs sm:text-sm font-extrabold">
+                            <span>📅</span>
+                            <span>تقويم الفعاليات اليومية (25 نوفمبر — 10 ديسمبر)</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-black tracking-tight drop-shadow-xs">
+                            معرض حملة 16 يوم - جمعية عطر الشام
+                        </h3>
+                        <p class="text-xs sm:text-base text-white/95 font-medium leading-relaxed">
+                            تصفّح يوميات حملة الـ 16 يوماً يوماً بيوم من 25 نوفمبر وحتى 10 ديسمبر؛ اضغط على أي يوم في التقويم لمشاهدة الصور والأنشطة والمشاركات التي نُفذت داخل جمعية عطر الشام التعاونية الحرفية.
+                        </p>
+                    </div>
+
+                    <div class="flex items-center gap-3 shrink-0 self-start lg:self-center">
+                        <span class="px-5 py-3.5 rounded-2xl bg-white text-noorOrange group-hover:bg-noorOrangeSoft font-black text-sm sm:text-base shadow-lg transition flex items-center gap-2">
+                            <span>🗓️ افتح تقويم الحملة (16 يوماً)</span>
+                            <span class="transition-transform group-hover:-translate-x-1">←</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- شريط فلاتر أنواع المشاركات بلمسات برتقالية بارزة -->
+        <div class="mb-7 p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-noorOrange/25 dark:border-slate-800 shadow-xs">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-3.5">
+                <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                    <span class="inline-block w-2.5 h-6 rounded-full bg-noorOrange"></span>
+                    <span>معرض الأعمال المشاركة</span>
+                </h3>
+                <span id="worksCountLabel" class="px-3 py-1 rounded-full bg-noorOrangeSoft dark:bg-noorOrange/15 text-noorOrange text-xs sm:text-sm font-extrabold"></span>
+            </div>
+
+            <div id="filterButtons" class="flex flex-wrap gap-2">
+                <button type="button" data-filter="الكل" onclick="setFilter('الكل')" class="filter-btn active px-4 py-2 rounded-full text-xs sm:text-sm font-extrabold bg-gradient-to-l from-noorOrange to-noorOrangeWarm text-white shadow-md shadow-noorOrange/30 transition cursor-pointer">
+                    الكل
+                </button>
+                <button type="button" data-filter="رسمة" onclick="setFilter('رسمة')" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-noorOrangeTint dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-noorOrange/30 dark:border-slate-700 hover:border-noorOrange hover:bg-noorOrangeSoft transition cursor-pointer">
+                    رسمة
+                </button>
+                <button type="button" data-filter="صورة" onclick="setFilter('صورة')" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-noorOrangeTint dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-noorOrange/30 dark:border-slate-700 hover:border-noorOrange hover:bg-noorOrangeSoft transition cursor-pointer">
+                    صورة
+                </button>
+                <button type="button" data-filter="فيديو" onclick="setFilter('فيديو')" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-noorOrangeTint dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-noorOrange/30 dark:border-slate-700 hover:border-noorOrange hover:bg-noorOrangeSoft transition cursor-pointer">
+                    فيديو
+                </button>
+                <button type="button" data-filter="عرض" onclick="setFilter('عرض')" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-noorOrangeTint dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-noorOrange/30 dark:border-slate-700 hover:border-noorOrange hover:bg-noorOrangeSoft transition cursor-pointer">
+                    عرض
+                </button>
+                <button type="button" data-filter="فكرة" onclick="setFilter('فكرة')" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-noorOrangeTint dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-noorOrange/30 dark:border-slate-700 hover:border-noorOrange hover:bg-noorOrangeSoft transition cursor-pointer">
+                    فكرة
+                </button>
+            </div>
+        </div>
+
+        <!-- شبكة بطاقات المعرض الرئيسية -->
+        <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </main>
+
+    <!-- آخر الموقع: الشركاء والجهات المنظمة للحملة وتذييل الصفحة -->
+    <footer class="bg-gradient-to-l from-noorOrangeSoft via-white to-noorOrangeSoft/80 dark:from-slate-900 dark:via-slate-900 dark:to-noorOrange/10 border-t-4 border-noorOrange mt-auto">
+        <!-- قسم الشركاء والجهات المنظمة للحملة في آخر الموقع -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-5 border-b border-noorOrange/20">
+            <div class="text-center mb-4">
+                <span class="px-4 py-1 rounded-full bg-noorOrange/15 text-noorRust dark:text-amber-300 text-xs sm:text-sm font-black">
+                    الشركاء والجهات المنظمة للحملة
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <!-- 1. صندوق الأمم المتحدة للسكان UNFPA -->
+                <div class="p-3.5 rounded-2xl bg-white/90 dark:bg-slate-800/80 border border-noorOrange/25 flex items-center gap-3 shadow-2xs">
+                    <span class="inline-grid grid-cols-3 gap-0.5 shrink-0">
+                        <span class="w-1.5 h-1.5 rounded-full bg-noorOrange"></span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-noorOrange"></span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-noorOrange"></span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-noorOrange"></span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-unBlue"></span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-noorOrange"></span>
+                    </span>
+                    <div class="leading-tight">
+                        <div class="text-xs sm:text-sm font-black text-noorOrange">UNFPA</div>
+                        <div class="text-[11px] font-bold text-slate-600 dark:text-slate-300">صندوق الأمم المتحدة للسكان</div>
+                    </div>
+                </div>
+
+                <!-- 2. هيئة الأمم المتحدة للمرأة UN Women - لكل النساء والفتيات -->
+                <div class="p-3.5 rounded-2xl bg-white/90 dark:bg-slate-800/80 border border-noorOrange/25 flex items-center gap-3 shadow-2xs">
+                    <span class="w-7 h-7 rounded-lg bg-gradient-to-tr from-unWomenCyan via-noorOrange to-rose-500 flex items-center justify-center text-white text-xs font-black shrink-0">♀</span>
+                    <div class="leading-tight">
+                        <div class="text-xs sm:text-sm font-black text-unWomenCyan dark:text-sky-400">هيئة الأمم المتحدة للمرأة</div>
+                        <div class="text-[11px] font-extrabold text-noorRust dark:text-amber-300">لكل النساء والفتيات</div>
+                    </div>
+                </div>
+
+                <!-- 3. مكتب المفوض السامي لحقوق الإنسان - الأمم المتحدة OHCHR -->
+                <div class="p-3.5 rounded-2xl bg-white/90 dark:bg-slate-800/80 border border-noorOrange/25 flex items-center gap-3 shadow-2xs">
+                    <span class="w-7 h-7 rounded-full border-2 border-unBlue dark:border-sky-400 flex items-center justify-center text-unBlue dark:text-sky-400 text-xs font-black shrink-0">🌐</span>
+                    <div class="leading-tight">
+                        <div class="text-xs sm:text-sm font-black text-unBlue dark:text-sky-400">الأمم المتحدة — حقوق الإنسان</div>
+                        <div class="text-[11px] font-bold text-slate-600 dark:text-slate-300">مكتب المفوض السامي • الأرض الفلسطينية المحتلة</div>
+                    </div>
+                </div>
+
+                <!-- 4. جمعية عطر الشام التعاونية الحرفية -->
+                <div class="p-3.5 rounded-2xl bg-white/90 dark:bg-slate-800/80 border border-noorOrange/25 flex items-center gap-3 shadow-2xs">
+                    <span class="w-7 h-7 rounded-full bg-shamGreen text-white flex items-center justify-center text-xs font-black shrink-0">🌿</span>
+                    <div class="leading-tight">
+                        <div class="text-xs sm:text-sm font-black text-shamGreen dark:text-emerald-300">جمعية عطر الشام التعاونية الحرفية</div>
+                        <div class="text-[11px] font-bold text-slate-600 dark:text-slate-300">تأسست سنة 2020 • ترخيص رقم 1674</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+            <div class="font-black text-noorRust dark:text-amber-300 text-center sm:text-right">
+                منصة النور — حملة 16 يوماً 2026 «وبعدين؟ and then what?» 🧡
+            </div>
+            <div class="font-medium text-shamGreen dark:text-emerald-300 text-center sm:text-left">
+                جميع المشاركات تخضع لمراجعة المشرف قبل الظهور العام في المعرض.
+            </div>
+        </div>
+    </footer>
+
+    <!-- نافذة (Modal) إضافة مشاركة جديدة -->
+    <div id="submitModal" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-xs items-center justify-center p-4" onclick="handleBackdropClick(event, 'submitModal')">
+        <div class="bg-white dark:bg-slate-900 border-t-4 border-noorOrange border-x border-b border-slate-200 dark:border-slate-800 rounded-2xl max-w-xl w-full max-h-[92vh] overflow-y-auto p-6 shadow-2xl relative">
+            <button
+                type="button"
+                onclick="closeModal('submitModal')"
+                aria-label="إغلاق نافذة المشاركة"
+                class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center text-xl font-bold cursor-pointer float-left"
+            >
+                &times;
+            </button>
+
+            <h2 class="text-xl sm:text-2xl font-black text-noorOrange mb-1">+ شارك عملك</h2>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-3">
+                سيتم إرسال مشاركتك إلى قائمة المراجعة ليعتمدها المشرف وتظهر للزوار في المعرض.
+            </p>
+
+            <!-- صندوق رابط المشاركة المباشر -->
+            <div class="mb-5 p-3 rounded-xl bg-noorOrangeTint dark:bg-slate-800/80 border border-noorOrange/30 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                <div class="min-w-0">
+                    <div class="text-[11px] font-extrabold text-shamGreen dark:text-emerald-300 mb-0.5">
+                        رابط المشاركة المباشر (يفتح نموذج المشاركة فوراً):
+                    </div>
+                    <div id="directSubmitLinkText" class="text-xs font-bold text-slate-700 dark:text-slate-200 truncate" dir="ltr"></div>
+                </div>
+                <button
+                    type="button"
+                    onclick="copySubmissionLink()"
+                    class="px-3.5 py-2 rounded-xl bg-noorOrange hover:bg-noorOrangeHover text-white text-xs font-extrabold shrink-0 transition cursor-pointer"
+                >
+                    📋 نسخ الرابط
+                </button>
+            </div>
+
+            <form id="submissionForm" onsubmit="handleWorkSubmit(event)" class="space-y-4">
+                <div>
+                    <label for="creatorName" class="block text-sm font-bold mb-1.5 text-slate-800 dark:text-slate-200">
+                        الاسم <span class="text-noorOrange">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        id="creatorName"
+                        required
+                        placeholder="اكتب اسمك أو اسمك المستعار"
+                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-noorOrange"
+                    >
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="workCategory" class="block text-sm font-bold mb-1.5 text-slate-800 dark:text-slate-200">
+                            نوع المشاركة <span class="text-noorOrange">*</span>
+                        </label>
+                        <select
+                            id="workCategory"
+                            required
+                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-noorOrange"
+                        >
+                            <option value="رسمة">رسمة</option>
+                            <option value="صورة">صورة</option>
+                            <option value="فيديو">فيديو</option>
+                            <option value="عرض">عرض</option>
+                            <option value="فكرة">فكرة</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="workTitleInput" class="block text-sm font-bold mb-1.5 text-slate-800 dark:text-slate-200">
+                            عنوان العمل <span class="text-noorOrange">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="workTitleInput"
+                            required
+                            placeholder="عنوان معبّر عن مشاركتك"
+                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-noorOrange"
+                        >
+                    </div>
+                </div>
+
+                <div>
+                    <label for="mediaFileInput" class="block text-sm font-bold mb-1.5 text-slate-800 dark:text-slate-200">
+                        رفع صورة أو فيديو (اختياري)
+                    </label>
+                    <input
+                        type="file"
+                        id="mediaFileInput"
+                        accept="image/*,video/*"
+                        class="w-full text-xs sm:text-sm text-slate-600 dark:text-slate-300 file:ml-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-noorOrange file:text-white hover:file:bg-noorOrangeHover cursor-pointer rounded-xl border border-dashed border-noorOrange/45 dark:border-slate-700 p-2 bg-noorOrangeTint dark:bg-slate-800/60"
+                    >
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+                        يدعم الصور ومقاطع الفيديو (يُنصح بملفات خفيفة لضمان سرعة الحفظ المحلي).
+                    </p>
+                </div>
+
+                <div>
+                    <label for="mediaLinkInput" class="block text-sm font-bold mb-1.5 text-slate-800 dark:text-slate-200">
+                        أو أضف رابط فيديو / عرض تقديمي (اختياري)
+                    </label>
+                    <input
+                        type="url"
+                        id="mediaLinkInput"
+                        placeholder="https://..."
+                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-noorOrange"
+                    >
+                </div>
+
+                <div>
+                    <label for="workDescriptionInput" class="block text-sm font-bold mb-1.5 text-slate-800 dark:text-slate-200">
+                        وصف عما يعبّر عنه <span class="text-noorOrange">*</span>
+                    </label>
+                    <textarea
+                        id="workDescriptionInput"
+                        rows="4"
+                        required
+                        placeholder="احكِ للزوار عن فكرة العمل، رسالته، وماذا يعبّر عنه في حملة مناهضة العنف..."
+                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-noorOrange"
+                    ></textarea>
+                </div>
+
+                <div class="pt-2 flex items-center justify-end gap-2.5">
+                    <button
+                        type="button"
+                        onclick="closeModal('submitModal')"
+                        class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-bold text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer"
+                    >
+                        إلغاء
+                    </button>
+                    <button
+                        type="submit"
+                        class="px-6 py-2.5 rounded-xl bg-noorOrange hover:bg-noorOrangeHover text-white font-extrabold text-sm shadow-sm transition cursor-pointer"
+                    >
+                        إرسال للمراجعة
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- نافذة (Lightbox) عرض العمل بحجم كبير مع التفاصيل -->
+    <div id="detailModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-xs items-center justify-center p-4" onclick="handleBackdropClick(event, 'detailModal')">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-3xl w-full max-h-[92vh] overflow-y-auto p-5 sm:p-7 shadow-2xl relative">
+            <button
+                type="button"
+                onclick="closeModal('detailModal')"
+                aria-label="إغلاق العرض المكبر"
+                class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center text-xl font-bold cursor-pointer float-left"
+            >
+                &times;
+            </button>
+
+            <div id="detailMediaContainer" class="mb-5 rounded-xl overflow-hidden bg-slate-950 flex items-center justify-center max-h-[440px]"></div>
+
+            <div class="flex flex-wrap items-center gap-2.5 mb-2">
+                <span id="detailBadge" class="px-3 py-1 rounded-full text-xs font-extrabold bg-noorOrange text-white shadow-xs"></span>
+                <span id="detailCreator" class="text-sm font-extrabold text-shamGreen dark:text-emerald-300"></span>
+            </div>
+
+            <h2 id="detailTitle" class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mb-4"></h2>
+
+            <div class="p-4 rounded-xl bg-noorOrangeTint dark:bg-slate-800/70 border border-noorOrange/25 dark:border-slate-700/80">
+                <div class="text-xs font-extrabold text-noorOrange mb-1.5">عن ماذا يعبّر هذا العمل؟</div>
+                <p id="detailDescription" class="text-sm sm:text-base text-slate-700 dark:text-slate-200 leading-relaxed whitespace-pre-line"></p>
+            </div>
+
+            <div id="detailExternalLinkWrapper" class="hidden mt-4">
+                <a
+                    id="detailExternalLink"
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-noorOrange hover:bg-noorOrangeHover text-white text-xs sm:text-sm font-extrabold shadow-xs transition"
+                >
+                    <span>🔗 فتح رابط العمل / العرض التقديمي</span>
+                </a>
+            </div>
+
+            <!-- زر حذف العمل يظهر للمشرف فقط -->
+            <div id="detailAdminActions" class="hidden mt-5 pt-4 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                <button
+                    type="button"
+                    id="detailDeleteBtn"
+                    class="px-4 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-sm transition cursor-pointer"
+                >
+                    🗑️ حذف المشاركة من المعرض
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة تسجيل دخول المشرف بكود التفعيل 1616 -->
+    <div id="adminLoginModal" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-xs items-center justify-center p-4" onclick="handleBackdropClick(event, 'adminLoginModal')">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-3">
+                <h2 class="text-xl font-black text-shamGreen dark:text-emerald-300">🔒 دخول المشرف</h2>
+                <button
+                    type="button"
+                    onclick="closeModal('adminLoginModal')"
+                    class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center font-bold cursor-pointer"
+                >
+                    &times;
+                </button>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-4">
+                أدخل كود تفعيل المشرف للوصول إلى قائمة المشاركات المعلقة واعتمادها أو حذف أي مشاركة غير مناسبة.
+            </p>
+
+            <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                <div>
+                    <label for="adminCodeInput" class="block text-sm font-bold mb-1.5 text-slate-800 dark:text-slate-200">
+                        كود التفعيل
+                    </label>
+                    <input
+                        type="password"
+                        id="adminCodeInput"
+                        required
+                        placeholder="أدخل كود التفعيل (1616)"
+                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-shamGreen"
+                    >
+                    <p id="adminErrorText" class="hidden text-xs font-bold text-red-600 dark:text-red-400 mt-1.5">
+                        كود التفعيل غير صحيح. يرجى التحقق والمحاولة مرة أخرى.
+                    </p>
+                </div>
+
+                <div class="flex items-center justify-end gap-2">
+                    <button
+                        type="button"
+                        onclick="closeModal('adminLoginModal')"
+                        class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-sm font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
+                    >
+                        إلغاء
+                    </button>
+                    <button
+                        type="submit"
+                        class="px-5 py-2 rounded-xl bg-shamGreen hover:bg-shamGreenLight text-white text-sm font-bold transition cursor-pointer"
+                    >
+                        تفعيل وضع المشرف
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- نافذة تقويم حملة 16 يوماً - جمعية عطر الشام (25 نوفمبر - 10 ديسمبر) -->
+    <div id="campaignCalendarModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-xs items-center justify-center p-3 sm:p-5" onclick="handleBackdropClick(event, 'campaignCalendarModal')">
+        <div class="bg-noorOrangeTint dark:bg-slate-900 border-t-4 border-noorOrange border-x border-b border-noorOrange/30 dark:border-slate-800 rounded-3xl max-w-6xl w-full max-h-[93vh] overflow-y-auto p-5 sm:p-7 shadow-2xl relative">
+            <div class="flex flex-wrap items-start justify-between gap-4 pb-5 mb-6 border-b border-noorOrange/25 dark:border-slate-800">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-noorOrange text-white text-xs font-extrabold mb-2">
+                        <span>🗓️ 25 نوفمبر — 10 ديسمبر</span>
+                        <span>•</span>
+                        <span>16 يوماً من العطاء والتوعية</span>
+                    </div>
+                    <h2 class="text-xl sm:text-3xl font-black text-slate-900 dark:text-white">
+                        معرض حملة 16 يوم - جمعية عطر الشام
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1">
+                        اختر أي مربع يوم من التقويم أدناه لعرض الصور والفعاليات والمشاركات الخاصة بذلك اليوم داخل الجمعية.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button
+                        type="button"
+                        id="calendarBackToGridBtn"
+                        onclick="showCalendarGridView()"
+                        class="hidden px-4 py-2 rounded-xl bg-shamGreen hover:bg-shamGreenLight text-white text-xs sm:text-sm font-extrabold shadow-xs transition cursor-pointer"
+                    >
+                        → العودة إلى مربعات التقويم
+                    </button>
+                    <button
+                        type="button"
+                        onclick="closeModal('campaignCalendarModal')"
+                        aria-label="إغلاق تقويم الحملة"
+                        class="w-10 h-10 rounded-full bg-white dark:bg-slate-800 border border-noorOrange/30 text-slate-700 dark:text-slate-200 hover:bg-noorOrangeSoft flex items-center justify-center text-2xl font-bold cursor-pointer"
+                    >
+                        &times;
+                    </button>
+                </div>
+            </div>
+
+            <!-- العرض الأول: شبكة مربعات الأيام الـ 16 -->
+            <div id="calendarGridView">
+                <div id="campaignDaysGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+            </div>
+
+            <!-- العرض الثاني: تفاصيل اليوم المختار والصور والأنشطة المنفذة فيه -->
+            <div id="calendarDayDetailView" class="hidden space-y-6">
+                <div class="rounded-2xl bg-gradient-to-l from-noorOrange to-noorOrangeWarm p-5 sm:p-6 text-white shadow-md flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                        <div id="selectedDayNumberBadge" class="inline-block px-3 py-1 rounded-full bg-white/25 text-xs font-extrabold mb-1.5"></div>
+                        <h3 id="selectedDayFullTitle" class="text-xl sm:text-2xl font-black"></h3>
+                        <p id="selectedDaySummary" class="text-xs sm:text-sm text-white/95 mt-1 font-medium"></p>
+                    </div>
+                    <button
+                        type="button"
+                        onclick="showCalendarGridView()"
+                        class="px-4 py-2.5 rounded-xl bg-white text-noorOrange hover:bg-noorOrangeSoft text-xs sm:text-sm font-black shadow-sm transition cursor-pointer"
+                    >
+                        → كل أيام الحملة (16 يوماً)
+                    </button>
+                </div>
+
+                <!-- نموذج إضافة نشاط/صورة جديدة لهذا اليوم (يظهر للمشرف المفعل 1616 فقط) -->
+                <div id="adminAddDayActivityBox" class="hidden rounded-2xl border-2 border-dashed border-shamGreen bg-white dark:bg-slate-800/80 p-5">
+                    <h4 class="text-base font-black text-shamGreen dark:text-emerald-300 mb-1">
+                        🛡️ إضافة صورة أو نشاط جديد لـ <span id="adminTargetDayLabel"></span>
+                    </h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                        سيتم حفظ النشاط والصور مباشرة في تقويم هذا اليوم داخل المتصفح.
+                    </p>
+                    <form id="dayActivityForm" onsubmit="handleAddDayActivity(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                        <div>
+                            <label for="dayActivityTitleInput" class="block text-xs font-extrabold mb-1 text-slate-700 dark:text-slate-200">
+                                عنوان الفعالية / المشاركة *
+                            </label>
+                            <input
+                                type="text"
+                                id="dayActivityTitleInput"
+                                required
+                                placeholder="مثال: ورشة التطريز التراثي والتوعية"
+                                class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-noorOrange"
+                            >
+                        </div>
+                        <div>
+                            <label for="dayActivityFileInput" class="block text-xs font-extrabold mb-1 text-slate-700 dark:text-slate-200">
+                                رفع صورة الفعالية من الجهاز
+                            </label>
+                            <input
+                                type="file"
+                                id="dayActivityFileInput"
+                                accept="image/*"
+                                class="w-full text-xs text-slate-600 dark:text-slate-300 file:ml-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:font-bold file:bg-noorOrange file:text-white hover:file:bg-noorOrangeHover cursor-pointer rounded-xl border border-dashed border-noorOrange/45 p-1.5 bg-noorOrangeTint dark:bg-slate-900"
+                            >
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label for="dayActivityDescInput" class="block text-xs font-extrabold mb-1 text-slate-700 dark:text-slate-200">
+                                تفاصيل الفعالية والصورة داخل الجمعية *
+                            </label>
+                            <textarea
+                                id="dayActivityDescInput"
+                                rows="2"
+                                required
+                                placeholder="اكتب وصفاً لما تم تنفيذه في جمعية عطر الشام خلال هذا اليوم..."
+                                class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-noorOrange"
+                            ></textarea>
+                        </div>
+                        <div class="sm:col-span-2 flex justify-end">
+                            <button
+                                type="submit"
+                                class="px-5 py-2.5 rounded-xl bg-shamGreen hover:bg-shamGreenLight text-white text-xs sm:text-sm font-extrabold shadow-xs transition cursor-pointer"
+                            >
+                                + حفظ ونشر في هذا اليوم
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- شبكة الصور والأنشطة المنفذة في اليوم المختار -->
+                <div id="selectedDayActivitiesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- رسالة إشعار عائمة بديلة عن alert() -->
+    <div id="toastBanner" class="fixed bottom-5 left-5 z-50 hidden max-w-sm rounded-xl bg-shamGreen text-white px-4 py-3 shadow-xl border border-emerald-400/30 text-xs sm:text-sm font-bold transition-all"></div>
+
+    <script>
+        const ADMIN_ACTIVATION_CODE = '1616';
+
+        // مفاتيح التخزين المحلي في المتصفح
+        const STORAGE_KEYS = {
+            APPROVED: 'al_noor_approved_works_v1',
+            PENDING: 'al_noor_pending_works_v1',
+            DARK_MODE: 'al_noor_dark_mode_v1',
+            ADMIN_SESSION: 'al_noor_admin_active_v1',
+            CUSTOM_UNFPA_LOGO: 'al_noor_custom_unfpa_logo_v1',
+            CUSTOM_SHAM_LOGO: 'al_noor_custom_sham_logo_v1',
+            CUSTOM_CAMPAIGN_LOGO: 'al_noor_custom_campaign_logo_v1',
+            CAMPAIGN_16_DAYS: 'al_noor_campaign_16_days_v1'
+        };
+
+        // تطبيق حالة الشعار (إما صورة مخصصة محفوظة كما هي أو الشعار المتجهي SVG الافتراضي)
+        function applyLogoState(target, dataUrl) {
+            let imgId = 'customShamLogoImg';
+            let svgId = 'defaultShamSvg';
+            if (target === 'unfpa') {
+                imgId = 'customUnfpaLogoImg';
+                svgId = 'defaultUnfpaSvg';
+            } else if (target === 'campaign') {
+                imgId = 'customCampaignLogoImg';
+                svgId = 'defaultCampaignLogoSvg';
+            }
+
+            const imgEl = document.getElementById(imgId);
+            const svgEl = document.getElementById(svgId);
+            if (!imgEl || !svgEl) return;
+
+            if (dataUrl) {
+                imgEl.src = dataUrl;
+                imgEl.classList.remove('hidden');
+                svgEl.classList.add('hidden');
+            } else {
+                imgEl.src = '';
+                imgEl.classList.add('hidden');
+                svgEl.classList.remove('hidden');
+            }
+        }
+
+        // تهيئة الشعارات المحفوظة مسبقاً عند تحميل الصفحة
+        function initLogos() {
+            try {
+                const savedUnfpa = localStorage.getItem(STORAGE_KEYS.CUSTOM_UNFPA_LOGO);
+                const savedSham = localStorage.getItem(STORAGE_KEYS.CUSTOM_SHAM_LOGO);
+                const savedCampaign = localStorage.getItem(STORAGE_KEYS.CUSTOM_CAMPAIGN_LOGO);
+                applyLogoState('unfpa', savedUnfpa || null);
+                applyLogoState('sham', savedSham || null);
+                applyLogoState('campaign', savedCampaign || null);
+            } catch (err) {
+                console.error('تعذر قراءة الشعارات المحفوظة:', err);
+            }
+        }
+
+        // حفظ صورة الشعار المرفوعة كما هي تماماً بدون أي تعديل على ألوانها أو تفاصيلها
+        function handleLogoUpload(event, target) {
+            const file = event.target && event.target.files && event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const rawUrl = e.target && e.target.result ? String(e.target.result) : '';
+                if (!rawUrl) return;
+
+                try {
+                    let key = STORAGE_KEYS.CUSTOM_SHAM_LOGO;
+                    if (target === 'unfpa') key = STORAGE_KEYS.CUSTOM_UNFPA_LOGO;
+                    else if (target === 'campaign') key = STORAGE_KEYS.CUSTOM_CAMPAIGN_LOGO;
+
+                    localStorage.setItem(key, rawUrl);
+                    applyLogoState(target, rawUrl);
+                    showToast('تم رفع الشعار كما هو تماماً وحفظه في المنصة.');
+                } catch (err) {
+                    console.error('تعذر حفظ صورة الشعار في التخزين المحلي:', err);
+                    showToast('حجم صورة الشعار كبير جداً للتخزين المحلي، جرّب صورة أصغر.', true);
+                }
+            };
+            reader.onerror = () => {
+                showToast('حدث خطأ أثناء قراءة ملف الشعار.', true);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function resetCustomLogos() {
+            try {
+                localStorage.removeItem(STORAGE_KEYS.CUSTOM_UNFPA_LOGO);
+                localStorage.removeItem(STORAGE_KEYS.CUSTOM_SHAM_LOGO);
+                localStorage.removeItem(STORAGE_KEYS.CUSTOM_CAMPAIGN_LOGO);
+            } catch (err) {
+                console.error('خطأ أثناء استعادة الشعارات الافتراضية:', err);
+            }
+            const unfpaInput = document.getElementById('uploadUnfpaLogoInput');
+            const shamInput = document.getElementById('uploadShamLogoInput');
+            const campaignInput = document.getElementById('uploadCampaignLogoInput');
+            if (unfpaInput) unfpaInput.value = '';
+            if (shamInput) shamInput.value = '';
+            if (campaignInput) campaignInput.value = '';
+            applyLogoState('unfpa', null);
+            applyLogoState('sham', null);
+            applyLogoState('campaign', null);
+            showToast('تمت استعادة الشعارات الافتراضية.');
+        }
+
+        function getDirectSubmissionLink() {
+            try {
+                const url = new URL(window.location.href);
+                url.searchParams.set('submit', '1');
+                url.hash = 'submit';
+                return url.toString();
+            } catch (err) {
+                const base = window.location.href.split('#')[0].split('?')[0];
+                return base + '?submit=1#submit';
+            }
+        }
+
+        function updateSubmissionLinkDisplay() {
+            const linkEl = document.getElementById('directSubmitLinkText');
+            if (linkEl) {
+                linkEl.textContent = getDirectSubmissionLink();
+            }
+        }
+
+        async function copySubmissionLink() {
+            const shareUrl = getDirectSubmissionLink();
+            updateSubmissionLinkDisplay();
+            try {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(shareUrl);
+                    showToast('تم نسخ رابط المشاركة المباشر بنجاح.');
+                    return;
+                }
+            } catch (err) {
+                // fallback below
+            }
+            const tempInput = document.createElement('input');
+            tempInput.value = shareUrl;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('تم نسخ رابط المشاركة المباشر بنجاح.');
+        }
+
+        function checkAutoOpenSubmitFromUrl() {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                if (params.get('submit') === '1' || window.location.hash === '#submit') {
+                    openModal('submitModal');
+                }
+            } catch (err) {
+                if (window.location.hash === '#submit') {
+                    openModal('submitModal');
+                }
+            }
+        }
+
+        // بيانات تقويم حملة 16 يوماً (من 25 نوفمبر حتى 10 ديسمبر) لجمعية عطر الشام
+        const DEFAULT_CAMPAIGN_DAYS = [
+            {
+                dayNumber: 1,
+                dayLabel: 'اليوم الأول لحملة 16 يوم',
+                dateLabel: '25 نوفمبر',
+                headline: 'انطلاق الحملة وتلوين الجمعية بالبرتقالي',
+                activities: [
+                    {
+                        id: 'c1-1',
+                        title: 'افتتاح معرض الحملة في مقر جمعية عطر الشام',
+                        description: 'اجتمعت عضوات الجمعية والحرفيات لإطلاق فعاليات الـ 16 يوماً لمناهضة العنف، مع تعليق الشرائط البرتقالية وعرض أولى اللوحات التوعوية.',
+                        imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80'
+                    },
+                    {
+                        id: 'c1-2',
+                        title: 'جدارية التضامن والأمل',
+                        description: 'مشاركة الحاضرات في كتابة رسائل دعم وتشجيع على جدارية منصة النور داخل الجمعية.',
+                        imageUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=900&q=80'
+                    }
+                ]
+            },
+            {
+                dayNumber: 2,
+                dayLabel: 'اليوم الثاني لحملة 16 يوم',
+                dateLabel: '26 نوفمبر',
+                headline: 'ورشة الحرف اليدوية والتمكين الاقتصادي',
+                activities: [
+                    {
+                        id: 'c2-1',
+                        title: 'غرزة التطريز التراثي كمساحة آمنة',
+                        description: 'ورشة عمل تفاعلية جمعت الحرفيات لتبادل الخبرات في التطريز وصناعة المنتجات التراثية، مع حوار مفتوح حول دور الاستقلال الاقتصادي في حماية المرأة.',
+                        imageUrl: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80'
+                    }
+                ]
+            },
+            {
+                dayNumber: 3,
+                dayLabel: 'اليوم الثالث لحملة 16 يوم',
+                dateLabel: '27 نوفمبر',
+                headline: 'جلسة توعية قانونية وحقوقية',
+                activities: [
+                    {
+                        id: 'c3-1',
+                        title: 'اعرفي حقوقك: حوار مجتمعي داخل الجمعية',
+                        description: 'جلسة حوارية حول آليات الحماية والدعم النفسي والقانوني المتاحة للنساء والفتيات في المجتمع المحلي.',
+                        imageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80'
+                    }
+                ]
+            },
+            {
+                dayNumber: 4,
+                dayLabel: 'اليوم الرابع لحملة 16 يوم',
+                dateLabel: '28 نوفمبر',
+                headline: 'مرسم الألوان البرتقالية للشابات',
+                activities: [
+                    {
+                        id: 'c4-1',
+                        title: 'الريشة في مواجهة العنف',
+                        description: 'مجموعة من الفتيات الموهوبات يرسمْن لوحات تعبّر عن السلام الأسري والأمان المجتمعي داخل قاعة الأنشطة في الجمعية.',
+                        imageUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=900&q=80'
+                    }
+                ]
+            },
+            {
+                dayNumber: 5,
+                dayLabel: 'اليوم الخامس لحملة 16 يوم',
+                dateLabel: '29 نوفمبر',
+                headline: 'مبادرة الأمان الرقمي للفتيات',
+                activities: [
+                    {
+                        id: 'c5-1',
+                        title: 'نحو فضاء إلكتروني خالٍ من الابتزاز والعنف',
+                        description: 'تدريب عملي حول حماية الخصوصية الرقمية والتصدي للعنف الإلكتروني بمشاركة متطوعات الجمعية.',
+                        imageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80'
+                    }
+                ]
+            },
+            {
+                dayNumber: 6,
+                dayLabel: 'اليوم السادس لحملة 16 يوم',
+                dateLabel: '30 نوفمبر',
+                headline: 'حكايات نجاح ملهمة من قلب الجمعية',
+                activities: [
+                    {
+                        id: 'c6-1',
+                        title: 'رائدات عطر الشام يروين قصصهن',
+                        description: 'لقاء ملهم استعرضت فيه سيدات الجمعية تجاربهن في تحويل الحرف المنزلية إلى مشاريع منتجة ومستدامة.',
+                        imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80'
+                    }
+                ]
+            },
+            {
+                dayNumber: 7,
+                dayLabel: 'اليوم السابع لحملة 16 يوم',
+                dateLabel: '1 ديسمبر',
+                headline: 'إعداد سلال المنتجات الغذائية الحرفية',
+                activities: [
+                    {
+                        id: 'c7-1',
+                        title: 'تعاونية الإنتاج الغذائي والتكافل',
+                        description: 'توثيق عمل فريق التصنيع الغذائي والمربيات والزيتون في الجمعية بروح الفريق الواحد.',
+                        imageUrl: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80'
+                    }
+                ]
+            },
+            {
+                dayNumber: 8,
+                dayLabel: 'اليوم الثامن لحملة 16 يوم',
+                dateLabel: '2 ديسمبر',
+                headline: 'حلقة دعم نفسي واستماع فعّال',
+                activities: [
+                    {
+                        id: 'c8-1',
+                        title: 'مساحة آمنة للبوح والدعم المتبادل',
+                        description: 'جلسة تفاعلية بإشراف أخصائية اجتماعية لتعزيز الصحة النفسية وبناء المرونة لدى المشاركات.',
+                        imageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80'
+                    }
+                ]
+            },
+            {
+                dayNumber: 9,
+                dayLabel: 'اليوم التاسع لحملة 16 يوم',
+                dateLabel: '3 ديسمبر',
+                headline: 'يوم الدمج والشمول لجميع النساء',
+                activities: [
+                    {
+                        id: 'c9-1',
+                        title: 'مشاركة النساء ذوات الإعاقة في الورش الحرفية',
+                        description: 'فعالية شاملة تؤكد أن الحماية والتمكين حق أصيل لكل امرأة وفتاة دون استثناء.',
+                        imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80'
+                    }
+                ]
+            },
+            {
+                dayNumber: 10,
+                dayLabel: 'اليوم العاشر لحملة 16 يوم',
+                dateLabel: '4 ديسمبر',
+                headline: 'تصميم بطاقات توعية بأيادي الحرفيات',
+                activities: [
+                    {
+                        id: 'c10-1',
+                        title: 'بطاقات مطرزة تحمل رسائل مناهضة للعنف',
+                        description: 'ابتكار بطاقات فنية تجمع بين التطريز التقليدي وعبارات التوعية لتوزيعها على الزوار.',
+                        imageUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=900&q=80'
+                    }
+                ]
+            },
+            {
+                dayNumber: 11,
+                dayLabel: 'اليوم الحادي عشر لحملة 16 يوم',
+                dateLabel: '5 ديسمبر',
+                headline: 'الاحتفاء بالمتطوعين والمتطوعات',
+                activities: [
+                    {
+                        id: 'c11-1',
+                        title: 'سواعد التطوع في خدمة المجتمع',
+                        description: 'تكريم المتطوعين المشاركين في تنظيم فعاليات الحملة داخل جمعية عطر الشام.',
+                        imageUrl: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80'
+                    }
+                ]
+            },
+            {
+                dayNumber: 12,
+                dayLabel: 'اليوم الثاني عشر لحملة 16 يوم',
+                dateLabel: '6 ديسمبر',
+                headline: 'عرض أفلام قصيرة ومناقشتها',
+                activities: [
+                    {
+                        id: 'c12-1',
+                        title: 'سينما التوعية في قاعة الجمعية',
+                        description: 'عرض مقاطع توعوية قصيرة حول نبذ العنف الأسري ومناقشة الدروس المستفادة مع الحضور.',
+                        imageUrl: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=900&q=80'
+                    }
+                ]
+            },
+            {
+                dayNumber: 13,
+                dayLabel: 'اليوم الثالث عشر لحملة 16 يوم',
+                dateLabel: '7 ديسمبر',
+                headline: 'حوار الأجيال: الأمهات والبنات',
+                activities: [
+                    {
+                        id: 'c13-1',
+                        title: 'جسور التفاهم داخل الأسرة',
+                        description: 'لقاء تفاعلي جمع الأمهات وبناتهن لتعزيز الحوار الأسري القائم على الاحترام المتبادل.',
+                        imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80'
+                    }
+                ]
+            },
+            {
+                dayNumber: 14,
+                dayLabel: 'اليوم الرابع عشر لحملة 16 يوم',
+                dateLabel: '8 ديسمبر',
+                headline: 'معرض مصغر للمنتجات الحرفية والرسومات',
+                activities: [
+                    {
+                        id: 'c14-1',
+                        title: 'إبداع المرأة يصنع السلام',
+                        description: 'عرض مشترك للمشغولات الحرفية والرسومات المشاركة في منصة النور.',
+                        imageUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=900&q=80'
+                    }
+                ]
+            },
+            {
+                dayNumber: 15,
+                dayLabel: 'اليوم الخامس عشر لحملة 16 يوم',
+                dateLabel: '9 ديسمبر',
+                headline: 'توثيق التوصيات ومقترحات المجتمع',
+                activities: [
+                    {
+                        id: 'c15-1',
+                        title: 'صياغة ميثاق مجتمع آمن',
+                        description: 'تلخيص أبرز الأفكار والمبادرات التي طرحتها المشاركات خلال أيام الحملة.',
+                        imageUrl: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80'
+                    }
+                ]
+            },
+            {
+                dayNumber: 16,
+                dayLabel: 'اليوم السادس عشر لحملة 16 يوم',
+                dateLabel: '10 ديسمبر',
+                headline: 'ختام الحملة والاحتفاء باليوم العالمي لحقوق الإنسان',
+                activities: [
+                    {
+                        id: 'c16-1',
+                        title: 'الحفل الختامي لحملة الـ 16 يوماً في جمعية عطر الشام',
+                        description: 'اختتام فعاليات الحملة بالتزامن مع اليوم العالمي لحقوق الإنسان، وتكريم المشاركات وعرض حصاد الـ 16 يوماً على منصة النور.',
+                        imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80'
+                    }
+                ]
+            }
+        ];
+
+        // مشاركة معلقة افتراضية لتجربة لوحة المشرف فوراً
+        const DEFAULT_PENDING_WORKS = [
+            {
+                id: 'pending-seed-1',
+                creator: 'ليلى حسن',
+                category: 'عرض',
+                title: 'عرض تعريفي: كيف نبني بيئة داعمة؟',
+                description: 'عرض مبسّط يسلّط الضوء على أهمية الإصغاء والدعم المجتمعي والوقاية من العنف في الأسرة والعمل.',
+                mediaType: 'image',
+                mediaUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80'
+            }
+        ];
+
+        // مشاركات معتمدة افتراضية لعرض المعرض بشكل حيوي ومباشر
+        const DEFAULT_APPROVED_WORKS = [
+            {
+                id: 'approved-seed-1',
+                creator: 'سارة منصور',
+                category: 'رسمة',
+                title: 'فجر الأمل والتمكين',
+                description: 'لوحة فنية تجمع بين دفء اللون البرتقالي ورموز السلام لتعبّر عن حق كل امرأة وفتاة في العيش بأمان وكرامة.',
+                mediaType: 'image',
+                mediaUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=900&q=80'
+            },
+            {
+                id: 'approved-seed-2',
+                creator: 'جمعية عطر الشام التعاونية الحرفية',
+                category: 'صورة',
+                title: 'أنامل تصنع الحرية والاستقلال',
+                description: 'لقطة من داخل ورشات العمل والحرف اليدوية في جمعية عطر الشام التي تعزز التمكين الاقتصادي والتضامن المجتمعي.',
+                mediaType: 'image',
+                mediaUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80'
+            },
+            {
+                id: 'approved-seed-3',
+                creator: 'نور الهدى',
+                category: 'فكرة',
+                title: 'مبادرة حوارات النور الأسبوعية',
+                description: 'فكرة مجتمعية لفتح مساحات حوار آمنة ومفتوحة تجمع الشابات والأسر لنشر ثقافة الاحترام والوقاية من العنف.',
+                mediaType: 'image',
+                mediaUrl: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80'
+            }
+        ];
+
+        // حالة التطبيق
+        let approvedWorks = [];
+        let pendingWorks = [];
+        let campaignDays = [];
+        let selectedCampaignDayNumber = null;
+        let currentFilter = 'الكل';
+        let isAdminLoggedIn = false;
+        let toastTimer = null;
+
+        // قراءة البيانات من localStorage بأمان
+        function loadState() {
+            try {
+                const savedApproved = localStorage.getItem(STORAGE_KEYS.APPROVED);
+                const savedPending = localStorage.getItem(STORAGE_KEYS.PENDING);
+                const savedAdmin = localStorage.getItem(STORAGE_KEYS.ADMIN_SESSION);
+                const savedCampaignDays = localStorage.getItem(STORAGE_KEYS.CAMPAIGN_16_DAYS);
+
+                approvedWorks = savedApproved ? JSON.parse(savedApproved) : [...DEFAULT_APPROVED_WORKS];
+                pendingWorks = savedPending ? JSON.parse(savedPending) : [...DEFAULT_PENDING_WORKS];
+                campaignDays = savedCampaignDays ? JSON.parse(savedCampaignDays) : JSON.parse(JSON.stringify(DEFAULT_CAMPAIGN_DAYS));
+                isAdminLoggedIn = savedAdmin === 'true';
+
+                if (!savedApproved) {
+                    localStorage.setItem(STORAGE_KEYS.APPROVED, JSON.stringify(approvedWorks));
+                }
+                if (!savedPending) {
+                    localStorage.setItem(STORAGE_KEYS.PENDING, JSON.stringify(pendingWorks));
+                }
+                if (!savedCampaignDays) {
+                    localStorage.setItem(STORAGE_KEYS.CAMPAIGN_16_DAYS, JSON.stringify(campaignDays));
+                }
+            } catch (err) {
+                console.error('خطأ أثناء قراءة البيانات من التخزين المحلي:', err);
+                approvedWorks = [...DEFAULT_APPROVED_WORKS];
+                pendingWorks = [...DEFAULT_PENDING_WORKS];
+                campaignDays = JSON.parse(JSON.stringify(DEFAULT_CAMPAIGN_DAYS));
+            }
+        }
+
+        // حفظ أيام تقويم الحملة في localStorage
+        function persistCampaignDays() {
+            try {
+                localStorage.setItem(STORAGE_KEYS.CAMPAIGN_16_DAYS, JSON.stringify(campaignDays));
+            } catch (err) {
+                console.error('تعذر حفظ تقويم الحملة في التخزين المحلي:', err);
+                showToast('تنبيه: حجم الصورة كبير جداً للتخزين المحلي، جرّب صورة أصغر.', true);
+            }
+        }
+
+        // حفظ الأعمال المعتمدة والمعلقة في localStorage
+        function persistWorks() {
+            try {
+                localStorage.setItem(STORAGE_KEYS.APPROVED, JSON.stringify(approvedWorks));
+                localStorage.setItem(STORAGE_KEYS.PENDING, JSON.stringify(pendingWorks));
+            } catch (err) {
+                console.error('تعذر حفظ البيانات في التخزين المحلي:', err);
+                showToast('تنبيه: حجم الملف المرفوع كبير جداً للتخزين المحلي، جرّب ملفاً أصغر.', true);
+            }
+        }
+
+        // تهيئة الوضع الداكن
+        function initDarkMode() {
+            try {
+                const savedTheme = localStorage.getItem(STORAGE_KEYS.DARK_MODE);
+                const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const enableDark = savedTheme !== null ? savedTheme === 'true' : prefersDark;
+                applyDarkMode(enableDark);
+            } catch (err) {
+                console.error('خطأ أثناء تهيئة الوضع الداكن:', err);
+            }
+        }
+
+        function applyDarkMode(enable) {
+            const root = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            if (enable) {
+                root.classList.add('dark');
+                if (icon) icon.textContent = '☀️';
+            } else {
+                root.classList.remove('dark');
+                if (icon) icon.textContent = '🌙';
+            }
+            try {
+                localStorage.setItem(STORAGE_KEYS.DARK_MODE, String(enable));
+            } catch (err) {
+                console.error('تعذر حفظ تفضيل الوضع الداكن:', err);
+            }
+        }
+
+        function toggleDarkMode() {
+            const isCurrentlyDark = document.documentElement.classList.contains('dark');
+            applyDarkMode(!isCurrentlyDark);
+        }
+
+        // تحديث شكل أزرار الفلاتر
+        function setFilter(category) {
+            currentFilter = category;
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach((btn) => {
+                const isSelected = btn.getAttribute('data-filter') === category;
+                if (isSelected) {
+                    btn.className = 'filter-btn active px-4 py-2 rounded-full text-xs sm:text-sm font-extrabold bg-gradient-to-l from-noorOrange to-noorOrangeWarm text-white shadow-md shadow-noorOrange/30 transition cursor-pointer';
+                } else {
+                    btn.className = 'filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-noorOrangeTint dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-noorOrange/30 dark:border-slate-700 hover:border-noorOrange hover:bg-noorOrangeSoft transition cursor-pointer';
+                }
+            });
+            renderGallery();
+        }
+
+        // رسم بطاقات المعرض المعتمدة
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            const countLabel = document.getElementById('worksCountLabel');
+
+            const filtered = currentFilter === 'الكل'
+                ? approvedWorks
+                : approvedWorks.filter((item) => item.category === currentFilter);
+
+            if (countLabel) {
+                countLabel.textContent = `عدد الأعمال المعروضة: ${filtered.length}`;
+            }
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full rounded-2xl border-2 border-dashed border-noorOrange/35 bg-white dark:bg-slate-900 p-10 text-center">
+                        <p class="text-base font-bold text-slate-700 dark:text-slate-300 mb-2">
+                            لا توجد مشاركات منشورة ضمن تصنيف "${escapeHtml(currentFilter)}" حالياً.
+                        </p>
+                        <button type="button" onclick="openModal('submitModal')" class="mt-2 px-5 py-2.5 rounded-xl bg-noorOrange hover:bg-noorOrangeHover text-white text-sm font-extrabold shadow-sm cursor-pointer">
+                            + كن أول من يشارك في هذا القسم
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map((work) => {
+                const mediaPreview = work.mediaType === 'video'
+                    ? `<video src="${work.mediaUrl}" class="w-full h-52 object-cover bg-slate-950" muted playsinline preload="metadata"></video>`
+                    : `<img src="${work.mediaUrl}" alt="${escapeHtml(work.title)}" class="w-full h-52 object-cover bg-noorOrangeSoft dark:bg-slate-800" onerror="this.src='https://placehold.co/800x500/F36E21/FFFFFF?text=Al-Noor+Platform'">`;
+
+                const adminCardDeleteBtn = isAdminLoggedIn
+                    ? `<button
+                        type="button"
+                        onclick="event.stopPropagation(); deleteApprovedWork('${work.id}')"
+                        class="mt-3 w-full py-2 px-3 rounded-xl bg-red-600/10 hover:bg-red-600 text-red-700 dark:text-red-400 hover:text-white border border-red-600/30 text-xs font-extrabold transition cursor-pointer"
+                    >
+                        🗑️ حذف المشاركة
+                    </button>`
+                    : '';
+
+                return `
+                    <article
+                        onclick="openDetailModal('${work.id}')"
+                        class="group bg-white dark:bg-slate-900 rounded-2xl border-t-4 border-t-noorOrange border-x border-b border-noorOrange/20 dark:border-slate-800 overflow-hidden shadow-sm shadow-noorOrange/5 hover:shadow-xl hover:shadow-noorOrange/15 hover:-translate-y-1 transition-all duration-200 cursor-pointer flex flex-col"
+                    >
+                        <div class="relative overflow-hidden">
+                            ${mediaPreview}
+                            <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-extrabold bg-noorOrange text-white shadow-md shadow-black/15">
+                                ${escapeHtml(work.category)}
+                            </span>
+                        </div>
+
+                        <div class="p-5 flex-1 flex flex-col justify-between bg-gradient-to-b from-white to-noorOrangeTint/50 dark:from-slate-900 dark:to-slate-900">
+                            <div>
+                                <h4 class="text-lg font-extrabold text-slate-900 dark:text-white group-hover:text-noorOrange transition mb-1 line-clamp-1">
+                                    ${escapeHtml(work.title)}
+                                </h4>
+                                <p class="text-xs font-bold text-shamGreen dark:text-emerald-300 mb-2.5">
+                                    بواسطة: ${escapeHtml(work.creator)}
+                                </p>
+                                <p class="text-sm text-slate-600 dark:text-slate-300 line-clamp-3 leading-relaxed">
+                                    ${escapeHtml(work.description)}
+                                </p>
+                            </div>
+
+                            ${adminCardDeleteBtn}
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        // تحديث واجهة المشرف وقائمة المشاركات بانتظار الموافقة
+        function renderAdminUI() {
+            const panel = document.getElementById('adminPanel');
+            const btnText = document.getElementById('adminBtnText');
+            const pendingCountEl = document.getElementById('pendingBadgeCount');
+            const pendingContainer = document.getElementById('pendingListContainer');
+
+            if (pendingCountEl) {
+                pendingCountEl.textContent = String(pendingWorks.length);
+            }
+
+            if (!isAdminLoggedIn) {
+                panel.classList.add('hidden');
+                if (btnText) btnText.textContent = '🔒 دخول المشرف';
+                return;
+            }
+
+            panel.classList.remove('hidden');
+            if (btnText) btnText.textContent = '🛡️ وضع المشرف مفعل';
+
+            if (pendingWorks.length === 0) {
+                pendingContainer.innerHTML = `
+                    <div class="p-5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-center text-sm text-slate-500 dark:text-slate-400 font-semibold">
+                        لا توجد مشاركات جديدة بانتظار المراجعة حالياً.
+                    </div>
+                `;
+                return;
+            }
+
+            pendingContainer.innerHTML = pendingWorks.map((item) => {
+                const thumb = item.mediaType === 'video'
+                    ? `<video src="${item.mediaUrl}" class="w-24 h-20 rounded-xl object-cover bg-slate-950 shrink-0" muted></video>`
+                    : `<img src="${item.mediaUrl}" alt="${escapeHtml(item.title)}" class="w-24 h-20 rounded-xl object-cover bg-slate-200 shrink-0" onerror="this.src='https://placehold.co/200x160/1B4332/FFFFFF?text=Preview'">`;
+
+                return `
+                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div class="flex items-start gap-3.5">
+                            ${thumb}
+                            <div>
+                                <div class="flex flex-wrap items-center gap-2 mb-1">
+                                    <span class="px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-noorOrange/15 text-noorOrange">
+                                        ${escapeHtml(item.category)}
+                                    </span>
+                                    <span class="text-xs font-bold text-shamGreen dark:text-emerald-300">
+                                        المشارك: ${escapeHtml(item.creator)}
+                                    </span>
+                                </div>
+                                <h4 class="text-base font-extrabold text-slate-900 dark:text-white">
+                                    ${escapeHtml(item.title)}
+                                </h4>
+                                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1 line-clamp-2">
+                                    ${escapeHtml(item.description)}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                            <button
+                                type="button"
+                                onclick="approvePendingWork('${item.id}')"
+                                class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-extrabold transition cursor-pointer"
+                            >
+                                ✅ موافقة ونشر
+                            </button>
+                            <button
+                                type="button"
+                                onclick="rejectPendingWork('${item.id}')"
+                                class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-extrabold transition cursor-pointer"
+                            >
+                                ❌ رفض
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // معالجة إرسال نموذج مشاركة جديدة (تذهب إلى قائمة المراجعة أولاً)
+        function handleWorkSubmit(event) {
+            event.preventDefault();
+
+            const creator = document.getElementById('creatorName').value.trim();
+            const category = document.getElementById('workCategory').value;
+            const title = document.getElementById('workTitleInput').value.trim();
+            const description = document.getElementById('workDescriptionInput').value.trim();
+            const externalLink = document.getElementById('mediaLinkInput').value.trim();
+            const fileInput = document.getElementById('mediaFileInput');
+            const selectedFile = fileInput.files && fileInput.files[0] ? fileInput.files[0] : null;
+
+            if (!creator || !title || !description) {
+                showToast('يرجى تعبئة جميع الحقول المطلوبة.', true);
+                return;
+            }
+
+            const createPendingEntry = (mediaUrl, mediaType) => {
+                const newEntry = {
+                    id: 'work-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7),
+                    creator,
+                    category,
+                    title,
+                    description,
+                    externalLink,
+                    mediaType,
+                    mediaUrl
+                };
+
+                pendingWorks.unshift(newEntry);
+                persistWorks();
+                renderAdminUI();
+
+                document.getElementById('submissionForm').reset();
+                closeModal('submitModal');
+                showToast('تم إرسال مشاركتك بنجاح! وهي الآن بانتظار موافقة المشرف قبل نشرها في المعرض.');
+            };
+
+            if (selectedFile) {
+                const isVideo = selectedFile.type.startsWith('video/');
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    createPendingEntry(e.target.result, isVideo ? 'video' : 'image');
+                };
+                reader.onerror = () => {
+                    showToast('حدث خطأ أثناء قراءة الملف المرفق.', true);
+                };
+                reader.readAsDataURL(selectedFile);
+            } else {
+                const fallbackUrl = getDefaultMediaByCategory(category);
+                createPendingEntry(fallbackUrl, 'image');
+            }
+        }
+
+        function getDefaultMediaByCategory(category) {
+            switch (category) {
+                case 'رسمة':
+                    return 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=900&q=80';
+                case 'صورة':
+                    return 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80';
+                case 'فيديو':
+                    return 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=900&q=80';
+                case 'عرض':
+                    return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80';
+                case 'فكرة':
+                default:
+                    return 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80';
+            }
+        }
+
+        function approvePendingWork(id) {
+            const idx = pendingWorks.findIndex((w) => w.id === id);
+            if (idx === -1) return;
+
+            const [approvedItem] = pendingWorks.splice(idx, 1);
+            approvedWorks.unshift(approvedItem);
+            persistWorks();
+            renderAdminUI();
+            renderGallery();
+            showToast(`تم اعتماد ونشر "${approvedItem.title}" في المعرض.`);
+        }
+
+        function rejectPendingWork(id) {
+            pendingWorks = pendingWorks.filter((w) => w.id !== id);
+            persistWorks();
+            renderAdminUI();
+            showToast('تم رفض المشاركة وحذفها من قائمة المراجعة.');
+        }
+
+        function deleteApprovedWork(id) {
+            if (!isAdminLoggedIn) return;
+            approvedWorks = approvedWorks.filter((w) => w.id !== id);
+            persistWorks();
+            renderGallery();
+            closeModal('detailModal');
+            showToast('تم حذف المشاركة من المعرض.');
+        }
+
+        function openDetailModal(id) {
+            const work = approvedWorks.find((item) => item.id === id);
+            if (!work) return;
+
+            const mediaContainer = document.getElementById('detailMediaContainer');
+            if (work.mediaType === 'video') {
+                mediaContainer.innerHTML = `<video src="${work.mediaUrl}" controls autoplay class="w-full max-h-[430px] object-contain bg-black"></video>`;
+            } else {
+                mediaContainer.innerHTML = `<img src="${work.mediaUrl}" alt="${escapeHtml(work.title)}" class="w-full max-h-[430px] object-contain bg-slate-950" onerror="this.src='https://placehold.co/900x550/F36E21/FFFFFF?text=Al-Noor+Gallery'">`;
+            }
+
+            document.getElementById('detailBadge').textContent = work.category;
+            document.getElementById('detailCreator').textContent = `إبداع: ${work.creator}`;
+            document.getElementById('detailTitle').textContent = work.title;
+            document.getElementById('detailDescription').textContent = work.description;
+
+            const extLinkWrapper = document.getElementById('detailExternalLinkWrapper');
+            const extLinkAnchor = document.getElementById('detailExternalLink');
+            if (work.externalLink) {
+                extLinkWrapper.classList.remove('hidden');
+                extLinkAnchor.href = work.externalLink;
+            } else {
+                extLinkWrapper.classList.add('hidden');
+                extLinkAnchor.href = '#';
+            }
+
+            const adminActions = document.getElementById('detailAdminActions');
+            const deleteBtn = document.getElementById('detailDeleteBtn');
+            if (isAdminLoggedIn) {
+                adminActions.classList.remove('hidden');
+                deleteBtn.onclick = () => deleteApprovedWork(work.id);
+            } else {
+                adminActions.classList.add('hidden');
+                deleteBtn.onclick = null;
+            }
+
+            openModal('detailModal');
+        }
+
+        function handleAdminButtonClick() {
+            if (isAdminLoggedIn) {
+                const panel = document.getElementById('adminPanel');
+                panel.classList.toggle('hidden');
+                if (!panel.classList.contains('hidden')) {
+                    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                return;
+            }
+
+            document.getElementById('adminCodeInput').value = '';
+            document.getElementById('adminErrorText').classList.add('hidden');
+            openModal('adminLoginModal');
+        }
+
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            const codeInput = document.getElementById('adminCodeInput');
+            const errorText = document.getElementById('adminErrorText');
+            const enteredCode = codeInput.value.trim();
+
+            if (enteredCode === ADMIN_ACTIVATION_CODE) {
+                isAdminLoggedIn = true;
+                try {
+                    localStorage.setItem(STORAGE_KEYS.ADMIN_SESSION, 'true');
+                } catch (err) {
+                    console.error('تعذر حفظ جلسة المشرف:', err);
+                }
+                errorText.classList.add('hidden');
+                closeModal('adminLoginModal');
+                renderAdminUI();
+                renderGallery();
+                showToast('تم تفعيل وضع المشرف بنجاح.');
+            } else {
+                errorText.classList.remove('hidden');
+                codeInput.focus();
+            }
+        }
+
+        function logoutAdmin() {
+            isAdminLoggedIn = false;
+            try {
+                localStorage.setItem(STORAGE_KEYS.ADMIN_SESSION, 'false');
+            } catch (err) {
+                console.error('تعذر إنهاء جلسة المشرف:', err);
+            }
+            renderAdminUI();
+            renderGallery();
+            showToast('تم تسجيل الخروج من وضع المشرف.');
+        }
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            if (modalId === 'submitModal') {
+                updateSubmissionLinkDisplay();
+            }
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+
+            if (modalId === 'detailModal') {
+                const mediaContainer = document.getElementById('detailMediaContainer');
+                const videoEl = mediaContainer ? mediaContainer.querySelector('video') : null;
+                if (videoEl) {
+                    videoEl.pause();
+                }
+            }
+        }
+
+        function handleBackdropClick(event, modalId) {
+            if (event.target && event.target.id === modalId) {
+                closeModal(modalId);
+            }
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                ['submitModal', 'detailModal', 'adminLoginModal', 'campaignCalendarModal'].forEach((id) => closeModal(id));
+            }
+        });
+
+        function openCampaignCalendarModal() {
+            showCalendarGridView();
+            openModal('campaignCalendarModal');
+        }
+
+        function showCalendarGridView() {
+            selectedCampaignDayNumber = null;
+            const gridView = document.getElementById('calendarGridView');
+            const detailView = document.getElementById('calendarDayDetailView');
+            const backBtn = document.getElementById('calendarBackToGridBtn');
+
+            if (gridView) gridView.classList.remove('hidden');
+            if (detailView) detailView.classList.add('hidden');
+            if (backBtn) backBtn.classList.add('hidden');
+
+            renderCampaignDaysGrid();
+        }
+
+        function renderCampaignDaysGrid() {
+            const container = document.getElementById('campaignDaysGrid');
+            if (!container) return;
+
+            container.innerHTML = campaignDays.map((day) => {
+                const count = Array.isArray(day.activities) ? day.activities.length : 0;
+                const coverImg = count > 0 && day.activities[0].imageUrl
+                    ? day.activities[0].imageUrl
+                    : 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=75';
+
+                return `
+                    <div
+                        onclick="openCampaignDayDetail(${day.dayNumber})"
+                        role="button"
+                        tabindex="0"
+                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCampaignDayDetail(${day.dayNumber});}"
+                        class="group rounded-2xl bg-white dark:bg-slate-800 border-2 border-noorOrange/25 hover:border-noorOrange dark:border-slate-700 dark:hover:border-noorOrange overflow-hidden shadow-sm hover:shadow-xl hover:shadow-noorOrange/15 hover:-translate-y-1 transition-all duration-200 cursor-pointer flex flex-col justify-between"
+                    >
+                        <div>
+                            <div class="bg-gradient-to-l from-noorOrange to-noorOrangeWarm px-4 py-2.5 text-white flex items-center justify-between">
+                                <span class="text-sm sm:text-base font-black">${escapeHtml(day.dateLabel)}</span>
+                                <span class="px-2.5 py-0.5 rounded-full bg-white/25 text-[11px] font-extrabold">
+                                    يوم ${day.dayNumber} / 16
+                                </span>
+                            </div>
+
+                            <div class="relative h-32 overflow-hidden bg-noorOrangeSoft dark:bg-slate-900">
+                                <img
+                                    src="${coverImg}"
+                                    alt="${escapeHtml(day.dateLabel)} - ${escapeHtml(day.dayLabel)}"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    onerror="this.src='https://placehold.co/600x360/F36E21/FFFFFF?text=16+Days'"
+                                >
+                                <span class="absolute bottom-2 left-2 px-2.5 py-0.5 rounded-full bg-shamGreen/90 text-white text-[11px] font-bold shadow-xs">
+                                    📸 ${count} ${count === 1 ? 'مشاركة وصورة' : 'مشاركات وصور'}
+                                </span>
+                            </div>
+
+                            <div class="p-4">
+                                <div class="text-xs font-extrabold text-noorOrange mb-1">
+                                    ${escapeHtml(day.dayLabel)}
+                                </div>
+                                <h4 class="text-sm sm:text-base font-black text-slate-900 dark:text-white line-clamp-2 leading-snug">
+                                    ${escapeHtml(day.headline)}
+                                </h4>
+                            </div>
+                        </div>
+
+                        <div class="px-4 pb-3.5 pt-1 flex items-center justify-between text-xs font-extrabold text-shamGreen dark:text-emerald-300 group-hover:text-noorOrange transition">
+                            <span>اضغط لعرض صور ومشاركات اليوم</span>
+                            <span>←</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function openCampaignDayDetail(dayNumber) {
+            const day = campaignDays.find((d) => d.dayNumber === dayNumber);
+            if (!day) return;
+
+            selectedCampaignDayNumber = dayNumber;
+
+            const gridView = document.getElementById('calendarGridView');
+            const detailView = document.getElementById('calendarDayDetailView');
+            const backBtn = document.getElementById('calendarBackToGridBtn');
+
+            if (gridView) gridView.classList.add('hidden');
+            if (detailView) detailView.classList.remove('hidden');
+            if (backBtn) backBtn.classList.remove('hidden');
+
+            document.getElementById('selectedDayNumberBadge').textContent = `${day.dayLabel} • ${day.dateLabel}`;
+            document.getElementById('selectedDayFullTitle').textContent = `${day.dateLabel} — ${day.headline}`;
+            document.getElementById('selectedDaySummary').textContent = 'توثيق الصور والمشاركات والأنشطة المنفذة داخل جمعية عطر الشام التعاونية الحرفية.';
+
+            const adminAddBox = document.getElementById('adminAddDayActivityBox');
+            const targetDayLabel = document.getElementById('adminTargetDayLabel');
+            if (adminAddBox) {
+                if (isAdminLoggedIn) {
+                    adminAddBox.classList.remove('hidden');
+                    if (targetDayLabel) targetDayLabel.textContent = `${day.dayLabel} (${day.dateLabel})`;
+                } else {
+                    adminAddBox.classList.add('hidden');
+                }
+            }
+
+            renderSelectedDayActivities(day);
+        }
+
+        function renderSelectedDayActivities(day) {
+            const grid = document.getElementById('selectedDayActivitiesGrid');
+            if (!grid) return;
+
+            const activities = Array.isArray(day.activities) ? day.activities : [];
+
+            if (activities.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full rounded-2xl border-2 border-dashed border-noorOrange/35 bg-white dark:bg-slate-800 p-8 text-center">
+                        <p class="text-sm sm:text-base font-bold text-slate-600 dark:text-slate-300">
+                            لم يتم إضافة صور أو مشاركات لهذا اليوم (${escapeHtml(day.dateLabel)}) بعد.
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = activities.map((act) => {
+                const adminDelBtn = isAdminLoggedIn
+                    ? `<button
+                        type="button"
+                        onclick="deleteDayActivity(${day.dayNumber}, '${act.id}')"
+                        class="mt-3 px-3 py-1.5 rounded-xl bg-red-600/10 hover:bg-red-600 text-red-700 dark:text-red-400 hover:text-white border border-red-600/30 text-xs font-extrabold transition cursor-pointer"
+                    >
+                        🗑️ حذف هذا النشاط من اليوم
+                    </button>`
+                    : '';
+
+                return `
+                    <article class="rounded-2xl bg-white dark:bg-slate-800 border border-noorOrange/25 dark:border-slate-700 overflow-hidden shadow-md flex flex-col">
+                        <div class="relative h-64 bg-slate-950 overflow-hidden">
+                            <img
+                                src="${act.imageUrl}"
+                                alt="${escapeHtml(act.title)}"
+                                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                onerror="this.src='https://placehold.co/800x500/F36E21/FFFFFF?text=Etter+Al-Sham'"
+                            >
+                            <span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-shamGreen/90 text-white text-xs font-extrabold shadow-xs">
+                                جمعية عطر الشام • ${escapeHtml(day.dateLabel)}
+                            </span>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h4 class="text-lg font-black text-slate-900 dark:text-white mb-2">
+                                    ${escapeHtml(act.title)}
+                                </h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line">
+                                    ${escapeHtml(act.description)}
+                                </p>
+                            </div>
+                            ${adminDelBtn}
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        function handleAddDayActivity(event) {
+            event.preventDefault();
+            if (!isAdminLoggedIn || !selectedCampaignDayNumber) return;
+
+            const day = campaignDays.find((d) => d.dayNumber === selectedCampaignDayNumber);
+            if (!day) return;
+
+            const title = document.getElementById('dayActivityTitleInput').value.trim();
+            const description = document.getElementById('dayActivityDescInput').value.trim();
+            const fileInput = document.getElementById('dayActivityFileInput');
+            const selectedFile = fileInput && fileInput.files && fileInput.files[0] ? fileInput.files[0] : null;
+
+            if (!title || !description) {
+                showToast('يرجى إدخال عنوان الفعالية وتفاصيلها.', true);
+                return;
+            }
+
+            const saveActivity = (imgUrl) => {
+                if (!Array.isArray(day.activities)) day.activities = [];
+                day.activities.unshift({
+                    id: 'act-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6),
+                    title,
+                    description,
+                    imageUrl: imgUrl
+                });
+                persistCampaignDays();
+                document.getElementById('dayActivityForm').reset();
+                renderSelectedDayActivities(day);
+                showToast(`تمت إضافة الفعالية بنجاح إلى ${day.dateLabel}.`);
+            };
+
+            if (selectedFile) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    saveActivity(String(e.target.result));
+                };
+                reader.onerror = () => {
+                    showToast('تعذر قراءة الصورة المختارة.', true);
+                };
+                reader.readAsDataURL(selectedFile);
+            } else {
+                saveActivity('https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80');
+            }
+        }
+
+        function deleteDayActivity(dayNumber, activityId) {
+            if (!isAdminLoggedIn) return;
+            const day = campaignDays.find((d) => d.dayNumber === dayNumber);
+            if (!day || !Array.isArray(day.activities)) return;
+
+            day.activities = day.activities.filter((a) => a.id !== activityId);
+            persistCampaignDays();
+            renderSelectedDayActivities(day);
+            showToast('تم حذف النشاط من تقويم اليوم.');
+        }
+
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toastBanner');
+            if (!toast) return;
+            toast.textContent = message;
+            toast.className = isError
+                ? 'fixed bottom-5 left-5 z-50 max-w-sm rounded-xl bg-red-700 text-white px-4 py-3 shadow-xl border border-red-400/30 text-xs sm:text-sm font-bold transition-all'
+                : 'fixed bottom-5 left-5 z-50 max-w-sm rounded-xl bg-shamGreen text-white px-4 py-3 shadow-xl border border-emerald-400/30 text-xs sm:text-sm font-bold transition-all';
+            toast.classList.remove('hidden');
+
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 4200);
+        }
+
+        function escapeHtml(str) {
+            return String(str ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function updateCampaignCountdown() {
+            const targetDate = new Date('2026-11-25T10:00:00+02:00').getTime();
+            const now = Date.now();
+            const diff = targetDate - now;
+
+            const daysEl = document.getElementById('cdDays');
+            const hoursEl = document.getElementById('cdHours');
+            const minsEl = document.getElementById('cdMinutes');
+            const secsEl = document.getElementById('cdSeconds');
+            if (!daysEl || !hoursEl || !minsEl || !secsEl) return;
+
+            if (diff <= 0) {
+                daysEl.textContent = '0';
+                hoursEl.textContent = '0';
+                minsEl.textContent = '0';
+                secsEl.textContent = '0';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            daysEl.textContent = String(days);
+            hoursEl.textContent = String(hours).padStart(2, '0');
+            minsEl.textContent = String(minutes).padStart(2, '0');
+            secsEl.textContent = String(seconds).padStart(2, '0');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initDarkMode();
+            initLogos();
+            loadState();
+            updateSubmissionLinkDisplay();
+            renderAdminUI();
+            renderGallery();
+            checkAutoOpenSubmitFromUrl();
+            updateCampaignCountdown();
+            setInterval(updateCampaignCountdown, 1000);
+        });
+    </script>
+</body>
+</html>
