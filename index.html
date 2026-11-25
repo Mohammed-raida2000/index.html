@@ -446,8 +446,9 @@
         <!-- خانة بارزة وكاملة فوق معرض المشاركات: معرض حملة 16 يوم - جمعية عطر الشام -->
         <section class="mb-8">
             <a
-                href="#galleryWorksSection"
-                aria-label="الانتقال إلى معرض الأعمال المشاركة"
+                href="#campaignCalendarModal"
+                onclick="openCampaignCalendarModal()"
+                aria-label="فتح برنامج الحملة وتقويم الأيام الستة عشر"
                 class="group relative block overflow-hidden rounded-3xl bg-gradient-to-l from-noorOrange via-noorOrangeWarm to-shamGreen p-6 sm:p-8 text-white shadow-xl shadow-noorOrange/20 border-2 border-noorOrange/40 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-noorOrange/30 focus:outline-none focus:ring-4 focus:ring-noorOrange/40"
             >
                 <div class="absolute -left-12 -bottom-12 w-56 h-56 rounded-full bg-white/10 blur-xl pointer-events-none"></div>
@@ -463,7 +464,7 @@
                             معرض حملة 16 يوم - جمعية عطر الشام
                         </h3>
                         <p class="text-xs sm:text-base text-white/95 font-medium leading-relaxed">
-                            برنامج الحملة اليومي من 25 نوفمبر وحتى 10 ديسمبر، مع عرض الأيام الستة عشر مباشرة أدناه.
+                            اضغط لعرض برنامج الحملة اليومي والأيام الستة عشر وأنشطتها ومشاركاتها.
                         </p>
                     </div>
 
@@ -475,6 +476,90 @@
                     </div>
                 </div>
             </a>
+        </section>
+
+        <!-- تقويم الحملة: شبكة الأيام الستة عشر وتفاصيل كل يوم -->
+        <section id="campaignCalendarModal" class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 scroll-mt-24">
+            <div class="bg-noorOrangeTint dark:bg-slate-900 border-t-4 border-noorOrange border-x border-b border-noorOrange/30 dark:border-slate-800 rounded-3xl w-full p-5 sm:p-7 shadow-xl relative">
+                <div class="flex flex-wrap items-start justify-between gap-4 pb-5 mb-6 border-b border-noorOrange/25 dark:border-slate-800">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-noorOrange text-white text-xs font-extrabold mb-2">
+                            <span>🗓️ 25 نوفمبر — 10 ديسمبر</span>
+                            <span>•</span>
+                            <span>16 يوماً من العطاء والتوعية</span>
+                        </div>
+                        <h2 class="text-xl sm:text-3xl font-black text-slate-900 dark:text-white">
+                            معرض حملة 16 يوم - جمعية عطر الشام
+                        </h2>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1">
+                            تظهر أمامك أيام الحملة الستة عشر مباشرة. اختر أي يوم لعرض صوره وفعالياته ومشاركاته.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button type="button" id="calendarBackToGridBtn" onclick="showCalendarGridView()" class="hidden px-4 py-2 rounded-xl bg-shamGreen hover:bg-shamGreenLight text-white text-xs sm:text-sm font-extrabold shadow-xs transition cursor-pointer">
+                            → العودة إلى مربعات التقويم
+                        </button>
+                    </div>
+                </div>
+                <!-- صور وأنشطة اليوم الأول تظهر مباشرة أسفل مقدمة الحملة -->
+                <div id="campaignDayOnePreview" class="mb-7">
+                    <div class="flex items-center justify-between gap-3 mb-4">
+                        <div>
+                            <div class="text-xs font-extrabold text-noorOrange">25 نوفمبر • اليوم الأول</div>
+                            <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white">صور وفعاليات انطلاق الحملة</h3>
+                        </div>
+                        <button type="button" onclick="openCampaignDayDetail(1)" class="px-4 py-2 rounded-xl bg-shamGreen text-white text-xs font-extrabold hover:bg-shamGreenLight">عرض تفاصيل اليوم ←</button>
+                    </div>
+                    <div id="campaignDayOneActivities" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                        <div class="col-span-full rounded-2xl border border-noorOrange/25 bg-white dark:bg-slate-800 p-5 text-center text-sm text-slate-500">جارٍ تحميل صور اليوم الأول...</div>
+                    </div>
+                </div>
+                <!-- العرض الأول: شبكة مربعات الأيام الـ 16 -->
+                <div id="calendarGridView">
+                    <div id="campaignDaysGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+                </div>
+                <!-- العرض الثاني: تفاصيل اليوم المختار والصور والأنشطة المنفذة فيه -->
+                <div id="calendarDayDetailView" class="hidden space-y-6">
+                    <div class="rounded-2xl bg-gradient-to-l from-noorOrange to-noorOrangeWarm p-5 sm:p-6 text-white shadow-md flex flex-wrap items-center justify-between gap-4">
+                        <div>
+                            <div id="selectedDayNumberBadge" class="inline-block px-3 py-1 rounded-full bg-white/25 text-xs font-extrabold mb-1.5"></div>
+                            <h3 id="selectedDayFullTitle" class="text-xl sm:text-2xl font-black"></h3>
+                            <p id="selectedDaySummary" class="text-xs sm:text-sm text-white/95 mt-1 font-medium"></p>
+                        </div>
+                        <button type="button" onclick="showCalendarGridView()" class="px-4 py-2.5 rounded-xl bg-white text-noorOrange hover:bg-noorOrangeSoft text-xs sm:text-sm font-black shadow-sm transition cursor-pointer">
+                            → كل أيام الحملة (16 يوماً)
+                        </button>
+                    </div>
+                    <!-- نموذج إضافة نشاط/صورة جديدة لهذا اليوم (يظهر للمشرف المسجّل فقط) -->
+                    <div id="adminAddDayActivityBox" class="hidden rounded-2xl border-2 border-dashed border-shamGreen bg-white dark:bg-slate-800/80 p-5">
+                        <h4 class="text-base font-black text-shamGreen dark:text-emerald-300 mb-1">
+                            🛡️ إضافة صورة أو نشاط جديد لـ <span id="adminTargetDayLabel"></span>
+                        </h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                            سيتم حفظ النشاط والصور مباشرة في تقويم هذا اليوم داخل المتصفح.
+                        </p>
+                        <form id="dayActivityForm" onsubmit="handleAddDayActivity(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            <div>
+                                <label for="dayActivityTitleInput" class="block text-xs font-extrabold mb-1 text-slate-700 dark:text-slate-200">عنوان الفعالية / المشاركة *</label>
+                                <input type="text" id="dayActivityTitleInput" required placeholder="مثال: ورشة التطريز التراثي والتوعية" class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-noorOrange">
+                            </div>
+                            <div>
+                                <label for="dayActivityFileInput" class="block text-xs font-extrabold mb-1 text-slate-700 dark:text-slate-200">رفع صورة الفعالية من الجهاز</label>
+                                <input type="file" id="dayActivityFileInput" accept="image/*" class="w-full text-xs text-slate-600 dark:text-slate-300 file:ml-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:font-bold file:bg-noorOrange file:text-white hover:file:bg-noorOrangeHover cursor-pointer rounded-xl border border-dashed border-noorOrange/45 p-1.5 bg-noorOrangeTint dark:bg-slate-900">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label for="dayActivityDescInput" class="block text-xs font-extrabold mb-1 text-slate-700 dark:text-slate-200">تفاصيل الفعالية والصورة داخل الجمعية *</label>
+                                <textarea id="dayActivityDescInput" rows="2" required placeholder="اكتب وصفاً لما تم تنفيذه في جمعية عطر الشام خلال هذا اليوم..." class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-noorOrange"></textarea>
+                            </div>
+                            <div class="sm:col-span-2 flex justify-end">
+                                <button type="submit" class="px-5 py-2.5 rounded-xl bg-shamGreen hover:bg-shamGreenLight text-white text-xs sm:text-sm font-extrabold shadow-xs transition cursor-pointer">+ حفظ ونشر في هذا اليوم</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- شبكة الصور والأنشطة المنفذة في اليوم المختار -->
+                    <div id="selectedDayActivitiesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+                </div>
+            </div>
         </section>
 
         <!-- شريط فلاتر أنواع المشاركات بلمسات برتقالية بارزة -->
@@ -1821,6 +1906,68 @@
             }
         });
 
+        async function loadCampaignCalendar() {
+            const preview = document.getElementById('campaignDayOneActivities');
+            if (!sb) {
+                if (preview) preview.innerHTML = '<div class="col-span-full p-5 text-center text-sm text-red-600">تعذر الاتصال بقاعدة البيانات لتحميل صور الحملة.</div>';
+                return;
+            }
+            try {
+                const { data: campaign, error: campaignError } = await sb
+                    .from('campaigns').select('id, slug, status').eq('slug', CAMPAIGN_SLUG).eq('status', 'published').maybeSingle();
+                if (campaignError) throw campaignError;
+                if (!campaign) throw new Error('لم يتم العثور على الحملة المنشورة.');
+                campaignId = campaign.id;
+
+                const { data: days, error: daysError } = await sb
+                    .from('campaign_days').select('day_number, day_label, date_label, headline')
+                    .eq('campaign_id', campaignId).order('day_number', { ascending: true });
+                if (daysError) throw daysError;
+
+                const { data: activities, error: activitiesError } = await sb
+                    .from('campaign_day_activities').select('id, day_number, title, description, image_url, created_at')
+                    .eq('campaign_id', campaignId).order('created_at', { ascending: false });
+                if (activitiesError) throw activitiesError;
+
+                const byDay = new Map();
+                (activities || []).forEach((a) => {
+                    if (!byDay.has(a.day_number)) byDay.set(a.day_number, []);
+                    byDay.get(a.day_number).push({ id: a.id, title: a.title, description: a.description, imageUrl: a.image_url });
+                });
+                campaignDays = (days || []).map((d) => ({
+                    dayNumber: d.day_number, dayLabel: d.day_label, dateLabel: d.date_label,
+                    headline: d.headline, activities: byDay.get(d.day_number) || []
+                }));
+                renderCampaignDaysGrid();
+                renderCampaignDayOnePreview();
+            } catch (err) {
+                console.error('تعذر تحميل تقويم الحملة:', err);
+                if (preview) preview.innerHTML = '<div class="col-span-full p-5 text-center text-sm text-red-600">تعذر تحميل صور اليوم الأول حالياً. يرجى تحديث الصفحة لاحقاً.</div>';
+            }
+        }
+
+        function renderCampaignDayOnePreview() {
+            const container = document.getElementById('campaignDayOneActivities');
+            if (!container) return;
+            const day = campaignDays.find((d) => d.dayNumber === 1);
+            const activities = day && Array.isArray(day.activities) ? day.activities : [];
+            if (!activities.length) {
+                container.innerHTML = '<div class="col-span-full rounded-2xl border-2 border-dashed border-noorOrange/35 bg-white dark:bg-slate-800 p-7 text-center text-sm text-slate-500 dark:text-slate-300">لم يضف المشرف صوراً أو فعاليات لليوم الأول بعد.</div>';
+                return;
+            }
+            container.innerHTML = activities.map((act) => `
+                <article class="rounded-2xl bg-white dark:bg-slate-800 border border-noorOrange/25 dark:border-slate-700 overflow-hidden shadow-md">
+                    <div class="h-56 bg-slate-100 dark:bg-slate-900 overflow-hidden">
+                        <img src="${safeUrl(act.imageUrl)}" alt="${escapeHtml(act.title)}" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-black text-slate-900 dark:text-white mb-2">${escapeHtml(act.title)}</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line">${escapeHtml(act.description)}</p>
+                    </div>
+                </article>
+            `).join('');
+        }
+
         function openCampaignCalendarModal() {
             showCalendarGridView();
             const calendar = document.getElementById('campaignCalendarModal');
@@ -2034,6 +2181,8 @@
                 day.activities.unshift({ id: data.id, title: data.title, description: data.description, imageUrl: data.image_url });
                 document.getElementById('dayActivityForm').reset();
                 renderSelectedDayActivities(day);
+                if (day.dayNumber === 1) renderCampaignDayOnePreview();
+                renderCampaignDaysGrid();
                 showToast(`تمت إضافة الفعالية بنجاح إلى ${day.dateLabel}.`);
             } catch (err) {
                 console.error('تعذر إضافة الفعالية:', err);
@@ -2059,6 +2208,8 @@
             await removeStoredFile(act.imageUrl);
             day.activities = day.activities.filter((a) => a.id !== activityId);
             renderSelectedDayActivities(day);
+            if (day.dayNumber === 1) renderCampaignDayOnePreview();
+            renderCampaignDaysGrid();
             showToast('تم حذف النشاط من تقويم اليوم.');
         }
 
@@ -2116,6 +2267,7 @@
             setInterval(updateCampaignCountdown, 1000);
 
             await loadState();
+            await loadCampaignCalendar();
             await refreshAdminState();
             await initLogos();
             renderAdminUI();
