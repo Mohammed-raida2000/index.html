@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -339,7 +340,7 @@
     <!-- المحتوى الرئيسي: لوحة المشرف والفلاتر والمعرض -->
     <main id="gallerySection" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-        <!-- لوحة تحكم المشرف (تظهر فقط بعد تفعيل كود المشرف 1616) -->
+        <!-- لوحة تحكم المشرف (تظهر فقط بعد تسجيل دخول حساب مشرف) -->
         <section id="adminPanel" class="hidden mb-8 rounded-2xl border-2 border-dashed border-noorOrange bg-gradient-to-l from-noorOrangeSoft/70 to-white dark:from-slate-900 dark:to-slate-900 p-5 sm:p-6 shadow-md shadow-noorOrange/10">
             <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-5 border-b border-noorOrange/25 dark:border-slate-800">
                 <div>
@@ -607,6 +608,7 @@
                     <input
                         type="text"
                         id="creatorName"
+                        maxlength="100"
                         required
                         placeholder="اكتب اسمك أو اسمك المستعار"
                         class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-noorOrange"
@@ -638,6 +640,7 @@
                         <input
                             type="text"
                             id="workTitleInput"
+                            maxlength="150"
                             required
                             placeholder="عنوان معبّر عن مشاركتك"
                             class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-noorOrange"
@@ -656,7 +659,7 @@
                         class="w-full text-xs sm:text-sm text-slate-600 dark:text-slate-300 file:ml-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-noorOrange file:text-white hover:file:bg-noorOrangeHover cursor-pointer rounded-xl border border-dashed border-noorOrange/45 dark:border-slate-700 p-2 bg-noorOrangeTint dark:bg-slate-800/60"
                     >
                     <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-                        يدعم الصور ومقاطع الفيديو (يُنصح بملفات خفيفة لضمان سرعة الحفظ المحلي).
+                        يدعم الصور ومقاطع الفيديو (الحد الأقصى 20 ميغابايت).
                     </p>
                 </div>
 
@@ -667,6 +670,7 @@
                     <input
                         type="url"
                         id="mediaLinkInput"
+                        maxlength="500"
                         placeholder="https://..."
                         class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-noorOrange"
                     >
@@ -678,6 +682,7 @@
                     </label>
                     <textarea
                         id="workDescriptionInput"
+                        maxlength="2000"
                         rows="4"
                         required
                         placeholder="احكِ للزوار عن فكرة العمل، رسالته، وماذا يعبّر عنه في حملة مناهضة العنف..."
@@ -755,7 +760,7 @@
         </div>
     </div>
 
-    <!-- نافذة تسجيل دخول المشرف بكود التفعيل 1616 -->
+    <!-- نافذة تسجيل دخول المشرف (Supabase Auth) -->
     <div id="adminLoginModal" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-xs items-center justify-center p-4" onclick="handleBackdropClick(event, 'adminLoginModal')">
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl">
             <div class="flex items-center justify-between mb-3">
@@ -769,24 +774,20 @@
                 </button>
             </div>
             <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-4">
-                أدخل كود تفعيل المشرف للوصول إلى قائمة المشاركات المعلقة واعتمادها أو حذف أي مشاركة غير مناسبة.
+                سجّل الدخول بحساب المشرف للوصول إلى قائمة المشاركات المعلقة واعتمادها أو حذف أي مشاركة غير مناسبة.
             </p>
 
             <form onsubmit="handleAdminLogin(event)" class="space-y-4">
-                <div>
-                    <label for="adminCodeInput" class="block text-sm font-bold mb-1.5 text-slate-800 dark:text-slate-200">
-                        كود التفعيل
-                    </label>
-                    <input
-                        type="password"
-                        id="adminCodeInput"
-                        required
-                        placeholder="أدخل كود التفعيل (1616)"
-                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-shamGreen"
-                    >
-                    <p id="adminErrorText" class="hidden text-xs font-bold text-red-600 dark:text-red-400 mt-1.5">
-                        كود التفعيل غير صحيح. يرجى التحقق والمحاولة مرة أخرى.
-                    </p>
+                <div class="space-y-3">
+                    <div>
+                        <label for="adminEmailInput" class="block text-sm font-bold mb-1.5 text-slate-800 dark:text-slate-200">البريد الإلكتروني</label>
+                        <input type="email" id="adminEmailInput" required autocomplete="username" dir="ltr" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-shamGreen">
+                    </div>
+                    <div>
+                        <label for="adminPasswordInput" class="block text-sm font-bold mb-1.5 text-slate-800 dark:text-slate-200">كلمة المرور</label>
+                        <input type="password" id="adminPasswordInput" required autocomplete="current-password" dir="ltr" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-shamGreen">
+                        <p id="adminErrorText" class="hidden text-xs font-bold text-red-600 dark:text-red-400 mt-1.5" role="alert"></p>
+                    </div>
                 </div>
 
                 <div class="flex items-center justify-end gap-2">
@@ -801,7 +802,7 @@
                         type="submit"
                         class="px-5 py-2 rounded-xl bg-shamGreen hover:bg-shamGreenLight text-white text-sm font-bold transition cursor-pointer"
                     >
-                        تفعيل وضع المشرف
+                        دخول
                     </button>
                 </div>
             </form>
@@ -868,7 +869,7 @@
                     </button>
                 </div>
 
-                <!-- نموذج إضافة نشاط/صورة جديدة لهذا اليوم (يظهر للمشرف المفعل 1616 فقط) -->
+                <!-- نموذج إضافة نشاط/صورة جديدة لهذا اليوم (يظهر للمشرف المسجّل فقط) -->
                 <div id="adminAddDayActivityBox" class="hidden rounded-2xl border-2 border-dashed border-shamGreen bg-white dark:bg-slate-800/80 p-5">
                     <h4 class="text-base font-black text-shamGreen dark:text-emerald-300 mb-1">
                         🛡️ إضافة صورة أو نشاط جديد لـ <span id="adminTargetDayLabel"></span>
@@ -933,22 +934,75 @@
     <div id="toastBanner" class="fixed bottom-5 left-5 z-50 hidden max-w-sm rounded-xl bg-shamGreen text-white px-4 py-3 shadow-xl border border-emerald-400/30 text-xs sm:text-sm font-bold transition-all"></div>
 
     <script>
-        const ADMIN_ACTIVATION_CODE = '1616';
+        // ===== إعدادات Supabase =====
+        // المفتاح "publishable" مصمَّم ليكون علنياً، والحماية الفعلية تتم عبر سياسات RLS في قاعدة البيانات.
+        // لا تضع هنا أبداً مفتاح service_role.
+        const SUPABASE_URL = 'https://buxovkieyypwtnwmdanl.supabase.co';
+        const SUPABASE_PUBLISHABLE_KEY = 'PASTE_YOUR_PUBLISHABLE_KEY_HERE';
+        const STORAGE_BUCKET = 'site-media';
+        const CAMPAIGN_SLUG = '16-days-2026';
+        const MAX_UPLOAD_BYTES = 20 * 1024 * 1024;
 
-        // مفاتيح التخزين المحلي في المتصفح
+        const sb = (window.supabase && !SUPABASE_PUBLISHABLE_KEY.startsWith('PASTE'))
+            ? window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY)
+            : null;
+
+        // مفتاح الوضع الداكن فقط يبقى محلياً (تفضيل شخصي للمتصفح)
         const STORAGE_KEYS = {
-            APPROVED: 'al_noor_approved_works_v1',
-            PENDING: 'al_noor_pending_works_v1',
-            DARK_MODE: 'al_noor_dark_mode_v1',
-            ADMIN_SESSION: 'al_noor_admin_active_v1',
-            CUSTOM_UNFPA_LOGO: 'al_noor_custom_unfpa_logo_v1',
-            CUSTOM_SHAM_LOGO: 'al_noor_custom_sham_logo_v1',
-            CUSTOM_CAMPAIGN_LOGO: 'al_noor_custom_campaign_logo_v1',
-            CAMPAIGN_16_DAYS: 'al_noor_campaign_16_days_v1'
+            DARK_MODE: 'al_noor_dark_mode_v1'
         };
 
-        // تطبيق حالة الشعار (إما صورة مخصصة محفوظة كما هي أو الشعار المتجهي SVG الافتراضي)
-        function applyLogoState(target, dataUrl) {
+        // السماح فقط بروابط https (حماية من حقن javascript: وما شابه)
+        function safeUrl(url, fallback = 'https://placehold.co/800x500/F36E21/FFFFFF?text=Al-Noor') {
+            try {
+                const u = new URL(String(url));
+                if (u.protocol === 'https:') return escapeHtml(u.href);
+            } catch (err) { /* fallthrough */ }
+            return escapeHtml(fallback);
+        }
+
+        // التحقق من الملف قبل الرفع
+        function validateUploadFile(file, allowVideo) {
+            if (!file) return 'لم يتم اختيار ملف.';
+            const isImage = file.type.startsWith('image/');
+            const isVideo = file.type.startsWith('video/');
+            if (!(isImage || (allowVideo && isVideo))) {
+                return allowVideo ? 'يُسمح فقط بالصور ومقاطع الفيديو.' : 'يُسمح فقط بالصور.';
+            }
+            if (file.size > MAX_UPLOAD_BYTES) {
+                return 'حجم الملف كبير، الحد الأقصى 20 ميغابايت.';
+            }
+            return null;
+        }
+
+        // رفع ملف إلى Supabase Storage وإرجاع الرابط العام
+        async function uploadFile(file, folder) {
+            const rawExt = (file.name.split('.').pop() || '').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 5);
+            const ext = rawExt || (file.type.startsWith('video/') ? 'mp4' : 'jpg');
+            const path = `${folder}/${crypto.randomUUID()}.${ext}`;
+            const { error } = await sb.storage.from(STORAGE_BUCKET).upload(path, file, {
+                contentType: file.type,
+                upsert: false
+            });
+            if (error) throw error;
+            return sb.storage.from(STORAGE_BUCKET).getPublicUrl(path).data.publicUrl;
+        }
+
+        // حذف ملف من التخزين إن كان رابطه يعود لحاويتنا (لا يؤثر على صور unsplash الافتراضية)
+        async function removeStoredFile(url) {
+            try {
+                const marker = `/storage/v1/object/public/${STORAGE_BUCKET}/`;
+                const idx = String(url || '').indexOf(marker);
+                if (idx === -1 || !sb) return;
+                const path = decodeURIComponent(String(url).slice(idx + marker.length));
+                await sb.storage.from(STORAGE_BUCKET).remove([path]);
+            } catch (err) {
+                console.error('تعذر حذف الملف من التخزين:', err);
+            }
+        }
+
+        // تطبيق حالة الشعار (إما صورة مخصصة أو الشعار المتجهي SVG الافتراضي)
+        function applyLogoState(target, url) {
             let imgId = 'customShamLogoImg';
             let svgId = 'defaultShamSvg';
             if (target === 'unfpa') {
@@ -963,74 +1017,84 @@
             const svgEl = document.getElementById(svgId);
             if (!imgEl || !svgEl) return;
 
-            if (dataUrl) {
-                imgEl.src = dataUrl;
+            if (url && /^https:\/\//i.test(url)) {
+                imgEl.src = url;
                 imgEl.classList.remove('hidden');
                 svgEl.classList.add('hidden');
             } else {
-                imgEl.src = '';
+                imgEl.removeAttribute('src');
                 imgEl.classList.add('hidden');
                 svgEl.classList.remove('hidden');
             }
         }
 
-        // تهيئة الشعارات المحفوظة مسبقاً عند تحميل الصفحة
-        function initLogos() {
+        // تحميل الشعارات المحفوظة من قاعدة البيانات (عامة لكل الزوار)
+        async function initLogos() {
+            if (!sb) return;
             try {
-                const savedUnfpa = localStorage.getItem(STORAGE_KEYS.CUSTOM_UNFPA_LOGO);
-                const savedSham = localStorage.getItem(STORAGE_KEYS.CUSTOM_SHAM_LOGO);
-                const savedCampaign = localStorage.getItem(STORAGE_KEYS.CUSTOM_CAMPAIGN_LOGO);
-                applyLogoState('unfpa', savedUnfpa || null);
-                applyLogoState('sham', savedSham || null);
-                applyLogoState('campaign', savedCampaign || null);
+                const { data, error } = await sb.from('site_settings')
+                    .select('key, media_path')
+                    .in('key', ['logo_unfpa', 'logo_sham', 'logo_campaign']);
+                if (error) throw error;
+                const map = {};
+                (data || []).forEach((r) => { map[r.key] = r.media_path; });
+                applyLogoState('unfpa', map.logo_unfpa || null);
+                applyLogoState('sham', map.logo_sham || null);
+                applyLogoState('campaign', map.logo_campaign || null);
             } catch (err) {
-                console.error('تعذر قراءة الشعارات المحفوظة:', err);
+                console.error('تعذر تحميل الشعارات:', err);
             }
         }
 
-        // حفظ صورة الشعار المرفوعة كما هي تماماً بدون أي تعديل على ألوانها أو تفاصيلها
-        function handleLogoUpload(event, target) {
-            const file = event.target && event.target.files && event.target.files[0];
+        // رفع شعار جديد (للمشرف فقط) وحفظه لكل الزوار
+        async function handleLogoUpload(event, target) {
+            const input = event.target;
+            const file = input && input.files && input.files[0];
             if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const rawUrl = e.target && e.target.result ? String(e.target.result) : '';
-                if (!rawUrl) return;
-
-                try {
-                    let key = STORAGE_KEYS.CUSTOM_SHAM_LOGO;
-                    if (target === 'unfpa') key = STORAGE_KEYS.CUSTOM_UNFPA_LOGO;
-                    else if (target === 'campaign') key = STORAGE_KEYS.CUSTOM_CAMPAIGN_LOGO;
-
-                    localStorage.setItem(key, rawUrl);
-                    applyLogoState(target, rawUrl);
-                    showToast('تم رفع الشعار كما هو تماماً وحفظه في المنصة.');
-                } catch (err) {
-                    console.error('تعذر حفظ صورة الشعار في التخزين المحلي:', err);
-                    showToast('حجم صورة الشعار كبير جداً للتخزين المحلي، جرّب صورة أصغر.', true);
-                }
-            };
-            reader.onerror = () => {
-                showToast('حدث خطأ أثناء قراءة ملف الشعار.', true);
-            };
-            reader.readAsDataURL(file);
+            if (!isAdminLoggedIn || !sb) {
+                showToast('يلزم تسجيل دخول المشرف لتغيير الشعارات.', true);
+                input.value = '';
+                return;
+            }
+            const problem = validateUploadFile(file, false);
+            if (problem) {
+                showToast(problem, true);
+                input.value = '';
+                return;
+            }
+            try {
+                const url = await uploadFile(file, 'logos');
+                const { error } = await sb.from('site_settings').upsert({ key: `logo_${target}`, media_path: url });
+                if (error) throw error;
+                applyLogoState(target, url);
+                showToast('تم رفع الشعار وحفظه لجميع الزوار.');
+            } catch (err) {
+                console.error('تعذر رفع الشعار:', err);
+                showToast('تعذر رفع الشعار، حاول مرة أخرى.', true);
+            }
         }
 
-        function resetCustomLogos() {
+        async function resetCustomLogos() {
+            if (!isAdminLoggedIn || !sb) {
+                showToast('يلزم تسجيل دخول المشرف.', true);
+                return;
+            }
             try {
-                localStorage.removeItem(STORAGE_KEYS.CUSTOM_UNFPA_LOGO);
-                localStorage.removeItem(STORAGE_KEYS.CUSTOM_SHAM_LOGO);
-                localStorage.removeItem(STORAGE_KEYS.CUSTOM_CAMPAIGN_LOGO);
+                const { error } = await sb.from('site_settings').upsert([
+                    { key: 'logo_unfpa', media_path: null },
+                    { key: 'logo_sham', media_path: null },
+                    { key: 'logo_campaign', media_path: null }
+                ]);
+                if (error) throw error;
             } catch (err) {
                 console.error('خطأ أثناء استعادة الشعارات الافتراضية:', err);
+                showToast('تعذرت استعادة الشعارات الافتراضية.', true);
+                return;
             }
-            const unfpaInput = document.getElementById('uploadUnfpaLogoInput');
-            const shamInput = document.getElementById('uploadShamLogoInput');
-            const campaignInput = document.getElementById('uploadCampaignLogoInput');
-            if (unfpaInput) unfpaInput.value = '';
-            if (shamInput) shamInput.value = '';
-            if (campaignInput) campaignInput.value = '';
+            ['uploadUnfpaLogoInput', 'uploadShamLogoInput', 'uploadCampaignLogoInput'].forEach((id) => {
+                const el = document.getElementById(id);
+                if (el) el.value = '';
+            });
             applyLogoState('unfpa', null);
             applyLogoState('sham', null);
             applyLogoState('campaign', null);
@@ -1090,342 +1154,100 @@
             }
         }
 
-        // بيانات تقويم حملة 16 يوماً (من 25 نوفمبر حتى 10 ديسمبر) لجمعية عطر الشام
-        const DEFAULT_CAMPAIGN_DAYS = [
-            {
-                dayNumber: 1,
-                dayLabel: 'اليوم الأول لحملة 16 يوم',
-                dateLabel: '25 نوفمبر',
-                headline: 'انطلاق الحملة وتلوين الجمعية بالبرتقالي',
-                activities: [
-                    {
-                        id: 'c1-1',
-                        title: 'افتتاح معرض الحملة في مقر جمعية عطر الشام',
-                        description: 'اجتمعت عضوات الجمعية والحرفيات لإطلاق فعاليات الـ 16 يوماً لمناهضة العنف، مع تعليق الشرائط البرتقالية وعرض أولى اللوحات التوعوية.',
-                        imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80'
-                    },
-                    {
-                        id: 'c1-2',
-                        title: 'جدارية التضامن والأمل',
-                        description: 'مشاركة الحاضرات في كتابة رسائل دعم وتشجيع على جدارية منصة النور داخل الجمعية.',
-                        imageUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=900&q=80'
-                    }
-                ]
-            },
-            {
-                dayNumber: 2,
-                dayLabel: 'اليوم الثاني لحملة 16 يوم',
-                dateLabel: '26 نوفمبر',
-                headline: 'ورشة الحرف اليدوية والتمكين الاقتصادي',
-                activities: [
-                    {
-                        id: 'c2-1',
-                        title: 'غرزة التطريز التراثي كمساحة آمنة',
-                        description: 'ورشة عمل تفاعلية جمعت الحرفيات لتبادل الخبرات في التطريز وصناعة المنتجات التراثية، مع حوار مفتوح حول دور الاستقلال الاقتصادي في حماية المرأة.',
-                        imageUrl: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80'
-                    }
-                ]
-            },
-            {
-                dayNumber: 3,
-                dayLabel: 'اليوم الثالث لحملة 16 يوم',
-                dateLabel: '27 نوفمبر',
-                headline: 'جلسة توعية قانونية وحقوقية',
-                activities: [
-                    {
-                        id: 'c3-1',
-                        title: 'اعرفي حقوقك: حوار مجتمعي داخل الجمعية',
-                        description: 'جلسة حوارية حول آليات الحماية والدعم النفسي والقانوني المتاحة للنساء والفتيات في المجتمع المحلي.',
-                        imageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80'
-                    }
-                ]
-            },
-            {
-                dayNumber: 4,
-                dayLabel: 'اليوم الرابع لحملة 16 يوم',
-                dateLabel: '28 نوفمبر',
-                headline: 'مرسم الألوان البرتقالية للشابات',
-                activities: [
-                    {
-                        id: 'c4-1',
-                        title: 'الريشة في مواجهة العنف',
-                        description: 'مجموعة من الفتيات الموهوبات يرسمْن لوحات تعبّر عن السلام الأسري والأمان المجتمعي داخل قاعة الأنشطة في الجمعية.',
-                        imageUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=900&q=80'
-                    }
-                ]
-            },
-            {
-                dayNumber: 5,
-                dayLabel: 'اليوم الخامس لحملة 16 يوم',
-                dateLabel: '29 نوفمبر',
-                headline: 'مبادرة الأمان الرقمي للفتيات',
-                activities: [
-                    {
-                        id: 'c5-1',
-                        title: 'نحو فضاء إلكتروني خالٍ من الابتزاز والعنف',
-                        description: 'تدريب عملي حول حماية الخصوصية الرقمية والتصدي للعنف الإلكتروني بمشاركة متطوعات الجمعية.',
-                        imageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80'
-                    }
-                ]
-            },
-            {
-                dayNumber: 6,
-                dayLabel: 'اليوم السادس لحملة 16 يوم',
-                dateLabel: '30 نوفمبر',
-                headline: 'حكايات نجاح ملهمة من قلب الجمعية',
-                activities: [
-                    {
-                        id: 'c6-1',
-                        title: 'رائدات عطر الشام يروين قصصهن',
-                        description: 'لقاء ملهم استعرضت فيه سيدات الجمعية تجاربهن في تحويل الحرف المنزلية إلى مشاريع منتجة ومستدامة.',
-                        imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80'
-                    }
-                ]
-            },
-            {
-                dayNumber: 7,
-                dayLabel: 'اليوم السابع لحملة 16 يوم',
-                dateLabel: '1 ديسمبر',
-                headline: 'إعداد سلال المنتجات الغذائية الحرفية',
-                activities: [
-                    {
-                        id: 'c7-1',
-                        title: 'تعاونية الإنتاج الغذائي والتكافل',
-                        description: 'توثيق عمل فريق التصنيع الغذائي والمربيات والزيتون في الجمعية بروح الفريق الواحد.',
-                        imageUrl: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80'
-                    }
-                ]
-            },
-            {
-                dayNumber: 8,
-                dayLabel: 'اليوم الثامن لحملة 16 يوم',
-                dateLabel: '2 ديسمبر',
-                headline: 'حلقة دعم نفسي واستماع فعّال',
-                activities: [
-                    {
-                        id: 'c8-1',
-                        title: 'مساحة آمنة للبوح والدعم المتبادل',
-                        description: 'جلسة تفاعلية بإشراف أخصائية اجتماعية لتعزيز الصحة النفسية وبناء المرونة لدى المشاركات.',
-                        imageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80'
-                    }
-                ]
-            },
-            {
-                dayNumber: 9,
-                dayLabel: 'اليوم التاسع لحملة 16 يوم',
-                dateLabel: '3 ديسمبر',
-                headline: 'يوم الدمج والشمول لجميع النساء',
-                activities: [
-                    {
-                        id: 'c9-1',
-                        title: 'مشاركة النساء ذوات الإعاقة في الورش الحرفية',
-                        description: 'فعالية شاملة تؤكد أن الحماية والتمكين حق أصيل لكل امرأة وفتاة دون استثناء.',
-                        imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80'
-                    }
-                ]
-            },
-            {
-                dayNumber: 10,
-                dayLabel: 'اليوم العاشر لحملة 16 يوم',
-                dateLabel: '4 ديسمبر',
-                headline: 'تصميم بطاقات توعية بأيادي الحرفيات',
-                activities: [
-                    {
-                        id: 'c10-1',
-                        title: 'بطاقات مطرزة تحمل رسائل مناهضة للعنف',
-                        description: 'ابتكار بطاقات فنية تجمع بين التطريز التقليدي وعبارات التوعية لتوزيعها على الزوار.',
-                        imageUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=900&q=80'
-                    }
-                ]
-            },
-            {
-                dayNumber: 11,
-                dayLabel: 'اليوم الحادي عشر لحملة 16 يوم',
-                dateLabel: '5 ديسمبر',
-                headline: 'الاحتفاء بالمتطوعين والمتطوعات',
-                activities: [
-                    {
-                        id: 'c11-1',
-                        title: 'سواعد التطوع في خدمة المجتمع',
-                        description: 'تكريم المتطوعين المشاركين في تنظيم فعاليات الحملة داخل جمعية عطر الشام.',
-                        imageUrl: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80'
-                    }
-                ]
-            },
-            {
-                dayNumber: 12,
-                dayLabel: 'اليوم الثاني عشر لحملة 16 يوم',
-                dateLabel: '6 ديسمبر',
-                headline: 'عرض أفلام قصيرة ومناقشتها',
-                activities: [
-                    {
-                        id: 'c12-1',
-                        title: 'سينما التوعية في قاعة الجمعية',
-                        description: 'عرض مقاطع توعوية قصيرة حول نبذ العنف الأسري ومناقشة الدروس المستفادة مع الحضور.',
-                        imageUrl: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=900&q=80'
-                    }
-                ]
-            },
-            {
-                dayNumber: 13,
-                dayLabel: 'اليوم الثالث عشر لحملة 16 يوم',
-                dateLabel: '7 ديسمبر',
-                headline: 'حوار الأجيال: الأمهات والبنات',
-                activities: [
-                    {
-                        id: 'c13-1',
-                        title: 'جسور التفاهم داخل الأسرة',
-                        description: 'لقاء تفاعلي جمع الأمهات وبناتهن لتعزيز الحوار الأسري القائم على الاحترام المتبادل.',
-                        imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80'
-                    }
-                ]
-            },
-            {
-                dayNumber: 14,
-                dayLabel: 'اليوم الرابع عشر لحملة 16 يوم',
-                dateLabel: '8 ديسمبر',
-                headline: 'معرض مصغر للمنتجات الحرفية والرسومات',
-                activities: [
-                    {
-                        id: 'c14-1',
-                        title: 'إبداع المرأة يصنع السلام',
-                        description: 'عرض مشترك للمشغولات الحرفية والرسومات المشاركة في منصة النور.',
-                        imageUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=900&q=80'
-                    }
-                ]
-            },
-            {
-                dayNumber: 15,
-                dayLabel: 'اليوم الخامس عشر لحملة 16 يوم',
-                dateLabel: '9 ديسمبر',
-                headline: 'توثيق التوصيات ومقترحات المجتمع',
-                activities: [
-                    {
-                        id: 'c15-1',
-                        title: 'صياغة ميثاق مجتمع آمن',
-                        description: 'تلخيص أبرز الأفكار والمبادرات التي طرحتها المشاركات خلال أيام الحملة.',
-                        imageUrl: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80'
-                    }
-                ]
-            },
-            {
-                dayNumber: 16,
-                dayLabel: 'اليوم السادس عشر لحملة 16 يوم',
-                dateLabel: '10 ديسمبر',
-                headline: 'ختام الحملة والاحتفاء باليوم العالمي لحقوق الإنسان',
-                activities: [
-                    {
-                        id: 'c16-1',
-                        title: 'الحفل الختامي لحملة الـ 16 يوماً في جمعية عطر الشام',
-                        description: 'اختتام فعاليات الحملة بالتزامن مع اليوم العالمي لحقوق الإنسان، وتكريم المشاركات وعرض حصاد الـ 16 يوماً على منصة النور.',
-                        imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80'
-                    }
-                ]
-            }
-        ];
-
-        // مشاركة معلقة افتراضية لتجربة لوحة المشرف فوراً
-        const DEFAULT_PENDING_WORKS = [
-            {
-                id: 'pending-seed-1',
-                creator: 'ليلى حسن',
-                category: 'عرض',
-                title: 'عرض تعريفي: كيف نبني بيئة داعمة؟',
-                description: 'عرض مبسّط يسلّط الضوء على أهمية الإصغاء والدعم المجتمعي والوقاية من العنف في الأسرة والعمل.',
-                mediaType: 'image',
-                mediaUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80'
-            }
-        ];
-
-        // مشاركات معتمدة افتراضية لعرض المعرض بشكل حيوي ومباشر
-        const DEFAULT_APPROVED_WORKS = [
-            {
-                id: 'approved-seed-1',
-                creator: 'سارة منصور',
-                category: 'رسمة',
-                title: 'فجر الأمل والتمكين',
-                description: 'لوحة فنية تجمع بين دفء اللون البرتقالي ورموز السلام لتعبّر عن حق كل امرأة وفتاة في العيش بأمان وكرامة.',
-                mediaType: 'image',
-                mediaUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=900&q=80'
-            },
-            {
-                id: 'approved-seed-2',
-                creator: 'جمعية عطر الشام التعاونية الحرفية',
-                category: 'صورة',
-                title: 'أنامل تصنع الحرية والاستقلال',
-                description: 'لقطة من داخل ورشات العمل والحرف اليدوية في جمعية عطر الشام التي تعزز التمكين الاقتصادي والتضامن المجتمعي.',
-                mediaType: 'image',
-                mediaUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80'
-            },
-            {
-                id: 'approved-seed-3',
-                creator: 'نور الهدى',
-                category: 'فكرة',
-                title: 'مبادرة حوارات النور الأسبوعية',
-                description: 'فكرة مجتمعية لفتح مساحات حوار آمنة ومفتوحة تجمع الشابات والأسر لنشر ثقافة الاحترام والوقاية من العنف.',
-                mediaType: 'image',
-                mediaUrl: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80'
-            }
-        ];
-
-        // حالة التطبيق
+        // حالة التطبيق (تأتي من Supabase)
         let approvedWorks = [];
         let pendingWorks = [];
         let campaignDays = [];
+        let campaignId = null;
         let selectedCampaignDayNumber = null;
         let currentFilter = 'الكل';
         let isAdminLoggedIn = false;
         let toastTimer = null;
 
-        // قراءة البيانات من localStorage بأمان
-        function loadState() {
+        function mapWork(r) {
+            return {
+                id: r.id,
+                creator: r.creator,
+                category: r.category,
+                title: r.title,
+                description: r.description,
+                externalLink: r.external_link || '',
+                mediaType: r.media_type,
+                mediaUrl: r.media_url
+            };
+        }
+
+        // تحميل المشاركات المعتمدة وتقويم الحملة (متاحة للجميع)
+        async function loadState() {
+            if (!sb) {
+                showToast('لم يتم ضبط مفتاح Supabase بعد، لذلك لا يمكن تحميل البيانات.', true);
+                return;
+            }
             try {
-                const savedApproved = localStorage.getItem(STORAGE_KEYS.APPROVED);
-                const savedPending = localStorage.getItem(STORAGE_KEYS.PENDING);
-                const savedAdmin = localStorage.getItem(STORAGE_KEYS.ADMIN_SESSION);
-                const savedCampaignDays = localStorage.getItem(STORAGE_KEYS.CAMPAIGN_16_DAYS);
-
-                approvedWorks = savedApproved ? JSON.parse(savedApproved) : [...DEFAULT_APPROVED_WORKS];
-                pendingWorks = savedPending ? JSON.parse(savedPending) : [...DEFAULT_PENDING_WORKS];
-                campaignDays = savedCampaignDays ? JSON.parse(savedCampaignDays) : JSON.parse(JSON.stringify(DEFAULT_CAMPAIGN_DAYS));
-                isAdminLoggedIn = savedAdmin === 'true';
-
-                if (!savedApproved) {
-                    localStorage.setItem(STORAGE_KEYS.APPROVED, JSON.stringify(approvedWorks));
-                }
-                if (!savedPending) {
-                    localStorage.setItem(STORAGE_KEYS.PENDING, JSON.stringify(pendingWorks));
-                }
-                if (!savedCampaignDays) {
-                    localStorage.setItem(STORAGE_KEYS.CAMPAIGN_16_DAYS, JSON.stringify(campaignDays));
+                const [worksRes, campRes] = await Promise.all([
+                    sb.from('works').select('*').eq('status', 'approved').order('created_at', { ascending: false }),
+                    sb.from('campaigns').select('id').eq('slug', CAMPAIGN_SLUG).maybeSingle()
+                ]);
+                if (worksRes.error) throw worksRes.error;
+                if (campRes.error) throw campRes.error;
+                approvedWorks = (worksRes.data || []).map(mapWork);
+                if (campRes.data) {
+                    campaignId = campRes.data.id;
+                    await loadCampaignDays();
                 }
             } catch (err) {
-                console.error('خطأ أثناء قراءة البيانات من التخزين المحلي:', err);
-                approvedWorks = [...DEFAULT_APPROVED_WORKS];
-                pendingWorks = [...DEFAULT_PENDING_WORKS];
-                campaignDays = JSON.parse(JSON.stringify(DEFAULT_CAMPAIGN_DAYS));
+                console.error('خطأ أثناء تحميل البيانات:', err);
+                showToast('تعذر تحميل البيانات من الخادم. تحقق من الاتصال وأعد المحاولة.', true);
             }
         }
 
-        // حفظ أيام تقويم الحملة في localStorage
-        function persistCampaignDays() {
-            try {
-                localStorage.setItem(STORAGE_KEYS.CAMPAIGN_16_DAYS, JSON.stringify(campaignDays));
-            } catch (err) {
-                console.error('تعذر حفظ تقويم الحملة في التخزين المحلي:', err);
-                showToast('تنبيه: حجم الصورة كبير جداً للتخزين المحلي، جرّب صورة أصغر.', true);
-            }
+        async function loadCampaignDays() {
+            const [daysRes, actsRes] = await Promise.all([
+                sb.from('campaign_days').select('*').eq('campaign_id', campaignId).order('day_number'),
+                sb.from('campaign_day_activities').select('*').eq('campaign_id', campaignId).order('created_at', { ascending: false })
+            ]);
+            if (daysRes.error) throw daysRes.error;
+            if (actsRes.error) throw actsRes.error;
+            campaignDays = (daysRes.data || []).map((d) => ({
+                dayNumber: d.day_number,
+                dayLabel: d.day_label,
+                dateLabel: d.date_label,
+                headline: d.headline,
+                activities: (actsRes.data || [])
+                    .filter((a) => a.day_number === d.day_number)
+                    .map((a) => ({ id: a.id, title: a.title, description: a.description, imageUrl: a.image_url }))
+            }));
         }
 
-        // حفظ الأعمال المعتمدة والمعلقة في localStorage
-        function persistWorks() {
-            try {
-                localStorage.setItem(STORAGE_KEYS.APPROVED, JSON.stringify(approvedWorks));
-                localStorage.setItem(STORAGE_KEYS.PENDING, JSON.stringify(pendingWorks));
-            } catch (err) {
-                console.error('تعذر حفظ البيانات في التخزين المحلي:', err);
-                showToast('تنبيه: حجم الملف المرفوع كبير جداً للتخزين المحلي، جرّب ملفاً أصغر.', true);
+        // المشاركات المعلّقة (تظهر للمشرف فقط بفضل RLS)
+        async function loadPending() {
+            pendingWorks = [];
+            if (!sb || !isAdminLoggedIn) return;
+            const { data, error } = await sb.from('works').select('*').eq('status', 'pending').order('created_at', { ascending: false });
+            if (error) {
+                console.error('تعذر تحميل المشاركات المعلقة:', error);
+                showToast('تعذر تحميل المشاركات المعلقة.', true);
+                return;
             }
+            pendingWorks = (data || []).map(mapWork);
+        }
+
+        // التحقق من جلسة المشرف: مسجّل دخول + دوره admin أو editor
+        async function refreshAdminState() {
+            isAdminLoggedIn = false;
+            if (!sb) return false;
+            try {
+                const { data: sessionData } = await sb.auth.getSession();
+                const session = sessionData && sessionData.session;
+                if (session) {
+                    const { data, error } = await sb.from('profiles').select('role').eq('id', session.user.id).maybeSingle();
+                    isAdminLoggedIn = !error && !!data && ['admin', 'editor'].includes(data.role);
+                }
+            } catch (err) {
+                console.error('تعذر التحقق من جلسة المشرف:', err);
+            }
+            await loadPending();
+            return isAdminLoggedIn;
         }
 
         // تهيئة الوضع الداكن
@@ -1506,8 +1328,8 @@
 
             grid.innerHTML = filtered.map((work) => {
                 const mediaPreview = work.mediaType === 'video'
-                    ? `<video src="${work.mediaUrl}" class="w-full h-52 object-cover bg-slate-950" muted playsinline preload="metadata"></video>`
-                    : `<img src="${work.mediaUrl}" alt="${escapeHtml(work.title)}" class="w-full h-52 object-cover bg-noorOrangeSoft dark:bg-slate-800" onerror="this.src='https://placehold.co/800x500/F36E21/FFFFFF?text=Al-Noor+Platform'">`;
+                    ? `<video src="${safeUrl(work.mediaUrl)}" class="w-full h-52 object-cover bg-slate-950" muted playsinline preload="metadata"></video>`
+                    : `<img src="${safeUrl(work.mediaUrl)}" alt="${escapeHtml(work.title)}" class="w-full h-52 object-cover bg-noorOrangeSoft dark:bg-slate-800" onerror="this.src='https://placehold.co/800x500/F36E21/FFFFFF?text=Al-Noor+Platform'">`;
 
                 const adminCardDeleteBtn = isAdminLoggedIn
                     ? `<button
@@ -1582,8 +1404,8 @@
 
             pendingContainer.innerHTML = pendingWorks.map((item) => {
                 const thumb = item.mediaType === 'video'
-                    ? `<video src="${item.mediaUrl}" class="w-24 h-20 rounded-xl object-cover bg-slate-950 shrink-0" muted></video>`
-                    : `<img src="${item.mediaUrl}" alt="${escapeHtml(item.title)}" class="w-24 h-20 rounded-xl object-cover bg-slate-200 shrink-0" onerror="this.src='https://placehold.co/200x160/1B4332/FFFFFF?text=Preview'">`;
+                    ? `<video src="${safeUrl(item.mediaUrl)}" class="w-24 h-20 rounded-xl object-cover bg-slate-950 shrink-0" muted></video>`
+                    : `<img src="${safeUrl(item.mediaUrl)}" alt="${escapeHtml(item.title)}" class="w-24 h-20 rounded-xl object-cover bg-slate-200 shrink-0" onerror="this.src='https://placehold.co/200x160/1B4332/FFFFFF?text=Preview'">`;
 
                 return `
                     <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -1629,8 +1451,12 @@
         }
 
         // معالجة إرسال نموذج مشاركة جديدة (تذهب إلى قائمة المراجعة أولاً)
-        function handleWorkSubmit(event) {
+        async function handleWorkSubmit(event) {
             event.preventDefault();
+            if (!sb) {
+                showToast('الخدمة غير متاحة حالياً، حاول لاحقاً.', true);
+                return;
+            }
 
             const creator = document.getElementById('creatorName').value.trim();
             const category = document.getElementById('workCategory').value;
@@ -1639,46 +1465,65 @@
             const externalLink = document.getElementById('mediaLinkInput').value.trim();
             const fileInput = document.getElementById('mediaFileInput');
             const selectedFile = fileInput.files && fileInput.files[0] ? fileInput.files[0] : null;
+            const submitBtn = event.target.querySelector('button[type="submit"]');
 
             if (!creator || !title || !description) {
                 showToast('يرجى تعبئة جميع الحقول المطلوبة.', true);
                 return;
             }
+            if (creator.length > 100 || title.length > 150 || description.length > 2000) {
+                showToast('أحد الحقول أطول من الحد المسموح.', true);
+                return;
+            }
+            if (externalLink && (!/^https?:\/\/\S+$/i.test(externalLink) || externalLink.length > 500)) {
+                showToast('الرابط الخارجي غير صالح، يجب أن يبدأ بـ http:// أو https://', true);
+                return;
+            }
+            if (selectedFile) {
+                const problem = validateUploadFile(selectedFile, true);
+                if (problem) {
+                    showToast(problem, true);
+                    return;
+                }
+            }
 
-            const createPendingEntry = (mediaUrl, mediaType) => {
-                const newEntry = {
-                    id: 'work-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7),
+            if (submitBtn) submitBtn.disabled = true;
+            try {
+                let mediaUrl;
+                let mediaType = 'image';
+                if (selectedFile) {
+                    mediaType = selectedFile.type.startsWith('video/') ? 'video' : 'image';
+                    mediaUrl = await uploadFile(selectedFile, 'submissions');
+                } else {
+                    mediaUrl = getDefaultMediaByCategory(category);
+                }
+
+                // لا نستخدم select() هنا: الزائر لا يملك صلاحية قراءة المشاركات المعلّقة
+                const { error } = await sb.from('works').insert({
                     creator,
                     category,
                     title,
                     description,
-                    externalLink,
-                    mediaType,
-                    mediaUrl
-                };
-
-                pendingWorks.unshift(newEntry);
-                persistWorks();
-                renderAdminUI();
+                    external_link: externalLink || null,
+                    media_type: mediaType,
+                    media_url: mediaUrl,
+                    status: 'pending'
+                });
+                if (error) throw error;
 
                 document.getElementById('submissionForm').reset();
                 closeModal('submitModal');
                 showToast('تم إرسال مشاركتك بنجاح! وهي الآن بانتظار موافقة المشرف قبل نشرها في المعرض.');
-            };
 
-            if (selectedFile) {
-                const isVideo = selectedFile.type.startsWith('video/');
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    createPendingEntry(e.target.result, isVideo ? 'video' : 'image');
-                };
-                reader.onerror = () => {
-                    showToast('حدث خطأ أثناء قراءة الملف المرفق.', true);
-                };
-                reader.readAsDataURL(selectedFile);
-            } else {
-                const fallbackUrl = getDefaultMediaByCategory(category);
-                createPendingEntry(fallbackUrl, 'image');
+                if (isAdminLoggedIn) {
+                    await loadPending();
+                    renderAdminUI();
+                }
+            } catch (err) {
+                console.error('تعذر إرسال المشاركة:', err);
+                showToast('تعذر إرسال المشاركة، حاول مرة أخرى.', true);
+            } finally {
+                if (submitBtn) submitBtn.disabled = false;
             }
         }
 
@@ -1698,29 +1543,54 @@
             }
         }
 
-        function approvePendingWork(id) {
-            const idx = pendingWorks.findIndex((w) => w.id === id);
-            if (idx === -1) return;
+        async function approvePendingWork(id) {
+            if (!isAdminLoggedIn || !sb) return;
+            const item = pendingWorks.find((w) => w.id === id);
+            if (!item) return;
 
-            const [approvedItem] = pendingWorks.splice(idx, 1);
-            approvedWorks.unshift(approvedItem);
-            persistWorks();
+            const { data, error } = await sb.from('works').update({ status: 'approved' }).eq('id', id).select('id');
+            if (error || !data || data.length === 0) {
+                console.error('تعذر اعتماد المشاركة:', error);
+                showToast('تعذر اعتماد المشاركة. تأكد من صلاحياتك.', true);
+                return;
+            }
+            pendingWorks = pendingWorks.filter((w) => w.id !== id);
+            approvedWorks.unshift(item);
             renderAdminUI();
             renderGallery();
-            showToast(`تم اعتماد ونشر "${approvedItem.title}" في المعرض.`);
+            showToast(`تم اعتماد ونشر "${item.title}" في المعرض.`);
         }
 
-        function rejectPendingWork(id) {
+        async function rejectPendingWork(id) {
+            if (!isAdminLoggedIn || !sb) return;
+            const item = pendingWorks.find((w) => w.id === id);
+            if (!item) return;
+
+            const { data, error } = await sb.from('works').delete().eq('id', id).select('id');
+            if (error || !data || data.length === 0) {
+                console.error('تعذر رفض المشاركة:', error);
+                showToast('تعذر رفض المشاركة. تأكد من صلاحياتك.', true);
+                return;
+            }
+            await removeStoredFile(item.mediaUrl);
             pendingWorks = pendingWorks.filter((w) => w.id !== id);
-            persistWorks();
             renderAdminUI();
             showToast('تم رفض المشاركة وحذفها من قائمة المراجعة.');
         }
 
-        function deleteApprovedWork(id) {
-            if (!isAdminLoggedIn) return;
+        async function deleteApprovedWork(id) {
+            if (!isAdminLoggedIn || !sb) return;
+            const item = approvedWorks.find((w) => w.id === id);
+            if (!item) return;
+
+            const { data, error } = await sb.from('works').delete().eq('id', id).select('id');
+            if (error || !data || data.length === 0) {
+                console.error('تعذر حذف المشاركة:', error);
+                showToast('تعذر حذف المشاركة. تأكد من صلاحياتك.', true);
+                return;
+            }
+            await removeStoredFile(item.mediaUrl);
             approvedWorks = approvedWorks.filter((w) => w.id !== id);
-            persistWorks();
             renderGallery();
             closeModal('detailModal');
             showToast('تم حذف المشاركة من المعرض.');
@@ -1732,9 +1602,9 @@
 
             const mediaContainer = document.getElementById('detailMediaContainer');
             if (work.mediaType === 'video') {
-                mediaContainer.innerHTML = `<video src="${work.mediaUrl}" controls autoplay class="w-full max-h-[430px] object-contain bg-black"></video>`;
+                mediaContainer.innerHTML = `<video src="${safeUrl(work.mediaUrl)}" controls autoplay class="w-full max-h-[430px] object-contain bg-black"></video>`;
             } else {
-                mediaContainer.innerHTML = `<img src="${work.mediaUrl}" alt="${escapeHtml(work.title)}" class="w-full max-h-[430px] object-contain bg-slate-950" onerror="this.src='https://placehold.co/900x550/F36E21/FFFFFF?text=Al-Noor+Gallery'">`;
+                mediaContainer.innerHTML = `<img src="${safeUrl(work.mediaUrl)}" alt="${escapeHtml(work.title)}" class="w-full max-h-[430px] object-contain bg-slate-950" onerror="this.src='https://placehold.co/900x550/F36E21/FFFFFF?text=Al-Noor+Gallery'">`;
             }
 
             document.getElementById('detailBadge').textContent = work.category;
@@ -1744,9 +1614,10 @@
 
             const extLinkWrapper = document.getElementById('detailExternalLinkWrapper');
             const extLinkAnchor = document.getElementById('detailExternalLink');
-            if (work.externalLink) {
+            if (work.externalLink && /^https?:\/\//i.test(work.externalLink)) {
                 extLinkWrapper.classList.remove('hidden');
                 extLinkAnchor.href = work.externalLink;
+                extLinkAnchor.rel = 'noopener noreferrer';
             } else {
                 extLinkWrapper.classList.add('hidden');
                 extLinkAnchor.href = '#';
@@ -1775,42 +1646,70 @@
                 return;
             }
 
-            document.getElementById('adminCodeInput').value = '';
+            document.getElementById('adminEmailInput').value = '';
+            document.getElementById('adminPasswordInput').value = '';
             document.getElementById('adminErrorText').classList.add('hidden');
             openModal('adminLoginModal');
         }
 
-        function handleAdminLogin(event) {
+        async function handleAdminLogin(event) {
             event.preventDefault();
-            const codeInput = document.getElementById('adminCodeInput');
+            const emailInput = document.getElementById('adminEmailInput');
+            const passInput = document.getElementById('adminPasswordInput');
             const errorText = document.getElementById('adminErrorText');
-            const enteredCode = codeInput.value.trim();
+            const submitBtn = event.target.querySelector('button[type="submit"]');
 
-            if (enteredCode === ADMIN_ACTIVATION_CODE) {
-                isAdminLoggedIn = true;
-                try {
-                    localStorage.setItem(STORAGE_KEYS.ADMIN_SESSION, 'true');
-                } catch (err) {
-                    console.error('تعذر حفظ جلسة المشرف:', err);
+            const showError = (msg) => {
+                errorText.textContent = msg;
+                errorText.classList.remove('hidden');
+            };
+
+            if (!sb) {
+                showError('الخدمة غير متاحة حالياً.');
+                return;
+            }
+
+            if (submitBtn) submitBtn.disabled = true;
+            try {
+                const { error } = await sb.auth.signInWithPassword({
+                    email: emailInput.value.trim(),
+                    password: passInput.value
+                });
+                if (error) {
+                    showError('البريد الإلكتروني أو كلمة المرور غير صحيحة.');
+                    passInput.focus();
+                    return;
                 }
+
+                const ok = await refreshAdminState();
+                if (!ok) {
+                    await sb.auth.signOut();
+                    showError('هذا الحساب لا يملك صلاحية المشرف.');
+                    return;
+                }
+
+                passInput.value = '';
                 errorText.classList.add('hidden');
                 closeModal('adminLoginModal');
                 renderAdminUI();
                 renderGallery();
                 showToast('تم تفعيل وضع المشرف بنجاح.');
-            } else {
-                errorText.classList.remove('hidden');
-                codeInput.focus();
+            } catch (err) {
+                console.error('خطأ أثناء تسجيل الدخول:', err);
+                showError('حدث خطأ غير متوقع، حاول مرة أخرى.');
+            } finally {
+                if (submitBtn) submitBtn.disabled = false;
             }
         }
 
-        function logoutAdmin() {
-            isAdminLoggedIn = false;
+        async function logoutAdmin() {
             try {
-                localStorage.setItem(STORAGE_KEYS.ADMIN_SESSION, 'false');
+                if (sb) await sb.auth.signOut();
             } catch (err) {
                 console.error('تعذر إنهاء جلسة المشرف:', err);
             }
+            isAdminLoggedIn = false;
+            pendingWorks = [];
             renderAdminUI();
             renderGallery();
             showToast('تم تسجيل الخروج من وضع المشرف.');
@@ -1899,7 +1798,7 @@
 
                             <div class="relative h-32 overflow-hidden bg-noorOrangeSoft dark:bg-slate-900">
                                 <img
-                                    src="${coverImg}"
+                                    src="${safeUrl(coverImg)}"
                                     alt="${escapeHtml(day.dateLabel)} - ${escapeHtml(day.dayLabel)}"
                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                     onerror="this.src='https://placehold.co/600x360/F36E21/FFFFFF?text=16+Days'"
@@ -1992,7 +1891,7 @@
                     <article class="rounded-2xl bg-white dark:bg-slate-800 border border-noorOrange/25 dark:border-slate-700 overflow-hidden shadow-md flex flex-col">
                         <div class="relative h-64 bg-slate-950 overflow-hidden">
                             <img
-                                src="${act.imageUrl}"
+                                src="${safeUrl(act.imageUrl)}"
                                 alt="${escapeHtml(act.title)}"
                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                                 onerror="this.src='https://placehold.co/800x500/F36E21/FFFFFF?text=Etter+Al-Sham'"
@@ -2017,9 +1916,9 @@
             }).join('');
         }
 
-        function handleAddDayActivity(event) {
+        async function handleAddDayActivity(event) {
             event.preventDefault();
-            if (!isAdminLoggedIn || !selectedCampaignDayNumber) return;
+            if (!isAdminLoggedIn || !sb || !selectedCampaignDayNumber || !campaignId) return;
 
             const day = campaignDays.find((d) => d.dayNumber === selectedCampaignDayNumber);
             if (!day) return;
@@ -2028,47 +1927,67 @@
             const description = document.getElementById('dayActivityDescInput').value.trim();
             const fileInput = document.getElementById('dayActivityFileInput');
             const selectedFile = fileInput && fileInput.files && fileInput.files[0] ? fileInput.files[0] : null;
+            const submitBtn = event.target.querySelector('button[type="submit"]');
 
             if (!title || !description) {
                 showToast('يرجى إدخال عنوان الفعالية وتفاصيلها.', true);
                 return;
             }
+            if (title.length > 200 || description.length > 3000) {
+                showToast('العنوان أو التفاصيل أطول من الحد المسموح.', true);
+                return;
+            }
+            if (selectedFile) {
+                const problem = validateUploadFile(selectedFile, false);
+                if (problem) {
+                    showToast(problem, true);
+                    return;
+                }
+            }
 
-            const saveActivity = (imgUrl) => {
-                if (!Array.isArray(day.activities)) day.activities = [];
-                day.activities.unshift({
-                    id: 'act-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6),
+            if (submitBtn) submitBtn.disabled = true;
+            try {
+                const imageUrl = selectedFile
+                    ? await uploadFile(selectedFile, 'activities')
+                    : 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80';
+
+                const { data, error } = await sb.from('campaign_day_activities').insert({
+                    campaign_id: campaignId,
+                    day_number: day.dayNumber,
                     title,
                     description,
-                    imageUrl: imgUrl
-                });
-                persistCampaignDays();
+                    image_url: imageUrl
+                }).select().single();
+                if (error) throw error;
+
+                if (!Array.isArray(day.activities)) day.activities = [];
+                day.activities.unshift({ id: data.id, title: data.title, description: data.description, imageUrl: data.image_url });
                 document.getElementById('dayActivityForm').reset();
                 renderSelectedDayActivities(day);
                 showToast(`تمت إضافة الفعالية بنجاح إلى ${day.dateLabel}.`);
-            };
-
-            if (selectedFile) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    saveActivity(String(e.target.result));
-                };
-                reader.onerror = () => {
-                    showToast('تعذر قراءة الصورة المختارة.', true);
-                };
-                reader.readAsDataURL(selectedFile);
-            } else {
-                saveActivity('https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80');
+            } catch (err) {
+                console.error('تعذر إضافة الفعالية:', err);
+                showToast('تعذر إضافة الفعالية. تأكد من صلاحياتك وحاول مجدداً.', true);
+            } finally {
+                if (submitBtn) submitBtn.disabled = false;
             }
         }
 
-        function deleteDayActivity(dayNumber, activityId) {
-            if (!isAdminLoggedIn) return;
+        async function deleteDayActivity(dayNumber, activityId) {
+            if (!isAdminLoggedIn || !sb) return;
             const day = campaignDays.find((d) => d.dayNumber === dayNumber);
             if (!day || !Array.isArray(day.activities)) return;
+            const act = day.activities.find((a) => a.id === activityId);
+            if (!act) return;
 
+            const { data, error } = await sb.from('campaign_day_activities').delete().eq('id', activityId).select('id');
+            if (error || !data || data.length === 0) {
+                console.error('تعذر حذف النشاط:', error);
+                showToast('تعذر حذف النشاط. تأكد من صلاحياتك.', true);
+                return;
+            }
+            await removeStoredFile(act.imageUrl);
             day.activities = day.activities.filter((a) => a.id !== activityId);
-            persistCampaignDays();
             renderSelectedDayActivities(day);
             showToast('تم حذف النشاط من تقويم اليوم.');
         }
@@ -2127,16 +2046,18 @@
             secsEl.textContent = String(seconds).padStart(2, '0');
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('DOMContentLoaded', async () => {
             initDarkMode();
-            initLogos();
-            loadState();
             updateSubmissionLinkDisplay();
+            updateCampaignCountdown();
+            setInterval(updateCampaignCountdown, 1000);
+
+            await loadState();
+            await refreshAdminState();
+            await initLogos();
             renderAdminUI();
             renderGallery();
             checkAutoOpenSubmitFromUrl();
-            updateCampaignCountdown();
-            setInterval(updateCampaignCountdown, 1000);
         });
     </script>
 </body>
