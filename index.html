@@ -365,6 +365,61 @@
 
             <div id="pendingListContainer" class="space-y-3.5"></div>
 
+            <!-- إدارة الشركاء: تظهر للمشرفين المسجلين فقط -->
+            <div id="partnerAdminSection" class="mt-7 pt-6 border-t border-noorOrange/25 dark:border-slate-800">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                    <div>
+                        <h4 class="text-base sm:text-lg font-black text-shamGreen dark:text-emerald-300">🤝 إدارة الشركاء والجهات المنظمة</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">أضف الجهات أو عدّل بياناتها وشعاراتها ورتّب ظهورها في أسفل الموقع. التعديلات تُعرض لجميع الزوار.</p>
+                    </div>
+                    <button type="button" onclick="resetPartnerForm()" class="px-3.5 py-2 rounded-xl bg-shamGreen hover:bg-shamGreenLight text-white text-xs font-extrabold">＋ شريك جديد</button>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-4">
+                    <form id="partnerForm" onsubmit="savePartner(event)" class="lg:col-span-2 p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 space-y-3">
+                        <input type="hidden" id="partnerId">
+                        <div>
+                            <label for="partnerNameAr" class="block text-xs font-bold mb-1">اسم الجهة بالعربية *</label>
+                            <input id="partnerNameAr" required maxlength="180" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm">
+                        </div>
+                        <div>
+                            <label for="partnerNameEn" class="block text-xs font-bold mb-1">اسم الجهة بالإنجليزية</label>
+                            <input id="partnerNameEn" maxlength="180" dir="ltr" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm">
+                        </div>
+                        <div>
+                            <label for="partnerDescription" class="block text-xs font-bold mb-1">وصف مختصر</label>
+                            <textarea id="partnerDescription" rows="2" maxlength="500" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm"></textarea>
+                        </div>
+                        <div>
+                            <label for="partnerWebsite" class="block text-xs font-bold mb-1">رابط الموقع الإلكتروني</label>
+                            <input id="partnerWebsite" type="url" maxlength="500" placeholder="https://..." dir="ltr" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm">
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label for="partnerOrder" class="block text-xs font-bold mb-1">ترتيب العرض</label>
+                                <input id="partnerOrder" type="number" min="0" step="1" value="0" class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm">
+                            </div>
+                            <div>
+                                <label for="partnerLogo" class="block text-xs font-bold mb-1">الشعار (اختياري)</label>
+                                <input id="partnerLogo" type="file" accept="image/*" class="w-full text-xs">
+                            </div>
+                        </div>
+                        <div id="partnerCurrentLogoWrap" class="hidden flex items-center gap-2 text-xs text-slate-500">
+                            <img id="partnerCurrentLogo" alt="الشعار الحالي" class="w-12 h-12 object-contain rounded-lg bg-white border p-1">
+                            <span>الشعار الحالي — ارفع صورة جديدة لاستبداله.</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-1">
+                            <button id="partnerSaveBtn" type="submit" class="px-5 py-2.5 rounded-xl bg-noorOrange hover:bg-noorOrangeHover text-white text-sm font-extrabold">حفظ الشريك</button>
+                            <button type="button" onclick="resetPartnerForm()" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 text-sm font-bold">تفريغ الحقول</button>
+                        </div>
+                    </form>
+                    <div class="lg:col-span-3">
+                        <div id="partnerAdminList" class="space-y-2">
+                            <p class="text-sm text-slate-500">جارٍ تحميل الجهات الشريكة...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- قسم إدارة ورفع صور الشعارات محلياً للمشرف -->
             <div class="mt-6 pt-5 border-t border-noorOrange/25 dark:border-slate-800">
                 <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
@@ -510,7 +565,8 @@
                 </span>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+            <div id="partnersGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <!-- تُحمّل الجهات الشريكة من قاعدة البيانات مع الإبقاء على الجهات الافتراضية عند تعذر التحميل -->
                 <!-- 1. صندوق الأمم المتحدة للسكان UNFPA -->
                 <div class="p-3.5 rounded-2xl bg-white/90 dark:bg-slate-800/80 border border-noorOrange/25 flex items-center gap-3 shadow-2xs">
                     <span class="inline-grid grid-cols-3 gap-0.5 shrink-0">
@@ -1158,6 +1214,7 @@
         let approvedWorks = [];
         let pendingWorks = [];
         let campaignDays = [];
+        let partners = [];
         let campaignId = null;
         let selectedCampaignDayNumber = null;
         let currentFilter = 'الكل';
@@ -1247,6 +1304,7 @@
                 console.error('تعذر التحقق من جلسة المشرف:', err);
             }
             await loadPending();
+            await loadPartners();
             return isAdminLoggedIn;
         }
 
@@ -1373,6 +1431,167 @@
             }).join('');
         }
 
+        // ===== إدارة الشركاء =====
+        // تتطلب هذه الوظائف جدول partners وسياسات RLS المرفقة مع الملف.
+        async function loadPartners() {
+            if (!sb) return;
+            try {
+                const { data, error } = await sb.from('partners')
+                    .select('id,name_ar,name_en,description,website_url,logo_url,display_order')
+                    .order('display_order', { ascending: true })
+                    .order('created_at', { ascending: true });
+                if (error) throw error;
+                partners = data || [];
+                renderPartners();
+                if (isAdminLoggedIn) renderPartnerAdminList();
+            } catch (err) {
+                console.error('تعذر تحميل الشركاء:', err);
+                // لا نمسح البطاقات الافتراضية الموجودة في HTML إذا لم يكن الجدول قد أُنشئ بعد.
+                if (isAdminLoggedIn) {
+                    const list = document.getElementById('partnerAdminList');
+                    if (list) list.innerHTML = '<p class="text-sm text-red-600">تعذر تحميل الشركاء. تأكد من تنفيذ ملف إعداد قاعدة البيانات المرفق.</p>';
+                }
+            }
+        }
+
+        function renderPartners() {
+            const grid = document.getElementById('partnersGrid');
+            if (!grid || !partners.length) return;
+            grid.innerHTML = partners.map((partner) => {
+                const title = escapeHtml(partner.name_ar || partner.name_en || 'شريك');
+                const subtitle = escapeHtml(partner.description || partner.name_en || '');
+                const logo = partner.logo_url
+                    ? `<img src="${safeUrl(partner.logo_url)}" alt="${title}" class="w-10 h-10 object-contain rounded-lg bg-white p-1 shrink-0">`
+                    : `<span class="w-10 h-10 rounded-xl bg-noorOrange/10 text-noorOrange flex items-center justify-center text-xl shrink-0">🤝</span>`;
+                const card = `<div class="p-3.5 rounded-2xl bg-white/90 dark:bg-slate-800/80 border border-noorOrange/25 flex items-center gap-3 shadow-2xs">${logo}<div class="leading-tight min-w-0"><div class="text-xs sm:text-sm font-black text-slate-800 dark:text-slate-100">${title}</div><div class="text-[11px] font-bold text-slate-600 dark:text-slate-300">${subtitle}</div></div></div>`;
+                return partner.website_url && /^https:\/\//i.test(partner.website_url)
+                    ? `<a href="${safeUrl(partner.website_url)}" target="_blank" rel="noopener noreferrer" class="block hover:-translate-y-0.5 transition">${card}</a>`
+                    : card;
+            }).join('');
+        }
+
+        function renderPartnerAdminList() {
+            const list = document.getElementById('partnerAdminList');
+            if (!list) return;
+            if (!partners.length) {
+                list.innerHTML = '<div class="p-4 rounded-xl border border-dashed border-slate-300 dark:border-slate-600 text-sm text-slate-500">لا توجد جهات محفوظة بعد. أضف أول شريك من النموذج.</div>';
+                return;
+            }
+            list.innerHTML = partners.map((partner) => `
+                <div class="p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex items-center gap-3 min-w-0">
+                        ${partner.logo_url ? `<img src="${safeUrl(partner.logo_url)}" alt="" class="w-12 h-12 object-contain rounded-lg bg-white border p-1">` : '<span class="w-12 h-12 rounded-lg bg-noorOrange/10 flex items-center justify-center">🤝</span>'}
+                        <div class="min-w-0"><div class="font-extrabold text-sm">${escapeHtml(partner.name_ar)}</div><div class="text-xs text-slate-500" dir="ltr">${escapeHtml(partner.name_en || '')}</div><div class="text-[11px] text-slate-400">الترتيب: ${Number(partner.display_order) || 0}</div></div>
+                    </div>
+                    <div class="flex gap-2 shrink-0">
+                        <button type="button" onclick="editPartner('${partner.id}')" class="px-3 py-1.5 rounded-lg bg-sky-100 text-sky-800 text-xs font-bold">تعديل</button>
+                        <button type="button" onclick="deletePartner('${partner.id}')" class="px-3 py-1.5 rounded-lg bg-red-100 text-red-700 text-xs font-bold">حذف</button>
+                    </div>
+                </div>`).join('');
+        }
+
+        function resetPartnerForm() {
+            const form = document.getElementById('partnerForm');
+            if (form) form.reset();
+            const id = document.getElementById('partnerId');
+            if (id) id.value = '';
+            const order = document.getElementById('partnerOrder');
+            if (order) order.value = String((partners.length ? Math.max(...partners.map(p => Number(p.display_order) || 0)) + 1 : 0));
+            const wrap = document.getElementById('partnerCurrentLogoWrap');
+            if (wrap) wrap.classList.add('hidden');
+            const save = document.getElementById('partnerSaveBtn');
+            if (save) save.textContent = 'حفظ الشريك';
+        }
+
+        function editPartner(id) {
+            if (!isAdminLoggedIn) return;
+            const partner = partners.find((item) => item.id === id);
+            if (!partner) return;
+            document.getElementById('partnerId').value = partner.id;
+            document.getElementById('partnerNameAr').value = partner.name_ar || '';
+            document.getElementById('partnerNameEn').value = partner.name_en || '';
+            document.getElementById('partnerDescription').value = partner.description || '';
+            document.getElementById('partnerWebsite').value = partner.website_url || '';
+            document.getElementById('partnerOrder').value = Number(partner.display_order) || 0;
+            document.getElementById('partnerLogo').value = '';
+            const wrap = document.getElementById('partnerCurrentLogoWrap');
+            const img = document.getElementById('partnerCurrentLogo');
+            if (partner.logo_url && wrap && img) {
+                img.src = safeUrl(partner.logo_url);
+                wrap.classList.remove('hidden');
+            } else if (wrap) wrap.classList.add('hidden');
+            document.getElementById('partnerSaveBtn').textContent = 'حفظ التعديلات';
+            document.getElementById('partnerForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        async function savePartner(event) {
+            event.preventDefault();
+            if (!isAdminLoggedIn || !sb) {
+                showToast('يلزم تسجيل دخول المشرف لإدارة الشركاء.', true);
+                return;
+            }
+            const nameAr = document.getElementById('partnerNameAr').value.trim();
+            const nameEn = document.getElementById('partnerNameEn').value.trim();
+            const description = document.getElementById('partnerDescription').value.trim();
+            const website = document.getElementById('partnerWebsite').value.trim();
+            const order = Math.max(0, Number(document.getElementById('partnerOrder').value) || 0);
+            const id = document.getElementById('partnerId').value;
+            const file = document.getElementById('partnerLogo').files[0];
+            if (!nameAr) return showToast('اسم الجهة بالعربية مطلوب.', true);
+            if (website && !/^https:\/\//i.test(website)) return showToast('يجب أن يبدأ رابط الموقع بـ https://', true);
+            if (file) {
+                const problem = validateUploadFile(file, false);
+                if (problem) return showToast(problem, true);
+            }
+            const saveBtn = document.getElementById('partnerSaveBtn');
+            if (saveBtn) saveBtn.disabled = true;
+            try {
+                const existing = partners.find((p) => p.id === id);
+                let logoUrl = existing ? existing.logo_url : null;
+                if (file) logoUrl = await uploadFile(file, 'partners');
+                const payload = {
+                    name_ar: nameAr,
+                    name_en: nameEn || null,
+                    description: description || null,
+                    website_url: website || null,
+                    logo_url: logoUrl,
+                    display_order: order
+                };
+                let query = sb.from('partners');
+                if (id) query = query.update(payload).eq('id', id);
+                else query = query.insert(payload);
+                const { error } = await query;
+                if (error) throw error;
+                if (file && existing && existing.logo_url && existing.logo_url !== logoUrl) await removeStoredFile(existing.logo_url);
+                await loadPartners();
+                resetPartnerForm();
+                showToast(id ? 'تم تحديث بيانات الشريك.' : 'تمت إضافة الشريك.');
+            } catch (err) {
+                console.error('تعذر حفظ الشريك:', err);
+                showToast('تعذر حفظ الشريك. تأكد من إعداد جدول partners وصلاحياته.', true);
+            } finally {
+                if (saveBtn) saveBtn.disabled = false;
+            }
+        }
+
+        async function deletePartner(id) {
+            if (!isAdminLoggedIn || !sb) return;
+            const partner = partners.find((item) => item.id === id);
+            if (!partner || !confirm(`هل تريد حذف "${partner.name_ar}" من قائمة الشركاء؟`)) return;
+            try {
+                const { error } = await sb.from('partners').delete().eq('id', id);
+                if (error) throw error;
+                await removeStoredFile(partner.logo_url);
+                partners = partners.filter((item) => item.id !== id);
+                renderPartners();
+                renderPartnerAdminList();
+                showToast('تم حذف الشريك.');
+            } catch (err) {
+                console.error('تعذر حذف الشريك:', err);
+                showToast('تعذر حذف الشريك. تحقق من صلاحيات قاعدة البيانات.', true);
+            }
+        }
+
         // تحديث واجهة المشرف وقائمة المشاركات بانتظار الموافقة
         function renderAdminUI() {
             const panel = document.getElementById('adminPanel');
@@ -1392,6 +1611,7 @@
 
             panel.classList.remove('hidden');
             if (btnText) btnText.textContent = '🛡️ وضع المشرف مفعل';
+            renderPartnerAdminList();
 
             if (pendingWorks.length === 0) {
                 pendingContainer.innerHTML = `
@@ -2053,6 +2273,7 @@
             setInterval(updateCampaignCountdown, 1000);
 
             await loadState();
+            await loadPartners();
             await refreshAdminState();
             await initLogos();
             renderAdminUI();
