@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F36E21">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%231B4332'/%3E%3Cpath d='M32 10 38 26 54 32 38 38 32 54 26 38 10 32 26 26Z' fill='%23F36E21'/%3E%3C/svg%3E">
     <title>منصة النور | حملة 16 يوماً لمناهضة العنف</title>
     <!-- تحميل خط Tajawal العربي وتضمين Tailwind CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -196,9 +198,10 @@
                     onclick="handleAdminButtonClick()"
                     class="px-3.5 py-2.5 rounded-xl bg-shamGreen hover:bg-shamGreenLight text-white font-bold text-sm shadow-xs transition flex items-center gap-1.5 cursor-pointer"
                 >
-                    <span id="adminBtnText">🔒 دخول المشرف</span>
+                    <span id="adminBtnText">🔒 وضع المشرف</span>
                 </button>
 
+                <button type="button" id="languageToggle" onclick="toggleLanguage()" class="px-3 py-2.5 rounded-xl border border-noorOrange/40 bg-white dark:bg-slate-800 text-noorOrange dark:text-amber-300 text-xs font-extrabold">EN</button>
                 <button
                     type="button"
                     onclick="toggleDarkMode()"
@@ -426,6 +429,25 @@
                     </div>
                 </div>
             </div>
+
+            <!-- إدارة الشركاء: لا تظهر إلا للمشرف -->
+            <div class="mt-6 pt-5 border-t border-noorOrange/25 dark:border-slate-800">
+                <h4 class="text-base font-black text-shamGreen dark:text-emerald-300 mb-3">🤝 إدارة الشركاء</h4>
+                <form id="partnerForm" onsubmit="savePartner(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+                    <input type="hidden" id="partnerIdInput">
+                    <input id="partnerNameArInput" required maxlength="150" placeholder="اسم الشريك بالعربية" class="px-3 py-2 rounded-lg border bg-white dark:bg-slate-800 dark:border-slate-700 text-sm">
+                    <input id="partnerNameEnInput" maxlength="150" placeholder="اسم الشريك بالإنجليزية" class="px-3 py-2 rounded-lg border bg-white dark:bg-slate-800 dark:border-slate-700 text-sm" dir="auto">
+                    <input id="partnerWebsiteInput" type="url" placeholder="رابط الموقع (https://)" class="px-3 py-2 rounded-lg border bg-white dark:bg-slate-800 dark:border-slate-700 text-sm" dir="ltr">
+                    <input id="partnerOrderInput" type="number" min="0" value="0" placeholder="ترتيب العرض" class="px-3 py-2 rounded-lg border bg-white dark:bg-slate-800 dark:border-slate-700 text-sm">
+                    <input id="partnerDescriptionInput" maxlength="500" placeholder="وصف مختصر (اختياري)" class="sm:col-span-2 px-3 py-2 rounded-lg border bg-white dark:bg-slate-800 dark:border-slate-700 text-sm">
+                    <input id="partnerLogoInput" type="file" accept="image/*" class="px-3 py-2 rounded-lg border bg-white dark:bg-slate-800 dark:border-slate-700 text-xs">
+                    <div class="flex gap-2">
+                        <button type="submit" class="px-4 py-2 rounded-lg bg-shamGreen text-white text-sm font-bold">حفظ الشريك</button>
+                        <button type="button" onclick="resetPartnerForm()" class="px-4 py-2 rounded-lg border text-sm font-bold">إلغاء التعديل</button>
+                    </div>
+                </form>
+                <div id="adminPartnersList" class="space-y-2"></div>
+            </div>
         </section>
 
         <!-- خانة بارزة وكاملة فوق معرض المشاركات: معرض حملة 16 يوم - جمعية عطر الشام -->
@@ -510,58 +532,17 @@
                 </span>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
-                <!-- 1. صندوق الأمم المتحدة للسكان UNFPA -->
-                <div class="p-3.5 rounded-2xl bg-white/90 dark:bg-slate-800/80 border border-noorOrange/25 flex items-center gap-3 shadow-2xs">
-                    <span class="inline-grid grid-cols-3 gap-0.5 shrink-0">
-                        <span class="w-1.5 h-1.5 rounded-full bg-noorOrange"></span>
-                        <span class="w-1.5 h-1.5 rounded-full bg-noorOrange"></span>
-                        <span class="w-1.5 h-1.5 rounded-full bg-noorOrange"></span>
-                        <span class="w-1.5 h-1.5 rounded-full bg-noorOrange"></span>
-                        <span class="w-1.5 h-1.5 rounded-full bg-unBlue"></span>
-                        <span class="w-1.5 h-1.5 rounded-full bg-noorOrange"></span>
-                    </span>
-                    <div class="leading-tight">
-                        <div class="text-xs sm:text-sm font-black text-noorOrange">UNFPA</div>
-                        <div class="text-[11px] font-bold text-slate-600 dark:text-slate-300">صندوق الأمم المتحدة للسكان</div>
-                    </div>
-                </div>
-
-                <!-- 2. هيئة الأمم المتحدة للمرأة UN Women - لكل النساء والفتيات -->
-                <div class="p-3.5 rounded-2xl bg-white/90 dark:bg-slate-800/80 border border-noorOrange/25 flex items-center gap-3 shadow-2xs">
-                    <span class="w-7 h-7 rounded-lg bg-gradient-to-tr from-unWomenCyan via-noorOrange to-rose-500 flex items-center justify-center text-white text-xs font-black shrink-0">♀</span>
-                    <div class="leading-tight">
-                        <div class="text-xs sm:text-sm font-black text-unWomenCyan dark:text-sky-400">هيئة الأمم المتحدة للمرأة</div>
-                        <div class="text-[11px] font-extrabold text-noorRust dark:text-amber-300">لكل النساء والفتيات</div>
-                    </div>
-                </div>
-
-                <!-- 3. مكتب المفوض السامي لحقوق الإنسان - الأمم المتحدة OHCHR -->
-                <div class="p-3.5 rounded-2xl bg-white/90 dark:bg-slate-800/80 border border-noorOrange/25 flex items-center gap-3 shadow-2xs">
-                    <span class="w-7 h-7 rounded-full border-2 border-unBlue dark:border-sky-400 flex items-center justify-center text-unBlue dark:text-sky-400 text-xs font-black shrink-0">🌐</span>
-                    <div class="leading-tight">
-                        <div class="text-xs sm:text-sm font-black text-unBlue dark:text-sky-400">الأمم المتحدة — حقوق الإنسان</div>
-                        <div class="text-[11px] font-bold text-slate-600 dark:text-slate-300">مكتب المفوض السامي • الأرض الفلسطينية المحتلة</div>
-                    </div>
-                </div>
-
-                <!-- 4. جمعية عطر الشام التعاونية الحرفية -->
-                <div class="p-3.5 rounded-2xl bg-white/90 dark:bg-slate-800/80 border border-noorOrange/25 flex items-center gap-3 shadow-2xs">
-                    <span class="w-7 h-7 rounded-full bg-shamGreen text-white flex items-center justify-center text-xs font-black shrink-0">🌿</span>
-                    <div class="leading-tight">
-                        <div class="text-xs sm:text-sm font-black text-shamGreen dark:text-emerald-300">جمعية عطر الشام التعاونية الحرفية</div>
-                        <div class="text-[11px] font-bold text-slate-600 dark:text-slate-300">تأسست سنة 2020 • ترخيص رقم 1674</div>
-                    </div>
-                </div>
+            <div id="partnersGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <div class="col-span-full text-center text-sm text-slate-500">جارٍ تحميل الشركاء...</div>
             </div>
         </div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
             <div class="font-black text-noorRust dark:text-amber-300 text-center sm:text-right">
-                منصة النور — حملة 16 يوماً 2026 «وبعدين؟ and then what?» 🧡
+                <button type="button" onclick="openModal('associationMaintenanceModal')" class="underline underline-offset-4 hover:text-noorOrange">جمعية عطر الشام التعاونية الحرفية</button> — منصة النور | حملة 16 يوماً 2026 🧡
             </div>
             <div class="font-medium text-shamGreen dark:text-emerald-300 text-center sm:text-left">
-                جميع المشاركات تخضع لمراجعة المشرف قبل الظهور العام في المعرض.
+                الموقع تحت تطوير جمعية عطر الشام — جميع الحقوق محفوظة.
             </div>
         </div>
     </footer>
@@ -749,6 +730,7 @@
 
             <!-- زر حذف العمل يظهر للمشرف فقط -->
             <div id="detailAdminActions" class="hidden mt-5 pt-4 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                <button type="button" id="detailEditBtn" onclick="editCurrentWork()" class="px-4 py-2.5 rounded-xl bg-noorOrange hover:bg-noorOrangeHover text-white font-bold text-sm transition cursor-pointer">✏️ تعديل المشاركة</button>
                 <button
                     type="button"
                     id="detailDeleteBtn"
@@ -757,6 +739,35 @@
                     🗑️ حذف المشاركة من المعرض
                 </button>
             </div>
+        </div>
+    </div>
+
+    <!-- نافذة تعديل مشاركة منشورة للمشرف -->
+    <div id="editWorkModal" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-xl w-full max-h-[92vh] overflow-y-auto p-6 border-t-4 border-noorOrange">
+            <h2 class="text-xl font-black text-noorOrange mb-4">تعديل المشاركة المنشورة</h2>
+            <form id="editWorkForm" onsubmit="saveWorkEdit(event)" class="space-y-3">
+                <input type="hidden" id="editWorkId">
+                <input id="editWorkCreator" required maxlength="100" placeholder="اسم المشارك" class="w-full px-3 py-2 rounded-lg border dark:bg-slate-800 dark:border-slate-700">
+                <select id="editWorkCategory" class="w-full px-3 py-2 rounded-lg border dark:bg-slate-800 dark:border-slate-700">
+                    <option value="رسمة">رسمة</option><option value="صورة">صورة</option><option value="فيديو">فيديو</option><option value="عرض">عرض</option><option value="فكرة">فكرة</option>
+                </select>
+                <input id="editWorkTitle" required maxlength="150" placeholder="عنوان العمل" class="w-full px-3 py-2 rounded-lg border dark:bg-slate-800 dark:border-slate-700">
+                <textarea id="editWorkDescription" required maxlength="2000" rows="4" placeholder="الوصف" class="w-full px-3 py-2 rounded-lg border dark:bg-slate-800 dark:border-slate-700"></textarea>
+                <input id="editWorkLink" type="url" maxlength="500" placeholder="رابط خارجي اختياري (https://)" dir="ltr" class="w-full px-3 py-2 rounded-lg border dark:bg-slate-800 dark:border-slate-700">
+                <label class="block text-sm font-bold">استبدال الصورة/الفيديو (اختياري)</label>
+                <input id="editWorkFile" type="file" accept="image/*,video/*" class="w-full text-sm" onchange="previewEditMedia(event)">
+                <div id="editMediaPreviewWrap" class="hidden rounded-xl border p-2 space-y-2">
+                    <p class="text-xs font-bold text-slate-600 dark:text-slate-300">معاينة قبل الحفظ — حرّك الصورة لضبط موضع العرض</p>
+                    <img id="editMediaPreview" alt="معاينة الصورة" class="max-h-64 w-full object-contain bg-slate-100 dark:bg-slate-800 rounded-lg">
+                    <label class="block text-xs font-bold">الموضع الأفقي</label><input id="editPositionX" type="range" min="0" max="100" value="50" class="w-full" oninput="updateEditMediaPosition()">
+                    <label class="block text-xs font-bold">الموضع العمودي</label><input id="editPositionY" type="range" min="0" max="100" value="50" class="w-full" oninput="updateEditMediaPosition()">
+                </div>
+                <div class="flex justify-end gap-2">
+                    <button type="button" onclick="closeModal('editWorkModal')" class="px-4 py-2 rounded-lg border">إلغاء</button>
+                    <button type="submit" class="px-5 py-2 rounded-lg bg-shamGreen text-white font-bold">حفظ التعديلات</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -932,6 +943,15 @@
 
     <!-- رسالة إشعار عائمة بديلة عن alert() -->
     <div id="toastBanner" class="fixed bottom-5 left-5 z-50 hidden max-w-sm rounded-xl bg-shamGreen text-white px-4 py-3 shadow-xl border border-emerald-400/30 text-xs sm:text-sm font-bold transition-all"></div>
+
+    <div id="associationMaintenanceModal" class="fixed inset-0 z-[60] hidden bg-slate-950/75 backdrop-blur-sm items-center justify-center p-4" onclick="if(event.target===this)closeModal('associationMaintenanceModal')">
+        <div class="max-w-lg w-full rounded-3xl bg-white dark:bg-slate-900 p-7 text-center border-t-4 border-noorOrange shadow-2xl">
+            <div class="text-5xl mb-4">🛠️</div><h2 class="text-2xl font-black text-shamGreen dark:text-emerald-300 mb-3">موقع جمعية عطر الشام قيد التطوير</h2>
+            <p class="text-slate-600 dark:text-slate-300 leading-8">نعمل على تجهيز الموقع الرسمي للجمعية ليكون مساحة للتعريف ببرامجنا ومشاريعنا ومنتجاتنا وشراكاتنا. نرحب بزيارتكم قريباً.</p>
+            <p class="text-xs text-slate-400 mt-4">Attar Al-Sham Cooperative Handicraft Association</p>
+            <button type="button" onclick="closeModal('associationMaintenanceModal')" class="mt-5 px-6 py-2.5 rounded-xl bg-shamGreen text-white font-bold">إغلاق</button>
+        </div>
+    </div>
 
     <script>
         // ===== إعدادات Supabase =====
@@ -1163,6 +1183,197 @@
         let currentFilter = 'الكل';
         let isAdminLoggedIn = false;
         let toastTimer = null;
+        let partners = [];
+        let currentDetailWorkId = null;
+
+        let currentLanguage = 'ar';
+        const bilingualText = {
+            ar: { share: '+ شارك عملك', link: '🔗 رابط المشاركة', admin: '🔒 وضع المشرف', campaign: 'معرض حملة 16 يوم - جمعية عطر الشام', calendar: '🗓️ استعرض برنامج الأيام الـ 16 (25 نوفمبر – 10 ديسمبر)', partners: 'الشركاء والجهات المنظمة للحملة', gallery: 'معرض المشاركات', footer: 'الموقع تحت تطوير جمعية عطر الشام — جميع الحقوق محفوظة.' },
+            en: { share: '+ Submit your work', link: '🔗 Submission link', admin: '🔒 Admin mode', campaign: '16 Days Campaign Gallery – Attar Al-Sham', calendar: '🗓️ Explore the 16-day programme (25 Nov – 10 Dec)', partners: 'Campaign partners and organizers', gallery: 'Community Gallery', footer: 'Website under development by Attar Al-Sham Association — All rights reserved.' }
+        };
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'ar' ? 'en' : 'ar';
+            document.documentElement.lang = currentLanguage;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            const t = bilingualText[currentLanguage];
+            const set = (selector, value) => { const el = document.querySelector(selector); if (el) el.textContent = value; };
+            set('header button[onclick="openModal(\'submitModal\')"] span', t.share);
+            set('header button[onclick="copySubmissionLink()"] span', t.link);
+            set('#adminBtnText', t.admin);
+            const brandTitle = document.querySelector('header h1'); if (brandTitle) brandTitle.textContent = currentLanguage === 'ar' ? 'منصة النور' : 'Al-Noor Platform';
+            const campaignHeading = document.querySelector('#campaignSection h2'); if (campaignHeading) campaignHeading.textContent = currentLanguage === 'ar' ? 'حملة الـ 16 يوماً لمناهضة العنف ضد النساء والفتيات' : '16 Days of Activism Against Gender-Based Violence';
+            const galleryHeading = document.querySelector('#gallerySection h2'); if (galleryHeading) galleryHeading.textContent = currentLanguage === 'ar' ? 'معرض المشاركات' : 'Community Gallery';
+            set('footer .text-center.mb-4 span', t.partners);
+            set('footer .font-medium', t.footer);
+            const cal = document.querySelector('button[onclick="openCampaignCalendarModal()"] span'); if (cal) cal.textContent = t.calendar;
+            const toggle = document.getElementById('languageToggle'); if (toggle) toggle.textContent = currentLanguage === 'ar' ? 'EN' : 'عربي';
+            localStorage.setItem('al_noor_language', currentLanguage);
+        }
+
+        function renderPartners() {
+            const grid = document.getElementById('partnersGrid');
+            if (!grid) return;
+            if (!partners.length) {
+                grid.innerHTML = '<p class="col-span-full text-center text-sm text-slate-500">سيتم الإعلان عن الشركاء قريباً.</p>';
+                return;
+            }
+            grid.innerHTML = partners.map((p) => `
+                <a ${p.website_url ? `href="${safeUrl(p.website_url, '#')}" target="_blank" rel="noopener noreferrer"` : ''}
+                   class="p-3.5 rounded-2xl bg-white/90 dark:bg-slate-800/80 border border-noorOrange/25 flex items-center gap-3 shadow-sm ${p.website_url ? 'hover:border-noorOrange' : 'cursor-default'}">
+                    ${p.logo_url ? `<img src="${safeUrl(p.logo_url)}" alt="${escapeHtml(p.name_ar)}" class="w-12 h-12 object-contain shrink-0">` : '<span class="w-12 h-12 rounded-xl bg-shamGreen/10 text-shamGreen flex items-center justify-center text-xl">🤝</span>'}
+                    <span class="leading-tight min-w-0">
+                        <span class="block text-sm font-black text-shamGreen dark:text-emerald-300">${escapeHtml(p.name_ar)}</span>
+                        ${p.name_en ? `<span class="block text-xs text-slate-500">${escapeHtml(p.name_en)}</span>` : ''}
+                        ${p.description ? `<span class="block text-[11px] text-slate-500 mt-1">${escapeHtml(p.description)}</span>` : ''}
+                    </span>
+                </a>`).join('');
+        }
+
+        function renderAdminPartners() {
+            const list = document.getElementById('adminPartnersList');
+            if (!list) return;
+            list.innerHTML = partners.map((p) => `
+                <div class="flex flex-wrap items-center justify-between gap-2 p-3 rounded-lg bg-white dark:bg-slate-800 border dark:border-slate-700">
+                    <span class="font-bold text-sm">${escapeHtml(p.name_ar)}</span>
+                    <span class="flex gap-2">
+                        <button type="button" onclick="editPartner('${p.id}')" class="px-3 py-1 rounded bg-noorOrange/10 text-noorOrange text-xs font-bold">تعديل</button>
+                        <button type="button" onclick="deletePartner('${p.id}')" class="px-3 py-1 rounded bg-red-100 text-red-700 text-xs font-bold">حذف</button>
+                    </span>
+                </div>`).join('') || '<p class="text-xs text-slate-500">لا يوجد شركاء مسجلون بعد.</p>';
+        }
+
+        function resetPartnerForm() {
+            const form = document.getElementById('partnerForm');
+            if (form) form.reset();
+            document.getElementById('partnerIdInput').value = '';
+            document.getElementById('partnerOrderInput').value = '0';
+        }
+
+        function editPartner(id) {
+            const p = partners.find((item) => item.id === id);
+            if (!p) return;
+            document.getElementById('partnerIdInput').value = p.id;
+            document.getElementById('partnerNameArInput').value = p.name_ar || '';
+            document.getElementById('partnerNameEnInput').value = p.name_en || '';
+            document.getElementById('partnerWebsiteInput').value = p.website_url || '';
+            document.getElementById('partnerOrderInput').value = p.display_order || 0;
+            document.getElementById('partnerDescriptionInput').value = p.description || '';
+            document.getElementById('partnerLogoInput').value = '';
+            document.getElementById('partnerForm').scrollIntoView({behavior:'smooth', block:'center'});
+        }
+
+        async function savePartner(event) {
+            event.preventDefault();
+            if (!isAdminLoggedIn || !sb) return;
+            const id = document.getElementById('partnerIdInput').value;
+            const website = document.getElementById('partnerWebsiteInput').value.trim();
+            if (website && !/^https:\/\//i.test(website)) { showToast('يجب أن يبدأ رابط الشريك بـ https://', true); return; }
+            const payload = {
+                name_ar: document.getElementById('partnerNameArInput').value.trim(),
+                name_en: document.getElementById('partnerNameEnInput').value.trim() || null,
+                website_url: website || null,
+                description: document.getElementById('partnerDescriptionInput').value.trim() || null,
+                display_order: Math.max(0, Number(document.getElementById('partnerOrderInput').value) || 0)
+            };
+            const file = document.getElementById('partnerLogoInput').files[0];
+            try {
+                if (file) {
+                    const issue = validateUploadFile(file, false);
+                    if (issue) throw new Error(issue);
+                    payload.logo_url = await uploadFile(file, 'partners');
+                }
+                const query = id ? sb.from('partners').update(payload).eq('id', id) : sb.from('partners').insert(payload);
+                const { error } = await query;
+                if (error) throw error;
+                const { data, error: readError } = await sb.from('partners').select('*').order('display_order').order('created_at');
+                if (readError) throw readError;
+                partners = data || [];
+                renderPartners(); renderAdminPartners(); resetPartnerForm();
+                showToast('تم حفظ بيانات الشريك.');
+            } catch (err) { console.error(err); showToast(err.message || 'تعذر حفظ الشريك.', true); }
+        }
+
+        async function deletePartner(id) {
+            if (!isAdminLoggedIn || !sb || !confirm('هل تريد حذف هذا الشريك؟')) return;
+            const { error } = await sb.from('partners').delete().eq('id', id);
+            if (error) { showToast('تعذر حذف الشريك. تحقق من الصلاحيات.', true); return; }
+            partners = partners.filter((p) => p.id !== id);
+            renderPartners(); renderAdminPartners();
+            showToast('تم حذف الشريك.');
+        }
+
+        function editCurrentWork() {
+            if (!isAdminLoggedIn || !currentDetailWorkId) return;
+            const w = approvedWorks.find((item) => item.id === currentDetailWorkId);
+            if (!w) return;
+            document.getElementById('editWorkId').value = w.id;
+            document.getElementById('editWorkCreator').value = w.creator;
+            document.getElementById('editWorkCategory').value = w.category;
+            document.getElementById('editWorkTitle').value = w.title;
+            document.getElementById('editWorkDescription').value = w.description;
+            document.getElementById('editWorkLink').value = w.externalLink || '';
+            document.getElementById('editWorkFile').value = '';
+            document.getElementById('editMediaPreviewWrap').classList.add('hidden');
+            closeModal('detailModal');
+            openModal('editWorkModal');
+        }
+
+        let editMediaPreviewUrl = null;
+        function previewEditMedia(event) {
+            const file = event.target.files && event.target.files[0];
+            const wrap = document.getElementById('editMediaPreviewWrap');
+            const img = document.getElementById('editMediaPreview');
+            if (editMediaPreviewUrl) URL.revokeObjectURL(editMediaPreviewUrl);
+            if (!file || !file.type.startsWith('image/')) { wrap.classList.add('hidden'); return; }
+            editMediaPreviewUrl = URL.createObjectURL(file);
+            img.src = editMediaPreviewUrl;
+            img.style.objectPosition = '50% 50%';
+            document.getElementById('editPositionX').value = 50;
+            document.getElementById('editPositionY').value = 50;
+            wrap.classList.remove('hidden');
+        }
+        function updateEditMediaPosition() {
+            const x = document.getElementById('editPositionX').value;
+            const y = document.getElementById('editPositionY').value;
+            document.getElementById('editMediaPreview').style.objectPosition = `${x}% ${y}%`;
+        }
+
+        async function saveWorkEdit(event) {
+            event.preventDefault();
+            if (!isAdminLoggedIn || !sb) return;
+            const id = document.getElementById('editWorkId').value;
+            const current = approvedWorks.find((w) => w.id === id);
+            if (!current) return;
+            const link = document.getElementById('editWorkLink').value.trim();
+            if (link && !/^https?:\/\//i.test(link)) { showToast('الرابط يجب أن يبدأ بـ http:// أو https://', true); return; }
+            const payload = {
+                creator: document.getElementById('editWorkCreator').value.trim(),
+                category: document.getElementById('editWorkCategory').value,
+                title: document.getElementById('editWorkTitle').value.trim(),
+                description: document.getElementById('editWorkDescription').value.trim(),
+                external_link: link || null
+            };
+            const file = document.getElementById('editWorkFile').files[0];
+            try {
+                if (file) {
+                    const issue = validateUploadFile(file, true);
+                    if (issue) throw new Error(issue);
+                    payload.media_url = await uploadFile(file, 'submissions');
+                    payload.media_type = file.type.startsWith('video/') ? 'video' : 'image';
+                    if (file.type.startsWith('image/')) payload.media_position = `${document.getElementById('editPositionX').value}% ${document.getElementById('editPositionY').value}%`;
+                }
+                const { error } = await sb.from('works').update(payload).eq('id', id).eq('status', 'approved');
+                if (error) throw error;
+                Object.assign(current, {
+                    creator: payload.creator, category: payload.category, title: payload.title,
+                    description: payload.description, externalLink: payload.external_link || '',
+                    mediaUrl: payload.media_url || current.mediaUrl, mediaType: payload.media_type || current.mediaType,
+                    mediaPosition: payload.media_position || current.mediaPosition || '50% 50%'
+                });
+                renderGallery(); closeModal('editWorkModal');
+                showToast('تم تحديث المشاركة المنشورة بنجاح.');
+            } catch (err) { console.error(err); showToast(err.message || 'تعذر تحديث المشاركة.', true); }
+        }
 
         function mapWork(r) {
             return {
@@ -1173,7 +1384,8 @@
                 description: r.description,
                 externalLink: r.external_link || '',
                 mediaType: r.media_type,
-                mediaUrl: r.media_url
+                mediaUrl: r.media_url,
+                mediaPosition: r.media_position || '50% 50%'
             };
         }
 
@@ -1191,6 +1403,16 @@
                 if (worksRes.error) throw worksRes.error;
                 if (campRes.error) throw campRes.error;
                 approvedWorks = (worksRes.data || []).map(mapWork);
+                // الشركاء وحدة مستقلة: تعطل جدولها لا يمنع المعرض أو التقويم من العمل.
+                try {
+                    const partnersRes = await sb.from('partners').select('*').order('display_order', { ascending: true }).order('created_at', { ascending: true });
+                    if (partnersRes.error) throw partnersRes.error;
+                    partners = partnersRes.data || [];
+                } catch (partnerError) {
+                    console.warn('تعذر تحميل الشركاء فقط:', partnerError);
+                    partners = [];
+                }
+                renderPartners();
                 if (campRes.data) {
                     campaignId = campRes.data.id;
                     await loadCampaignDays();
@@ -1329,7 +1551,7 @@
             grid.innerHTML = filtered.map((work) => {
                 const mediaPreview = work.mediaType === 'video'
                     ? `<video src="${safeUrl(work.mediaUrl)}" class="w-full h-52 object-cover bg-slate-950" muted playsinline preload="metadata"></video>`
-                    : `<img src="${safeUrl(work.mediaUrl)}" alt="${escapeHtml(work.title)}" class="w-full h-52 object-cover bg-noorOrangeSoft dark:bg-slate-800" onerror="this.src='https://placehold.co/800x500/F36E21/FFFFFF?text=Al-Noor+Platform'">`;
+                    : `<img src="${safeUrl(work.mediaUrl)}" alt="${escapeHtml(work.title)}" style="object-position:${escapeHtml(work.mediaPosition || '50% 50%')}" class="w-full h-52 object-contain bg-noorOrangeSoft dark:bg-slate-800" onerror="this.src='https://placehold.co/800x500/F36E21/FFFFFF?text=Al-Noor+Platform'">`;
 
                 const adminCardDeleteBtn = isAdminLoggedIn
                     ? `<button
@@ -1392,6 +1614,7 @@
 
             panel.classList.remove('hidden');
             if (btnText) btnText.textContent = '🛡️ وضع المشرف مفعل';
+            renderAdminPartners();
 
             if (pendingWorks.length === 0) {
                 pendingContainer.innerHTML = `
@@ -1405,7 +1628,7 @@
             pendingContainer.innerHTML = pendingWorks.map((item) => {
                 const thumb = item.mediaType === 'video'
                     ? `<video src="${safeUrl(item.mediaUrl)}" class="w-24 h-20 rounded-xl object-cover bg-slate-950 shrink-0" muted></video>`
-                    : `<img src="${safeUrl(item.mediaUrl)}" alt="${escapeHtml(item.title)}" class="w-24 h-20 rounded-xl object-cover bg-slate-200 shrink-0" onerror="this.src='https://placehold.co/200x160/1B4332/FFFFFF?text=Preview'">`;
+                    : `<img src="${safeUrl(item.mediaUrl)}" alt="${escapeHtml(item.title)}" class="w-24 h-20 rounded-xl object-contain bg-slate-200 shrink-0" onerror="this.src='https://placehold.co/200x160/1B4332/FFFFFF?text=Preview'">`;
 
                 return `
                     <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -1604,7 +1827,7 @@
             if (work.mediaType === 'video') {
                 mediaContainer.innerHTML = `<video src="${safeUrl(work.mediaUrl)}" controls autoplay class="w-full max-h-[430px] object-contain bg-black"></video>`;
             } else {
-                mediaContainer.innerHTML = `<img src="${safeUrl(work.mediaUrl)}" alt="${escapeHtml(work.title)}" class="w-full max-h-[430px] object-contain bg-slate-950" onerror="this.src='https://placehold.co/900x550/F36E21/FFFFFF?text=Al-Noor+Gallery'">`;
+                mediaContainer.innerHTML = `<img src="${safeUrl(work.mediaUrl)}" alt="${escapeHtml(work.title)}" style="object-position:${escapeHtml(work.mediaPosition || '50% 50%')}" class="w-full max-h-[430px] object-contain bg-slate-950" onerror="this.src='https://placehold.co/900x550/F36E21/FFFFFF?text=Al-Noor+Gallery'">`;
             }
 
             document.getElementById('detailBadge').textContent = work.category;
@@ -1625,6 +1848,7 @@
 
             const adminActions = document.getElementById('detailAdminActions');
             const deleteBtn = document.getElementById('detailDeleteBtn');
+            currentDetailWorkId = work.id;
             if (isAdminLoggedIn) {
                 adminActions.classList.remove('hidden');
                 deleteBtn.onclick = () => deleteApprovedWork(work.id);
@@ -1748,7 +1972,7 @@
 
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape') {
-                ['submitModal', 'detailModal', 'adminLoginModal', 'campaignCalendarModal'].forEach((id) => closeModal(id));
+                ['submitModal', 'detailModal', 'adminLoginModal', 'campaignCalendarModal', 'editWorkModal', 'associationMaintenanceModal'].forEach((id) => closeModal(id));
             }
         });
 
