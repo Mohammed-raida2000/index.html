@@ -327,13 +327,6 @@
                             </div>
                         </div>
 
-                        <button
-                            type="button"
-                            onclick="openCampaignCalendarModal()"
-                            class="w-full mt-2 py-2.5 px-4 rounded-xl bg-shamGreen hover:bg-shamGreenLight text-white text-xs sm:text-sm font-extrabold transition flex items-center justify-center gap-2 cursor-pointer"
-                        >
-                            <span>🗓️ استعرض برنامج الأيام الـ 16 (25 نوفمبر – 10 ديسمبر)</span>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -452,8 +445,10 @@
 
         <!-- خانة بارزة وكاملة فوق معرض المشاركات: معرض حملة 16 يوم - جمعية عطر الشام -->
         <section class="mb-8">
-            <div
-                class="group relative overflow-hidden rounded-3xl bg-gradient-to-l from-noorOrange via-noorOrangeWarm to-shamGreen p-6 sm:p-8 text-white shadow-xl shadow-noorOrange/20 border-2 border-noorOrange/40 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-noorOrange/30"
+            <a
+                href="#galleryWorksSection"
+                aria-label="الانتقال إلى معرض الأعمال المشاركة"
+                class="group relative block overflow-hidden rounded-3xl bg-gradient-to-l from-noorOrange via-noorOrangeWarm to-shamGreen p-6 sm:p-8 text-white shadow-xl shadow-noorOrange/20 border-2 border-noorOrange/40 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-noorOrange/30 focus:outline-none focus:ring-4 focus:ring-noorOrange/40"
             >
                 <div class="absolute -left-12 -bottom-12 w-56 h-56 rounded-full bg-white/10 blur-xl pointer-events-none"></div>
                 <div class="absolute right-10 -top-10 w-40 h-40 rounded-full bg-amber-300/20 blur-lg pointer-events-none"></div>
@@ -479,11 +474,11 @@
                         </span>
                     </div>
                 </div>
-            </div>
+            </a>
         </section>
 
         <!-- شريط فلاتر أنواع المشاركات بلمسات برتقالية بارزة -->
-        <div class="mb-7 p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-noorOrange/25 dark:border-slate-800 shadow-xs">
+        <div id="galleryWorksSection" class="mb-7 p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-noorOrange/25 dark:border-slate-800 shadow-xs scroll-mt-28">
             <div class="flex flex-wrap items-center justify-between gap-3 mb-3.5">
                 <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-slate-100 flex items-center gap-2">
                     <span class="inline-block w-2.5 h-6 rounded-full bg-noorOrange"></span>
@@ -815,120 +810,6 @@
             </form>
         </div>
     </div>
-
-    <!-- نافذة تقويم حملة 16 يوماً - جمعية عطر الشام (25 نوفمبر - 10 ديسمبر) -->
-    <section id="campaignCalendarModal" class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 scroll-mt-24">
-        <div class="bg-noorOrangeTint dark:bg-slate-900 border-t-4 border-noorOrange border-x border-b border-noorOrange/30 dark:border-slate-800 rounded-3xl w-full p-5 sm:p-7 shadow-xl relative">
-            <div class="flex flex-wrap items-start justify-between gap-4 pb-5 mb-6 border-b border-noorOrange/25 dark:border-slate-800">
-                <div>
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-noorOrange text-white text-xs font-extrabold mb-2">
-                        <span>🗓️ 25 نوفمبر — 10 ديسمبر</span>
-                        <span>•</span>
-                        <span>16 يوماً من العطاء والتوعية</span>
-                    </div>
-                    <h2 class="text-xl sm:text-3xl font-black text-slate-900 dark:text-white">
-                        معرض حملة 16 يوم - جمعية عطر الشام
-                    </h2>
-                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1">
-                        تظهر أمامك أيام الحملة الستة عشر مباشرة. اختر أي يوم لعرض صوره وفعالياته ومشاركاته.
-                    </p>
-                </div>
-
-                <div class="flex items-center gap-2">
-                    <button
-                        type="button"
-                        id="calendarBackToGridBtn"
-                        onclick="showCalendarGridView()"
-                        class="hidden px-4 py-2 rounded-xl bg-shamGreen hover:bg-shamGreenLight text-white text-xs sm:text-sm font-extrabold shadow-xs transition cursor-pointer"
-                    >
-                        → العودة إلى مربعات التقويم
-                    </button>
-
-                </div>
-            </div>
-
-            <!-- العرض الأول: شبكة مربعات الأيام الـ 16 -->
-            <div id="calendarGridView">
-                <div id="campaignDaysGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
-            </div>
-
-            <!-- العرض الثاني: تفاصيل اليوم المختار والصور والأنشطة المنفذة فيه -->
-            <div id="calendarDayDetailView" class="hidden space-y-6">
-                <div class="rounded-2xl bg-gradient-to-l from-noorOrange to-noorOrangeWarm p-5 sm:p-6 text-white shadow-md flex flex-wrap items-center justify-between gap-4">
-                    <div>
-                        <div id="selectedDayNumberBadge" class="inline-block px-3 py-1 rounded-full bg-white/25 text-xs font-extrabold mb-1.5"></div>
-                        <h3 id="selectedDayFullTitle" class="text-xl sm:text-2xl font-black"></h3>
-                        <p id="selectedDaySummary" class="text-xs sm:text-sm text-white/95 mt-1 font-medium"></p>
-                    </div>
-                    <button
-                        type="button"
-                        onclick="showCalendarGridView()"
-                        class="px-4 py-2.5 rounded-xl bg-white text-noorOrange hover:bg-noorOrangeSoft text-xs sm:text-sm font-black shadow-sm transition cursor-pointer"
-                    >
-                        → كل أيام الحملة (16 يوماً)
-                    </button>
-                </div>
-
-                <!-- نموذج إضافة نشاط/صورة جديدة لهذا اليوم (يظهر للمشرف المسجّل فقط) -->
-                <div id="adminAddDayActivityBox" class="hidden rounded-2xl border-2 border-dashed border-shamGreen bg-white dark:bg-slate-800/80 p-5">
-                    <h4 class="text-base font-black text-shamGreen dark:text-emerald-300 mb-1">
-                        🛡️ إضافة صورة أو نشاط جديد لـ <span id="adminTargetDayLabel"></span>
-                    </h4>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
-                        سيتم حفظ النشاط والصور مباشرة في تقويم هذا اليوم داخل المتصفح.
-                    </p>
-                    <form id="dayActivityForm" onsubmit="handleAddDayActivity(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                        <div>
-                            <label for="dayActivityTitleInput" class="block text-xs font-extrabold mb-1 text-slate-700 dark:text-slate-200">
-                                عنوان الفعالية / المشاركة *
-                            </label>
-                            <input
-                                type="text"
-                                id="dayActivityTitleInput"
-                                required
-                                placeholder="مثال: ورشة التطريز التراثي والتوعية"
-                                class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-noorOrange"
-                            >
-                        </div>
-                        <div>
-                            <label for="dayActivityFileInput" class="block text-xs font-extrabold mb-1 text-slate-700 dark:text-slate-200">
-                                رفع صورة الفعالية من الجهاز
-                            </label>
-                            <input
-                                type="file"
-                                id="dayActivityFileInput"
-                                accept="image/*"
-                                class="w-full text-xs text-slate-600 dark:text-slate-300 file:ml-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:font-bold file:bg-noorOrange file:text-white hover:file:bg-noorOrangeHover cursor-pointer rounded-xl border border-dashed border-noorOrange/45 p-1.5 bg-noorOrangeTint dark:bg-slate-900"
-                            >
-                        </div>
-                        <div class="sm:col-span-2">
-                            <label for="dayActivityDescInput" class="block text-xs font-extrabold mb-1 text-slate-700 dark:text-slate-200">
-                                تفاصيل الفعالية والصورة داخل الجمعية *
-                            </label>
-                            <textarea
-                                id="dayActivityDescInput"
-                                rows="2"
-                                required
-                                placeholder="اكتب وصفاً لما تم تنفيذه في جمعية عطر الشام خلال هذا اليوم..."
-                                class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-noorOrange"
-                            ></textarea>
-                        </div>
-                        <div class="sm:col-span-2 flex justify-end">
-                            <button
-                                type="submit"
-                                class="px-5 py-2.5 rounded-xl bg-shamGreen hover:bg-shamGreenLight text-white text-xs sm:text-sm font-extrabold shadow-xs transition cursor-pointer"
-                            >
-                                + حفظ ونشر في هذا اليوم
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- شبكة الصور والأنشطة المنفذة في اليوم المختار -->
-                <div id="selectedDayActivitiesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
-            </div>
-        </div>
-    </section>
 
     <!-- رسالة إشعار عائمة بديلة عن alert() -->
     <div id="toastBanner" class="fixed bottom-5 left-5 z-50 hidden max-w-sm rounded-xl bg-shamGreen text-white px-4 py-3 shadow-xl border border-emerald-400/30 text-xs sm:text-sm font-bold transition-all"></div>
@@ -1378,21 +1259,18 @@
             };
         }
 
-        // تحميل المشاركات المعتمدة وتقويم الحملة (متاحة للجميع)
+        // تحميل المشاركات المعتمدة والشركاء (متاحة للجميع)
         async function loadState() {
             if (!sb) {
                 showToast('لم يتم ضبط مفتاح Supabase بعد، لذلك لا يمكن تحميل البيانات.', true);
                 return;
             }
             try {
-                const [worksRes, campRes] = await Promise.all([
-                    sb.from('works').select('*').eq('status', 'approved').order('created_at', { ascending: false }),
-                    sb.from('campaigns').select('id').eq('slug', CAMPAIGN_SLUG).maybeSingle()
-                ]);
+                const worksRes = await sb.from('works').select('*').eq('status', 'approved').order('created_at', { ascending: false });
                 if (worksRes.error) throw worksRes.error;
-                if (campRes.error) throw campRes.error;
                 approvedWorks = (worksRes.data || []).map(mapWork);
-                // الشركاء وحدة مستقلة: تعطل جدولها لا يمنع المعرض أو التقويم من العمل.
+
+                // الشركاء وحدة مستقلة: تعطل جدولها لا يمنع المعرض من العمل.
                 try {
                     const partnersRes = await sb.from('partners').select('*').order('display_order', { ascending: true }).order('created_at', { ascending: true });
                     if (partnersRes.error) throw partnersRes.error;
@@ -1402,32 +1280,10 @@
                     partners = [];
                 }
                 renderPartners();
-                if (campRes.data) {
-                    campaignId = campRes.data.id;
-                    await loadCampaignDays();
-                }
             } catch (err) {
                 console.error('خطأ أثناء تحميل البيانات:', err);
                 showToast('تعذر تحميل البيانات من الخادم. تحقق من الاتصال وأعد المحاولة.', true);
             }
-        }
-
-        async function loadCampaignDays() {
-            const [daysRes, actsRes] = await Promise.all([
-                sb.from('campaign_days').select('*').eq('campaign_id', campaignId).order('day_number'),
-                sb.from('campaign_day_activities').select('*').eq('campaign_id', campaignId).order('created_at', { ascending: false })
-            ]);
-            if (daysRes.error) throw daysRes.error;
-            if (actsRes.error) throw actsRes.error;
-            campaignDays = (daysRes.data || []).map((d) => ({
-                dayNumber: d.day_number,
-                dayLabel: d.day_label,
-                dateLabel: d.date_label,
-                headline: d.headline,
-                activities: (actsRes.data || [])
-                    .filter((a) => a.day_number === d.day_number)
-                    .map((a) => ({ id: a.id, title: a.title, description: a.description, imageUrl: a.image_url }))
-            }));
         }
 
         // المشاركات المعلّقة (تظهر للمشرف فقط بفضل RLS)
