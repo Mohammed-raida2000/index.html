@@ -70,11 +70,11 @@
     <!-- الشريط العلوي مع شعار UNFPA وشعار جمعية عطر الشام فقط في الواجهة العلوية -->
     <header class="sticky top-0 z-40 bg-gradient-to-l from-amber-50/95 via-orange-50/95 to-white/95 dark:from-slate-900/95 dark:via-slate-900/95 dark:to-slate-900/95 backdrop-blur-md border-b-4 border-noorOrange shadow-sm">
         <div class="h-1.5 w-full bg-gradient-to-l from-noorRust via-noorOrange to-amber-400"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
+        <div class="w-full mx-auto px-3 sm:px-5 lg:px-7 py-2.5 flex flex-nowrap items-center justify-between gap-3 min-w-0">
             <!-- شعارا UNFPA وجمعية عطر الشام الأصليان في الواجهة -->
-            <div class="flex flex-wrap items-center gap-3 sm:gap-5">
+            <div class="flex flex-nowrap items-center gap-2 sm:gap-4 shrink-0 min-w-0">
                 <!-- شعار UNFPA الأصلي -->
-                <div class="group relative h-14 sm:h-16 px-1 bg-transparent flex items-center justify-center" title="صندوق الأمم المتحدة للسكان UNFPA">
+                <div class="group relative h-12 sm:h-14 px-1 bg-transparent flex items-center justify-center shrink-0" title="صندوق الأمم المتحدة للسكان UNFPA">
                     <img id="customUnfpaLogoImg" src="" alt="شعار UNFPA" class="hidden h-full w-auto object-contain">
                     <svg id="defaultUnfpaSvg" viewBox="0 0 260 116" class="h-full w-auto" role="img" aria-label="شعار UNFPA">
                         <circle cx="16" cy="20" r="12.5" fill="#F36E21" />
@@ -108,7 +108,7 @@
                 </div>
 
                 <!-- شعار جمعية عطر الشام التعاونية الحرفية الأصلي -->
-                <div class="group relative h-14 sm:h-16 px-1 bg-transparent flex items-center gap-2" title="جمعية عطر الشام التعاونية الحرفية">
+                <div class="group relative h-12 sm:h-14 px-1 bg-transparent flex items-center gap-2 shrink-0" title="جمعية عطر الشام التعاونية الحرفية">
                     <img id="customShamLogoImg" src="" alt="شعار جمعية عطر الشام التعاونية الحرفية" class="hidden h-full w-auto object-contain">
                     <svg id="defaultShamSvg" viewBox="0 0 240 240" class="h-full w-auto shrink-0" role="img" aria-label="شعار جمعية عطر الشام التعاونية الحرفية">
                         <defs>
@@ -165,7 +165,7 @@
                 </div>
 
                 <!-- عنوان منصة النور -->
-                <div class="pr-1 sm:pr-3 border-r-0 sm:border-r-2 border-noorOrange/45">
+                <div class="pr-1 sm:pr-3 border-r-0 sm:border-r-2 border-noorOrange/45 shrink-0">
                     <h1 class="text-xl sm:text-2xl font-black text-noorOrange tracking-tight">منصة النور</h1>
                     <p class="text-xs sm:text-sm text-slate-800 dark:text-slate-300 font-bold">
                         معرض حملة الـ 16 يوماً لمناهضة العنف ضد النساء والفتيات
@@ -174,11 +174,11 @@
             </div>
 
             <!-- أزرار الإجراءات في الشريط العلوي -->
-            <div class="flex flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto justify-end">
+            <div class="flex flex-nowrap items-center gap-1.5 sm:gap-2.5 shrink-0 justify-end overflow-x-auto max-w-[58vw] lg:max-w-none">
                 <button
                     type="button"
                     onclick="openModal('submitModal')"
-                    class="px-4 py-2.5 rounded-xl bg-noorOrange hover:bg-noorOrangeHover active:scale-[0.99] text-white font-extrabold text-sm shadow-sm transition flex items-center gap-1.5 cursor-pointer"
+                    class="whitespace-nowrap shrink-0 px-4 py-2.5 rounded-xl bg-noorOrange hover:bg-noorOrangeHover active:scale-[0.99] text-white font-extrabold text-sm shadow-sm transition flex items-center gap-1.5 cursor-pointer"
                 >
                     <span>+ شارك عملك</span>
                 </button>
@@ -187,7 +187,7 @@
                     type="button"
                     onclick="copySubmissionLink()"
                     title="نسخ رابط المشاركة المباشر"
-                    class="px-3.5 py-2.5 rounded-xl border border-noorOrange/45 bg-white dark:bg-slate-800 hover:bg-noorOrangeSoft dark:hover:bg-slate-700 text-noorOrange dark:text-amber-300 font-extrabold text-xs sm:text-sm shadow-2xs transition flex items-center gap-1.5 cursor-pointer"
+                    class="whitespace-nowrap shrink-0 px-3.5 py-2.5 rounded-xl border border-noorOrange/45 bg-white dark:bg-slate-800 hover:bg-noorOrangeSoft dark:hover:bg-slate-700 text-noorOrange dark:text-amber-300 font-extrabold text-xs sm:text-sm shadow-2xs transition flex items-center gap-1.5 cursor-pointer"
                 >
                     <span>🔗 رابط المشاركة</span>
                 </button>
@@ -196,18 +196,18 @@
                     type="button"
                     id="adminActionBtn"
                     onclick="handleAdminButtonClick()"
-                    class="px-3.5 py-2.5 rounded-xl bg-shamGreen hover:bg-shamGreenLight text-white font-bold text-sm shadow-xs transition flex items-center gap-1.5 cursor-pointer"
+                    class="whitespace-nowrap shrink-0 px-3.5 py-2.5 rounded-xl bg-shamGreen hover:bg-shamGreenLight text-white font-bold text-sm shadow-xs transition flex items-center gap-1.5 cursor-pointer"
                 >
                     <span id="adminBtnText">🔒 وضع المشرف</span>
                 </button>
 
-                <button type="button" id="languageToggle" onclick="toggleLanguage()" class="px-3 py-2.5 rounded-xl border border-noorOrange/40 bg-white dark:bg-slate-800 text-noorOrange dark:text-amber-300 text-xs font-extrabold">EN</button>
+                <button type="button" id="languageToggle" onclick="toggleLanguage()" class="whitespace-nowrap shrink-0 px-3 py-2.5 rounded-xl border border-noorOrange/40 bg-white dark:bg-slate-800 text-noorOrange dark:text-amber-300 text-xs font-extrabold">EN</button>
                 <button
                     type="button"
                     onclick="toggleDarkMode()"
                     aria-label="تبديل الوضع الداكن"
                     title="تبديل الوضع الداكن / الفاتح"
-                    class="p-2.5 rounded-xl border border-noorOrange/40 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-noorOrangeSoft dark:hover:bg-slate-700 text-noorOrange dark:text-amber-300 transition cursor-pointer"
+                    class="whitespace-nowrap shrink-0 p-2.5 rounded-xl border border-noorOrange/40 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-noorOrangeSoft dark:hover:bg-slate-700 text-noorOrange dark:text-amber-300 transition cursor-pointer"
                 >
                     <span id="themeIcon" class="text-base leading-none">🌙</span>
                 </button>
@@ -453,10 +453,6 @@
         <!-- خانة بارزة وكاملة فوق معرض المشاركات: معرض حملة 16 يوم - جمعية عطر الشام -->
         <section class="mb-8">
             <div
-                onclick="openCampaignCalendarModal()"
-                role="button"
-                tabindex="0"
-                onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCampaignCalendarModal();}"
                 class="group relative overflow-hidden rounded-3xl bg-gradient-to-l from-noorOrange via-noorOrangeWarm to-shamGreen p-6 sm:p-8 text-white shadow-xl shadow-noorOrange/20 border-2 border-noorOrange/40 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-noorOrange/30"
             >
                 <div class="absolute -left-12 -bottom-12 w-56 h-56 rounded-full bg-white/10 blur-xl pointer-events-none"></div>
@@ -472,13 +468,13 @@
                             معرض حملة 16 يوم - جمعية عطر الشام
                         </h3>
                         <p class="text-xs sm:text-base text-white/95 font-medium leading-relaxed">
-                            تصفّح يوميات حملة الـ 16 يوماً يوماً بيوم من 25 نوفمبر وحتى 10 ديسمبر؛ اضغط على أي يوم في التقويم لمشاهدة الصور والأنشطة والمشاركات التي نُفذت داخل جمعية عطر الشام التعاونية الحرفية.
+                            برنامج الحملة اليومي من 25 نوفمبر وحتى 10 ديسمبر، مع عرض الأيام الستة عشر مباشرة أدناه.
                         </p>
                     </div>
 
                     <div class="flex items-center gap-3 shrink-0 self-start lg:self-center">
                         <span class="px-5 py-3.5 rounded-2xl bg-white text-noorOrange group-hover:bg-noorOrangeSoft font-black text-sm sm:text-base shadow-lg transition flex items-center gap-2">
-                            <span>🗓️ افتح تقويم الحملة (16 يوماً)</span>
+                            <span>🗓️ برنامج الحملة — 16 يوماً</span>
                             <span class="transition-transform group-hover:-translate-x-1">←</span>
                         </span>
                     </div>
@@ -821,8 +817,8 @@
     </div>
 
     <!-- نافذة تقويم حملة 16 يوماً - جمعية عطر الشام (25 نوفمبر - 10 ديسمبر) -->
-    <div id="campaignCalendarModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-xs items-center justify-center p-3 sm:p-5" onclick="handleBackdropClick(event, 'campaignCalendarModal')">
-        <div class="bg-noorOrangeTint dark:bg-slate-900 border-t-4 border-noorOrange border-x border-b border-noorOrange/30 dark:border-slate-800 rounded-3xl max-w-6xl w-full max-h-[93vh] overflow-y-auto p-5 sm:p-7 shadow-2xl relative">
+    <section id="campaignCalendarModal" class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 scroll-mt-24">
+        <div class="bg-noorOrangeTint dark:bg-slate-900 border-t-4 border-noorOrange border-x border-b border-noorOrange/30 dark:border-slate-800 rounded-3xl w-full p-5 sm:p-7 shadow-xl relative">
             <div class="flex flex-wrap items-start justify-between gap-4 pb-5 mb-6 border-b border-noorOrange/25 dark:border-slate-800">
                 <div>
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-noorOrange text-white text-xs font-extrabold mb-2">
@@ -834,7 +830,7 @@
                         معرض حملة 16 يوم - جمعية عطر الشام
                     </h2>
                     <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1">
-                        اختر أي مربع يوم من التقويم أدناه لعرض الصور والفعاليات والمشاركات الخاصة بذلك اليوم داخل الجمعية.
+                        تظهر أمامك أيام الحملة الستة عشر مباشرة. اختر أي يوم لعرض صوره وفعالياته ومشاركاته.
                     </p>
                 </div>
 
@@ -847,14 +843,7 @@
                     >
                         → العودة إلى مربعات التقويم
                     </button>
-                    <button
-                        type="button"
-                        onclick="closeModal('campaignCalendarModal')"
-                        aria-label="إغلاق تقويم الحملة"
-                        class="w-10 h-10 rounded-full bg-white dark:bg-slate-800 border border-noorOrange/30 text-slate-700 dark:text-slate-200 hover:bg-noorOrangeSoft flex items-center justify-center text-2xl font-bold cursor-pointer"
-                    >
-                        &times;
-                    </button>
+
                 </div>
             </div>
 
@@ -939,7 +928,7 @@
                 <div id="selectedDayActivitiesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- رسالة إشعار عائمة بديلة عن alert() -->
     <div id="toastBanner" class="fixed bottom-5 left-5 z-50 hidden max-w-sm rounded-xl bg-shamGreen text-white px-4 py-3 shadow-xl border border-emerald-400/30 text-xs sm:text-sm font-bold transition-all"></div>
@@ -1972,13 +1961,14 @@
 
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape') {
-                ['submitModal', 'detailModal', 'adminLoginModal', 'campaignCalendarModal', 'editWorkModal', 'associationMaintenanceModal'].forEach((id) => closeModal(id));
+                ['submitModal', 'detailModal', 'adminLoginModal', 'editWorkModal', 'associationMaintenanceModal'].forEach((id) => closeModal(id));
             }
         });
 
         function openCampaignCalendarModal() {
             showCalendarGridView();
-            openModal('campaignCalendarModal');
+            const calendar = document.getElementById('campaignCalendarModal');
+            if (calendar) calendar.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function showCalendarGridView() {
