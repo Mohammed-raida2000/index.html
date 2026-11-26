@@ -13,6 +13,27 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
     <script>
+        function toggleMobileNav(forceClose = false) {
+            const menu = document.getElementById('topNavActions');
+            const button = document.getElementById('mobileNavToggle');
+            const icon = document.getElementById('mobileNavIcon');
+            if (!menu || !button) return;
+            const shouldOpen = forceClose ? false : !menu.classList.contains('mobile-open');
+            menu.classList.toggle('mobile-open', shouldOpen);
+            button.setAttribute('aria-expanded', String(shouldOpen));
+            button.setAttribute('aria-label', shouldOpen ? 'إغلاق القائمة' : 'فتح القائمة');
+            if (icon) icon.innerHTML = shouldOpen
+                ? '<path d="M6 6l12 12M18 6L6 18"/>'
+                : '<path d="M4 6h16M4 12h16M4 18h16"/>';
+        }
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('topNavActions');
+            const button = document.getElementById('mobileNavToggle');
+            if (menu && button && menu.classList.contains('mobile-open') && !menu.contains(event.target) && !button.contains(event.target)) toggleMobileNav(true);
+        });
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768) toggleMobileNav(true);
+        });
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -63,6 +84,40 @@
         ::-webkit-scrollbar-thumb:hover {
             background: rgba(243, 110, 33, 0.75);
         }
+
+        @media (max-width: 767px) {
+            #topNavActions {
+                display: none;
+                position: absolute;
+                top: calc(100% + 1px);
+                inset-inline: 0;
+                width: 100%;
+                max-width: none;
+                padding: 12px;
+                flex-wrap: wrap;
+                justify-content: stretch;
+                gap: 8px;
+                overflow: visible;
+                background: rgba(255, 250, 245, 0.98);
+                border-bottom: 3px solid #F36E21;
+                box-shadow: 0 12px 24px rgba(15, 23, 42, 0.16);
+                z-index: 60;
+                border-radius: 0 0 16px 16px;
+            }
+            .dark #topNavActions { background: rgba(15, 23, 42, 0.98); }
+            #topNavActions.mobile-open { display: flex; }
+            #topNavActions button { flex: 1 1 calc(50% - 8px); justify-content: center; min-width: 0; }
+            #topNavActions #languageToggle { flex: 0 0 64px; }
+            #topNavActions button[onclick="toggleDarkMode()"] { flex: 0 0 48px; }
+            header .h-1\.5 { height: 4px; }
+        }
+        @media (max-width: 380px) {
+            header .w-full.mx-auto.px-3 { padding-inline: 8px; gap: 6px; }
+            header .group[title="صندوق الأمم المتحدة للسكان UNFPA"] { height: 32px; }
+            header .group[title="جمعية عطر الشام التعاونية الحرفية"] { height: 32px; }
+            header h1 { font-size: 14px; }
+            #mobileNavToggle { width: 36px; height: 36px; }
+        }
     </style>
 </head>
 <body class="bg-noorOrangeTint text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col selection:bg-noorOrange/25 selection:text-noorOrange">
@@ -70,11 +125,11 @@
     <!-- الشريط العلوي مع شعار UNFPA وشعار جمعية عطر الشام فقط في الواجهة العلوية -->
     <header class="sticky top-0 z-40 bg-gradient-to-l from-amber-50/95 via-orange-50/95 to-white/95 dark:from-slate-900/95 dark:via-slate-900/95 dark:to-slate-900/95 backdrop-blur-md border-b-4 border-noorOrange shadow-sm">
         <div class="h-1.5 w-full bg-gradient-to-l from-noorRust via-noorOrange to-amber-400"></div>
-        <div class="w-full mx-auto px-3 sm:px-5 lg:px-7 py-2.5 flex flex-nowrap items-center justify-between gap-3 min-w-0">
+        <div class="relative w-full mx-auto px-3 sm:px-5 lg:px-7 py-2.5 flex flex-nowrap items-center justify-between gap-3 min-w-0">
             <!-- شعارا UNFPA وجمعية عطر الشام الأصليان في الواجهة -->
-            <div class="flex flex-nowrap items-center gap-2 sm:gap-4 shrink-0 min-w-0">
+            <div class="flex flex-nowrap items-center gap-2 sm:gap-4 min-w-0 flex-1 md:flex-none">
                 <!-- شعار UNFPA الأصلي -->
-                <div class="group relative h-12 sm:h-14 px-1 bg-transparent flex items-center justify-center shrink-0" title="صندوق الأمم المتحدة للسكان UNFPA">
+                <div class="group relative h-9 sm:h-14 px-0.5 sm:px-1 bg-transparent flex items-center justify-center shrink-0" title="صندوق الأمم المتحدة للسكان UNFPA">
                     <img id="customUnfpaLogoImg" src="" alt="شعار UNFPA" class="hidden h-full w-auto object-contain">
                     <svg id="defaultUnfpaSvg" viewBox="0 0 260 116" class="h-full w-auto" role="img" aria-label="شعار UNFPA">
                         <circle cx="16" cy="20" r="12.5" fill="#F36E21" />
@@ -108,7 +163,7 @@
                 </div>
 
                 <!-- شعار جمعية عطر الشام التعاونية الحرفية الأصلي -->
-                <div class="group relative h-12 sm:h-14 px-1 bg-transparent flex items-center gap-2 shrink-0" title="جمعية عطر الشام التعاونية الحرفية">
+                <div class="group relative h-9 sm:h-14 px-0.5 sm:px-1 bg-transparent flex items-center gap-2 shrink-0" title="جمعية عطر الشام التعاونية الحرفية">
                     <img id="customShamLogoImg" src="" alt="شعار جمعية عطر الشام التعاونية الحرفية" class="hidden h-full w-auto object-contain">
                     <svg id="defaultShamSvg" viewBox="0 0 240 240" class="h-full w-auto shrink-0" role="img" aria-label="شعار جمعية عطر الشام التعاونية الحرفية">
                         <defs>
@@ -165,16 +220,21 @@
                 </div>
 
                 <!-- عنوان منصة النور -->
-                <div class="pr-1 sm:pr-3 border-r-0 sm:border-r-2 border-noorOrange/45 shrink-0">
-                    <h1 class="text-xl sm:text-2xl font-black text-noorOrange tracking-tight">منصة النور</h1>
-                    <p class="text-xs sm:text-sm text-slate-800 dark:text-slate-300 font-bold">
+                <div class="pr-1 sm:pr-3 border-r-0 sm:border-r-2 border-noorOrange/45 min-w-0">
+                    <h1 class="text-base sm:text-2xl font-black text-noorOrange tracking-tight whitespace-nowrap">منصة النور</h1>
+                    <p class="hidden sm:block text-xs sm:text-sm text-slate-800 dark:text-slate-300 font-bold">
                         معرض حملة الـ 16 يوماً لمناهضة العنف ضد النساء والفتيات
                     </p>
                 </div>
             </div>
 
-            <!-- أزرار الإجراءات في الشريط العلوي -->
-            <div class="flex flex-nowrap items-center gap-1.5 sm:gap-2.5 shrink-0 justify-end overflow-x-auto max-w-[58vw] lg:max-w-none">
+            <!-- زر قائمة الهاتف -->
+            <button type="button" id="mobileNavToggle" onclick="toggleMobileNav()" aria-label="فتح القائمة" aria-expanded="false" aria-controls="topNavActions" class="md:hidden shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-xl border border-noorOrange/40 bg-white dark:bg-slate-800 text-noorOrange dark:text-amber-300 shadow-sm">
+                <svg id="mobileNavIcon" viewBox="0 0 24 24" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+
+            <!-- أزرار الإجراءات: قائمة منسدلة على الشاشات الصغيرة -->
+            <div id="topNavActions" class="flex flex-nowrap items-center gap-1.5 sm:gap-2.5 shrink-0 justify-end overflow-x-auto max-w-[58vw] lg:max-w-none">
                 <button
                     type="button"
                     onclick="openModal('submitModal')"
